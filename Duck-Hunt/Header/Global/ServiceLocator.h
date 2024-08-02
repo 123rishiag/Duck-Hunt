@@ -4,6 +4,10 @@
 #include "../Event/EventService.h"
 #include "../Time/TimeService.h"
 
+
+
+#include "../UI/UIService.h"
+
 namespace Global {
 
     // ServiceLocator Class Summary: This class manages access to various services in the application.
@@ -15,6 +19,9 @@ namespace Global {
         Graphic::GraphicService* graphicService;
         Event::EventService* eventService;
         Time::TimeService* timeService;
+
+
+        UI::UIService* uiService;
 
         // Private Constructor and Destructor:
 
@@ -40,6 +47,9 @@ namespace Global {
         Graphic::GraphicService* GetGraphicService() const;   // Retrieve the GraphicService instance
         Event::EventService* GetEventService() const;   // Retrieve the EventService instance
         Time::TimeService* GetTimeService() const;   // Retrieve the TimeService instance
+
+
+        UI::UIService* GetUIService() const;   // Retrieve the UIService instance
 
         void DeleteServiceLocator();
     };

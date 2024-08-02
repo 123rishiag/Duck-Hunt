@@ -14,6 +14,6 @@ int main()
         gameService->Render();
     }
 
-    delete(gameService);
+    //delete(gameService);
     return 0;
 }

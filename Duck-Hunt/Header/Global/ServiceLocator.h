@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../Graphic/GraphicService.h"
+#include "../Event/EventService.h"
+#include "../Time/TimeService.h"
 
 namespace Global {
 
@@ -11,7 +13,8 @@ namespace Global {
     private:
         // Private Attributes:
         Graphic::GraphicService* graphicService;
-
+        Event::EventService* eventService;
+        Time::TimeService* timeService;
 
         // Private Constructor and Destructor:
 
@@ -35,6 +38,8 @@ namespace Global {
 
         // Methods to Get Specific Services: 
         Graphic::GraphicService* GetGraphicService() const;   // Retrieve the GraphicService instance
+        Event::EventService* GetEventService() const;   // Retrieve the EventService instance
+        Time::TimeService* GetTimeService() const;   // Retrieve the TimeService instance
 
         void DeleteServiceLocator();
     };

@@ -44,7 +44,7 @@ namespace Main
 	void GameService::Update()
 	{
 		// Process Events.
-		//serviceLocator->GetEventService()->ProcessEvents();
+		serviceLocator->GetEventService()->ProcessEvents();
 
 		// Update Game Logic.
 		serviceLocator->Update();

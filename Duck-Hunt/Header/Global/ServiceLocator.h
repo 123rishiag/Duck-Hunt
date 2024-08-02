@@ -3,6 +3,7 @@
 #include "../Graphic/GraphicService.h"
 #include "../Event/EventService.h"
 #include "../Time/TimeService.h"
+#include "../Gameplay/GameplayService.h"
 
 
 
@@ -19,6 +20,7 @@ namespace Global {
         Graphic::GraphicService* graphicService;
         Event::EventService* eventService;
         Time::TimeService* timeService;
+        Gameplay::GameplayService* gameplayService;
 
 
         UI::UIService* uiService;
@@ -47,6 +49,7 @@ namespace Global {
         Graphic::GraphicService* GetGraphicService() const;   // Retrieve the GraphicService instance
         Event::EventService* GetEventService() const;   // Retrieve the EventService instance
         Time::TimeService* GetTimeService() const;   // Retrieve the TimeService instance
+        Gameplay::GameplayService* GetGameplayService() const;   // Retrieve the GameplayService instance
 
 
         UI::UIService* GetUIService() const;   // Retrieve the UIService instance

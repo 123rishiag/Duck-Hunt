@@ -60,7 +60,8 @@ namespace Main
 
 	void GameService::ShowSplashScreen()
 	{
-		SetGameState(GameState::SPLASH_SCREEN);
+		SetGameState(GameState::GAMEPLAY);
+		//SetGameState(GameState::SPLASH_SCREEN);
 		//serviceLocator->GetInstance()->GetUIService()->Show();
 	}
 

@@ -1,10 +1,12 @@
 #include "../../Header/UI/UIService.h"
 #include "../../Header/Main/GameService.h"
-//#include "../../Header/UI/GameplayUI/GameplayUIController.h"
+#include "../../Header/UI/UIElement/TextView.h" 
+#include "../../Header/UI/GameplayUI/GameplayUIController.h"
 
 namespace UI
 {
 	using namespace Main;
+	using namespace UIElement;
 	using namespace Interface;
 	using namespace GameplayUI;
 
@@ -16,7 +18,7 @@ namespace UI
 
 	void UIService::CreateControllers()
 	{
-		//gameplayUIController = new GameplayUI::GameplayUIController();
+		gameplayUIController = new GameplayUI::GameplayUIController();
 	}
 
 	UIService::~UIService()
@@ -26,7 +28,7 @@ namespace UI
 
 	void UIService::Initialize()
 	{
-		//TextView::InitializeTextView();
+		TextView::InitializeTextView();
 		InitializeControllers();
 	}
 
@@ -50,7 +52,7 @@ namespace UI
 
 	void UIService::InitializeControllers()
 	{
-		//gameplayUIController->Initialize();
+		gameplayUIController->Initialize();
 	}
 
 	IUIController* UIService::GetCurrentUIController()
@@ -58,7 +60,7 @@ namespace UI
 		switch (GameService::GetGameState())
 		{
 		case GameState::GAMEPLAY:
-			return nullptr; //gameplayUIController;
+			return gameplayUIController;
 		default:
 			return nullptr;
 		}

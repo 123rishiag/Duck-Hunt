@@ -14,6 +14,10 @@
     <ClCompile Include="Source\UI\UIElement\TextView.cpp" />
     <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="Source\Global\Config.cpp" />
+    <ClCompile Include="Source\UI\GameplayUI\GameplayUIController.cpp" />
+    <ClCompile Include="Source\Gameplay\GameplayService.cpp" />
+    <ClCompile Include="Source\Gameplay\GameplayController.cpp" />
+    <ClCompile Include="Source\Gameplay\GameplayView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Main\GameService.h" />
@@ -29,5 +33,9 @@
     <ClInclude Include="Header\UI\UIElement\TextView.h" />
     <ClInclude Include="Header\UI\UIElement\ButtonView.h" />
     <ClInclude Include="Header\Global\Config.h" />
+    <ClInclude Include="Header\UI\GameplayUI\GameplayUIController.h" />
+    <ClInclude Include="Header\Gameplay\GameplayService.h" />
+    <ClInclude Include="Header\Gameplay\GameplayController.h" />
+    <ClInclude Include="Header\Gameplay\GameplayView.h" />
   </ItemGroup>
 </Project>

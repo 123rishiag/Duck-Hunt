@@ -1,24 +1,19 @@
-#include <SFML/Graphics.hpp>
+#include "Header/Main/GameService.h"
+
+using namespace Main;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    GameService* gameService = new GameService();
 
-    while (window.isOpen())
+    gameService->Ignite();
+
+    while (gameService->IsRunning())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
+        gameService->Update();
+        gameService->Render();
     }
 
+    delete(gameService);
     return 0;
 }

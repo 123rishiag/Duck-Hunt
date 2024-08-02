@@ -7,6 +7,13 @@
     <ClCompile Include="Source\Graphic\GraphicService.cpp" />
     <ClCompile Include="Source\Event\EventService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
+    <ClCompile Include="Source\UI\UIService.cpp" />
+    <ClCompile Include="Source\UI\UIElement\UIView.cpp" />
+    <ClCompile Include="Source\UI\UIElement\ImageView.cpp" />
+    <ClCompile Include="Source\UI\UIElement\AnimatedImageView.cpp" />
+    <ClCompile Include="Source\UI\UIElement\TextView.cpp" />
+    <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
+    <ClCompile Include="Source\Global\Config.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Main\GameService.h" />
@@ -14,5 +21,13 @@
     <ClInclude Include="Header\Graphic\GraphicService.h" />
     <ClInclude Include="Header\Event\EventService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
+    <ClInclude Include="Header\UI\Interface\IUIController.h" />
+    <ClInclude Include="Header\UI\UIService.h" />
+    <ClInclude Include="Header\UI\UIElement\UIView.h" />
+    <ClInclude Include="Header\UI\UIElement\ImageView.h" />
+    <ClInclude Include="Header\UI\UIElement\AnimatedImageView.h" />
+    <ClInclude Include="Header\UI\UIElement\TextView.h" />
+    <ClInclude Include="Header\UI\UIElement\ButtonView.h" />
+    <ClInclude Include="Header\Global\Config.h" />
   </ItemGroup>
 </Project>

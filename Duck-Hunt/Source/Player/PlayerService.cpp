@@ -13,9 +13,9 @@ namespace Player
         delete (playerController);
     }
 
-    void PlayerService::Initialize(int initialHealth, int initialAmmo)
+    void PlayerService::Initialize()
     {
-        playerController->Initialize(initialHealth, initialAmmo);
+        playerController->Initialize();
     }
 
     void PlayerService::Update()

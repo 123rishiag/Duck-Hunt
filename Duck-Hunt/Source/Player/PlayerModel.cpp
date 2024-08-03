@@ -6,11 +6,8 @@ namespace Player
 
     PlayerModel::~PlayerModel() {}
 
-    void PlayerModel::Initialize(int initialHealth, int initialAmmo)
+    void PlayerModel::Initialize()
     {
-        playerHealth = initialHealth;
-        playerAmmo = initialAmmo;
-        playerScore = 0;
     }
 
     void PlayerModel::ReducePlayerHealth(int healthAmount)

@@ -84,4 +84,14 @@ namespace Event {
     bool EventService::GameWindowWasClosed() const { return gameEvent.type == sf::Event::Closed; }
 
     bool EventService::PressedLeftMouseButton() const { return leftMouseButtonState == ButtonState::PRESSED; }
+
+    sf::Vector2f  EventService::GetMousePosition() const 
+    {
+        if (gameWindow)
+        {
+            sf::Vector2i mousePosition = sf::Mouse::getPosition(*gameWindow);
+            return sf::Vector2f(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y));
+        }
+        return sf::Vector2f(0.0f, 0.0f); // Return a default value if gameWindow is not set
+    }
 }

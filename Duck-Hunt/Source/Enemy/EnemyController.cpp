@@ -34,7 +34,7 @@ namespace Enemy
 
 	void EnemyController::Initialize()
 	{
-		enemyModel->Initialize();
+		enemyModel->Initialize(GetEnemyHorizontalMovementSpeed(), GetEnemyVerticalMovementSpeed(), GetEnemyDeathRadius());
 		enemyModel->SetEnemyPosition(enemyModel->GetReferencePosition());
 		enemyView->Initialize(this); // we will discuss this soon
 	}

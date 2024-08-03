@@ -10,6 +10,7 @@ namespace Enemy
         private:
             float horizontalMovementSpeed = 1000.0f;
             float verticalMovementSpeed = 200.f;
+            float enemyDeathRadius = 500.f;
 
             void Move() override;
             void MoveHorizontal();
@@ -19,7 +20,9 @@ namespace Enemy
             DuckController(EnemyType type);
             ~DuckController();
 
-            void Initialize() override;
+            float GetEnemyHorizontalMovementSpeed() override;
+            float GetEnemyVerticalMovementSpeed() override;
+            float GetEnemyDeathRadius() override;
         };
     }
 }

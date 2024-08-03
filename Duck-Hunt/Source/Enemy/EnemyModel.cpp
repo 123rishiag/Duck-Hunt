@@ -10,22 +10,13 @@ namespace Enemy
 
 	EnemyModel::~EnemyModel() { }
 
-	void EnemyModel::Initialize()
+	void EnemyModel::Initialize(float hSpeed, float ySpeed, float radius)
 	{
+		enemyPosition = referencePosition;
+		enemyDeathRadius = radius;
 		enemyState = EnemyState::ALIVE;
 		horizontalMovementDirection = HorizontalMovementDirection::RIGHT;
 		verticalMovementDirection = VerticalMovementDirection::UP;
-		enemyPosition = referencePosition;
-	}
-
-	sf::Vector2f EnemyModel::GetEnemyPosition() const
-	{
-		return enemyPosition;
-	}
-
-	void EnemyModel::SetEnemyPosition(sf::Vector2f position)
-	{
-		enemyPosition = position;
 	}
 
 	sf::Vector2f EnemyModel::GetReferencePosition() const
@@ -36,6 +27,16 @@ namespace Enemy
 	void EnemyModel::SetReferencePosition(sf::Vector2f position)
 	{
 		referencePosition = position;
+	}
+
+	sf::Vector2f EnemyModel::GetEnemyPosition() const
+	{
+		return enemyPosition;
+	}
+
+	void EnemyModel::SetEnemyPosition(sf::Vector2f position)
+	{
+		enemyPosition = position;
 	}
 
 	EnemyState EnemyModel::GetEnemyState() const
@@ -96,6 +97,16 @@ namespace Enemy
 	void EnemyModel::SetVerticalMovementSpeed(float speed)
 	{
 		verticalMovementSpeed = speed;
+	}
+
+	float EnemyModel::GetEnemyDeathRadius() const
+	{
+		return enemyDeathRadius;
+	}
+
+	void EnemyModel::SetEnemyDeathRadius(float radius)
+	{
+		enemyDeathRadius = radius;
 	}
 
 }

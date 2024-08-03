@@ -4,7 +4,9 @@
 #include "../Event/EventService.h"
 #include "../Time/TimeService.h"
 #include "../Gameplay/GameplayService.h"
+#include "../Player/PlayerService.h"
 #include "../Enemy/EnemyService.h"
+#include "../Bullet/BulletService.h"
 
 
 
@@ -22,7 +24,9 @@ namespace Global {
         Event::EventService* eventService;
         Time::TimeService* timeService;
         Gameplay::GameplayService* gameplayService;
+        Player::PlayerService* playerService;
         Enemy::EnemyService* enemyService;
+        Bullet::BulletService* bulletService;
 
 
         UI::UIService* uiService;
@@ -52,7 +56,9 @@ namespace Global {
         Event::EventService* GetEventService() const;   // Retrieve the EventService instance
         Time::TimeService* GetTimeService() const;   // Retrieve the TimeService instance
         Gameplay::GameplayService* GetGameplayService() const;   // Retrieve the GameplayService instance
+        Player::PlayerService* GetPlayerService() const;   // Retrieve the PlayerService instance
         Enemy::EnemyService* GetEnemyService() const;   // Retrieve the EnemyService instance
+        Bullet::BulletService* GetBulletService() const;   // Retrieve the BulletService instance
 
 
         UI::UIService* GetUIService() const;   // Retrieve the UIService instance

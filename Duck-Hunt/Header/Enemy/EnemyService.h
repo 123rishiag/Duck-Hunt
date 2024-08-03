@@ -1,5 +1,6 @@
 #pragma once
-#include <vector>
+#include <vector><
+#include <SFML/Graphics.hpp>
 
 namespace Enemy
 {
@@ -14,7 +15,7 @@ namespace Enemy
 		std::vector<EnemyController*> flaggedEnemyList;
 
 		int enemyCount;
-		int maxEnemies = 1;
+		int maxEnemies = 3;
 
 		void UpdateMaxEnemy(int number);
 		void ProcessEnemySpawn();
@@ -35,5 +36,6 @@ namespace Enemy
 
 		EnemyController* SpawnEnemy();
 		void DestroyEnemy(EnemyController* enemyController);
+		void DestroyEnemyByPosition(sf::Vector2f position, float radius);
 	};
 }

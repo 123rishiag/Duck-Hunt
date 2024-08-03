@@ -23,6 +23,7 @@ namespace Enemy
 
         float horizontalMovementSpeed;
         float verticalMovementSpeed;
+        float enemyDeathRadius;
 
     public:
         EnemyModel(EnemyType type);
@@ -34,13 +35,13 @@ namespace Enemy
         const float upMostPosition = 50.f;
         const float downMostPosition = 900.f;
 
-        void Initialize();
-
-        sf::Vector2f GetEnemyPosition() const;
-        void SetEnemyPosition(sf::Vector2f position);
+        void Initialize(float hSpeed,float ySpeed, float radius);
 
         sf::Vector2f GetReferencePosition() const;
         void SetReferencePosition(sf::Vector2f position);
+
+        sf::Vector2f GetEnemyPosition() const;
+        void SetEnemyPosition(sf::Vector2f position);
 
         EnemyType GetEnemyType() const;
         void SetEnemyType(EnemyType type);
@@ -59,6 +60,9 @@ namespace Enemy
 
         float GetVerticalMovementSpeed() const;
         void SetVerticalMovementSpeed(float speed);
+
+        float GetEnemyDeathRadius() const;
+        void SetEnemyDeathRadius(float radius);
 
     };
 }

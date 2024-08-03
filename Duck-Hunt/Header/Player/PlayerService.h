@@ -13,7 +13,7 @@ namespace Player
         PlayerService();
         ~PlayerService();
 
-        void Initialize(int initialHealth, int initialAmmo);
+        void Initialize();
         void Update();
         void Render();
 

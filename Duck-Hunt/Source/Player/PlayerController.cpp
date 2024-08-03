@@ -13,9 +13,9 @@ namespace Player
         delete playerModel;
     }
 
-    void PlayerController::Initialize(int initialHealth, int initialAmmo)
+    void PlayerController::Initialize()
     {
-        playerModel->Initialize(initialHealth, initialAmmo);
+        playerModel->Initialize();
     }
 
     void PlayerController::Update()

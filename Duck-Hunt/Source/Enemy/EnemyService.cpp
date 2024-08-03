@@ -79,9 +79,9 @@ namespace Enemy
 
 	void EnemyService::DestroyFlaggedEnemies()
 	{
-		for (auto enemy : flaggedEnemyList)
+		for (auto& enemy : flaggedEnemyList)
 		{
-			delete enemy;
+			delete (enemy);
 		}
 		flaggedEnemyList.clear();
 	}
@@ -89,8 +89,26 @@ namespace Enemy
 	// Function to destroy an enemy controller object from the enemy_list vector.
 	void EnemyService::DestroyEnemy(EnemyController* enemyController)
 	{
-		flaggedEnemyList.push_back(enemyController);
-		enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
+		if (std::find(flaggedEnemyList.begin(), flaggedEnemyList.end(), enemyController) == flaggedEnemyList.end())
+		{
+			flaggedEnemyList.push_back(enemyController);
+			enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
+		}
+	}
+
+	// Function to destroy an enemy by position from the enemy_list vector.
+	void EnemyService::DestroyEnemyByPosition(sf::Vector2f position, float radius)
+	{
+		for (auto& enemy : enemyList)
+		{
+			float maxRadius = (radius > enemy->GetEnemyDeathRadius()) ? radius : enemy->GetEnemyDeathRadius();
+			float distance = std::sqrt(std::pow(enemy->GetEnemyPosition().x - position.x, 2) +
+				std::pow(enemy->GetEnemyPosition().y - position.y, 2));
+			if (distance <= maxRadius)
+			{
+				enemy->Destroy();
+			}
+		}
 	}
 
 	void EnemyService::Destroy(bool increaseScore)
@@ -110,4 +128,5 @@ namespace Enemy
 		Destroy(increaseScore);
 		enemyCount = 0;
 	}
+
 }

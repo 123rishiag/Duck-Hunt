@@ -13,13 +13,6 @@ namespace Enemy
 
         DuckController::~DuckController() { }
 
-        void DuckController::Initialize()
-        {
-            EnemyController::Initialize(); // init the base controller
-            enemyModel->SetHorizontalMovementSpeed(horizontalMovementSpeed);
-            enemyModel->SetVerticalMovementSpeed(verticalMovementSpeed);
-        }
-
         void DuckController::Move()
         {
             MoveHorizontal();
@@ -80,6 +73,21 @@ namespace Enemy
             }
 
             enemyModel->SetEnemyPosition(currentPosition);
+        }
+
+        float DuckController::GetEnemyHorizontalMovementSpeed()
+        {
+            return horizontalMovementSpeed;
+        }
+
+        float DuckController::GetEnemyVerticalMovementSpeed()
+        {
+            return verticalMovementSpeed;
+        }
+
+        float DuckController::GetEnemyDeathRadius()
+        {
+            return enemyDeathRadius;
         }
     }
 }

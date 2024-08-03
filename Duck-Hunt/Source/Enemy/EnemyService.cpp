@@ -72,14 +72,16 @@ namespace Enemy
 			return new Controller::DuckController(Enemy::EnemyType::DUCK);
 		case::Enemy::EnemyType::POWER_DUCK:
 			return new Controller::DuckController(Enemy::EnemyType::DUCK);
+		default:
+			return nullptr;
 		}
 	}
 
 	void EnemyService::DestroyFlaggedEnemies()
 	{
-		for (int i = 0; i < flaggedEnemyList.size(); i++)
+		for (auto enemy : flaggedEnemyList)
 		{
-			delete (flaggedEnemyList[i]);
+			delete enemy;
 		}
 		flaggedEnemyList.clear();
 	}
@@ -93,9 +95,9 @@ namespace Enemy
 
 	void EnemyService::Destroy(bool increaseScore)
 	{
-		for (int i = 0; i < enemyList.size(); i++)
+		for (auto enemy : enemyList)
 		{
-			enemyList[i]->Destroy();
+			enemy->Destroy();
 			if (increaseScore == true) {
 				//ServiceLocator::GetInstance()->GetPlayerService()->IncreaseEnemiesKilled(1);
 			}

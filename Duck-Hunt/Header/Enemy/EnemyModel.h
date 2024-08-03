@@ -4,8 +4,10 @@
 namespace Enemy
 {
     enum class EnemyType;
+
     enum class HorizontalMovementDirection;
     enum class VerticalMovementDirection;
+
     enum class EnemyState;
 
     class EnemyModel
@@ -19,6 +21,9 @@ namespace Enemy
         EnemyType enemyType;
         EnemyState enemyState;
 
+        float horizontalMovementSpeed;
+        float verticalMovementSpeed;
+
     public:
         EnemyModel(EnemyType type);
         ~EnemyModel();
@@ -28,9 +33,6 @@ namespace Enemy
         const float rightMostPosition = 1800.f;
         const float upMostPosition = 50.f;
         const float downMostPosition = 900.f;
-
-        float horizontalMovementSpeed;
-        float verticalMovementSpeed;
 
         void Initialize();
 

@@ -6,6 +6,7 @@ namespace Global {
     using namespace Event;
     using namespace Time;
     using namespace Gameplay;
+    using namespace Enemy;
 
 
 
@@ -19,6 +20,7 @@ namespace Global {
         eventService = nullptr; // Initialize eventService to null
         timeService = nullptr; // Initialize timeService to null
         gameplayService = nullptr; // Initialize gameplayService to null
+        enemyService = nullptr; // Initialize enemyService to null
 
 
         uiService = nullptr; // Initialize uiService to null
@@ -37,6 +39,7 @@ namespace Global {
         eventService = new EventService(); // Dynamically create a EventService instance
         timeService = new TimeService(); // Dynamically create a TimeService instance
         gameplayService = new GameplayService(); // Dynamically create a GameplayService instance
+        enemyService = new EnemyService(); // Dynamically create a EnemyService instance
 
 
         uiService = new UIService(); // Dynamically create a UIService instance
@@ -48,6 +51,7 @@ namespace Global {
         delete(eventService); // Delete the eventService instance
         delete(timeService); // Delete the timeService instance
         delete(gameplayService); // Delete the gameplayService instance
+        delete(enemyService); // Delete the enemyService instance
 
 
         delete(uiService); // Delete the uiService instance
@@ -65,6 +69,7 @@ namespace Global {
         eventService->Initialize(); // Initialize event service
         timeService->Initialize(); // Initialize time service
         gameplayService->Initialize(); // Initialize gameplay service
+        enemyService->Initialize(); // Initialize enemy service
 
 
         uiService->Initialize(); // Initialize ui service
@@ -78,6 +83,7 @@ namespace Global {
         if (GameService::GetGameState() == GameState::GAMEPLAY)
         {
             gameplayService->Update(); // Update gameplay service
+            enemyService->Update(); // Update enemy service
         }
 
 
@@ -92,6 +98,7 @@ namespace Global {
         if (GameService::GetGameState() == GameState::GAMEPLAY)
         {
             gameplayService->Render(); // Update gameplay service
+            enemyService->Render(); // Render enemy service
         }
 
 
@@ -115,6 +122,10 @@ namespace Global {
     // Retrieve the GameplayService instance
     GameplayService* ServiceLocator::GetGameplayService() const {
         return gameplayService;
+    }
+    // Retrieve the EnemyService instance
+    EnemyService* ServiceLocator::GetEnemyService() const {
+        return enemyService;
     }
 
 

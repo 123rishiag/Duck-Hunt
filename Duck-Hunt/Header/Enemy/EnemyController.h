@@ -21,14 +21,18 @@ namespace Enemy
         EnemyController(EnemyType type);
         virtual ~EnemyController();
 
-        virtual void Initialize();
+        void Initialize();
         void Update();
         void Render();
 
-        virtual void Destroy();
+        void Destroy();
 
         EnemyType GetEnemyType() const;
         EnemyState GetEnemyState() const;
         sf::Vector2f GetEnemyPosition();
+
+        virtual float GetEnemyHorizontalMovementSpeed() = 0;
+        virtual float GetEnemyVerticalMovementSpeed() = 0;
+        virtual float GetEnemyDeathRadius() = 0;
     };
 }

@@ -13,7 +13,7 @@ namespace Player
         PlayerController();
         ~PlayerController();
 
-        void Initialize(int initialHealth, int initialAmmo);
+        void Initialize();
         void Update();
         void Render();
 

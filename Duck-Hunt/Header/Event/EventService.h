@@ -38,5 +38,7 @@ namespace Event {
 		bool IsKeyboardEvent() const;
 
 		bool PressedLeftMouseButton() const;
+
+		sf::Vector2f GetMousePosition() const;
 	};
 }

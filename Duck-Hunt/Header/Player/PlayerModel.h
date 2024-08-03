@@ -5,15 +5,15 @@ namespace Player
     class PlayerModel
     {
     private:
-        int playerHealth;
-        int playerAmmo;
-        int playerScore;
+        int playerHealth = 3;
+        int playerAmmo = 10;
+        int playerScore = 0;
 
     public:
         PlayerModel();
         ~PlayerModel();
 
-        void Initialize(int initialHealth, int initialAmmo);
+        void Initialize();
         void ReducePlayerHealth(int healthAmount);
         void IncreasePlayerScore(int score);
         void ReducePlayerAmmo();

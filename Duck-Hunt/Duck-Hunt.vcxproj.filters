@@ -30,6 +30,7 @@
     <ClCompile Include="Source\Bullet\BulletController.cpp" />
     <ClCompile Include="Source\Bullet\BulletModel.cpp" />
     <ClCompile Include="Source\Bullet\Controllers\PointBulletController.cpp" />
+    <ClCompile Include="Source\Player\PlayerView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Main\GameService.h" />
@@ -64,5 +65,6 @@
     <ClInclude Include="Header\Bullet\BulletModel.h" />
     <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\Bullet\Controllers\PointBulletController.h" />
+    <ClInclude Include="Header\Player\PlayerView.h" />
   </ItemGroup>
 </Project>

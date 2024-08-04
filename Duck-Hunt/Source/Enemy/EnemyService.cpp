@@ -108,18 +108,37 @@ namespace Enemy
 		}
 	}
 
-	// Function to destroy an enemy by position from the enemy_list vector.
-	void EnemyService::DestroyEnemyByPosition(sf::Vector2f position, float radius)
+	// Recursive function to flag enemies for destruction
+	void EnemyService::DestroyEnemyRecursive(sf::Vector2f position, float radius, std::unordered_set<EnemyController*>& enemiesToDestroy)
 	{
 		for (auto& enemy : enemyList)
 		{
-			float maxRadius = (radius > enemy->GetEnemyDeathRadius()) ? radius : enemy->GetEnemyDeathRadius();
+			if (enemiesToDestroy.find(enemy) != enemiesToDestroy.end())
+				continue;
+
 			float distance = std::sqrt(std::pow(enemy->GetEnemyPosition().x - position.x, 2) +
 				std::pow(enemy->GetEnemyPosition().y - position.y, 2));
-			if (distance <= maxRadius)
+
+			if (distance <= radius)
 			{
-				enemy->Destroy();
+				enemiesToDestroy.insert(enemy);
+				DestroyEnemyRecursive(enemy->GetEnemyPosition(), enemy->GetEnemyDeathRadius(), enemiesToDestroy);
 			}
+		}
+	}
+
+	// Function to destroy an enemy by position from the enemy_list vector.
+	void EnemyService::DestroyEnemyByPosition(sf::Vector2f position, float bulletRadius)
+	{
+		std::unordered_set<EnemyController*> enemiesToDestroy;
+
+		// Start the recursive destruction process
+		DestroyEnemyRecursive(position, bulletRadius, enemiesToDestroy);
+
+		// Flag all selected enemies for destruction
+		for (auto& enemy : enemiesToDestroy)
+		{
+			enemy->Destroy();
 		}
 	}
 

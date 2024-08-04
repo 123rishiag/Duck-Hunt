@@ -21,14 +21,6 @@ namespace Gameplay
 	void GameplayService::Update() 
 	{
 		gameplayController->Update();
-
-		if (ServiceLocator::GetInstance()->GetEventService()->PressedLeftMouseButton())
-		{
-				ServiceLocator::GetInstance()->GetBulletService()->OnShoot(
-					ServiceLocator::GetInstance()->GetEventService()->GetMousePosition()
-					);
-		}
-		
 	}
 
 	void GameplayService::Render() { gameplayController->Render(); }

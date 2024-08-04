@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include <SFML/System/Clock.hpp> // Include for sf::Clock and sf::Time
 
 namespace Event {
 
@@ -18,6 +19,11 @@ namespace Event {
 		sf::RenderWindow* gameWindow; //ptr to our game window
 
 		ButtonState leftMouseButtonState;
+
+		const float mouseHoldDurationInSeconds = 1.0f;
+
+		sf::Clock mousePressClock; // Clock to track the duration of the mouse button press
+		sf::Time mousePressDuration; // Time duration for which the mouse button has been pressed
 
 		bool IsGameWindowOpen() const;
 		bool GameWindowWasClosed() const; //for the condition we already had - the title bar cross.

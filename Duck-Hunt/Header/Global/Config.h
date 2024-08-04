@@ -9,6 +9,8 @@ namespace Global
 		static const sf::String outscalLogoTexturePath;
 		static const sf::String backgroundTexturePath;
 
+		static const sf::String playerTexturePath;
+
 		static const sf::String playerHealthCounterTexturePath;
 		static const sf::String duckCounterTexturePath;
 		static const sf::String playerBulletCounterTexturePath;

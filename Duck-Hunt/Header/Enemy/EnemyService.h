@@ -1,5 +1,6 @@
 #pragma once
-#include <vector><
+#include <vector>
+#include <unordered_set>
 #include <SFML/Graphics.hpp>
 
 namespace Enemy
@@ -24,6 +25,7 @@ namespace Enemy
 		EnemyType GetRandomEnemyType() const;
 		EnemyController* CreateEnemy(EnemyType enemyType) const;
 		void DestroyFlaggedEnemies();
+		void DestroyEnemyRecursive(sf::Vector2f position, float radius, std::unordered_set<EnemyController*>& enemiesToDestroy);
 		void Destroy(bool increaseScore); // function to delete enemy
 
 	public:

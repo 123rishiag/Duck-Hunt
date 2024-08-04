@@ -8,7 +8,7 @@ namespace Bullet
         class PointBulletController : public BulletController
         {
         private:
-            const float pointBulletRadius = 500.f;
+            const float pointBulletRadius = 100.f;
 
         public:
             PointBulletController(BulletType type);

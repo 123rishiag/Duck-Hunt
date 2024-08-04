@@ -47,7 +47,9 @@ namespace Enemy
 		switch (enemyController->GetEnemyType())
 		{
 		case::Enemy::EnemyType::DUCK:
-			return Config::duckCounterTexturePath;
+			return Config::duckTexturePath;
+		case::Enemy::EnemyType::POWER_DUCK:
+			return Config::powerDuckTexturePath;
 		}
 	}
 

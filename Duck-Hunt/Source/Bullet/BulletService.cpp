@@ -2,6 +2,7 @@
 #include "../../Header/Bullet/BulletController.h"
 #include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Bullet/Controllers/PointBulletController.h"
+#include "../../Header/Bullet/Controllers/AreaBulletController.h"
 #include "../../Header/Global/ServiceLocator.h"
 //#include "../../Header/Sound/SoundService.h"
 
@@ -39,10 +40,8 @@ namespace Bullet
 		{
 		case::Bullet::BulletType::POINT_BULLET:
 			return new Controller::PointBulletController(Bullet::BulletType::POINT_BULLET);
-
 		case::Bullet::BulletType::AREA_BULLET:
-			return new Controller::PointBulletController(Bullet::BulletType::POINT_BULLET);
-
+			return new Controller::AreaBulletController(Bullet::BulletType::AREA_BULLET);
 		default:
 			return nullptr;
 		}

@@ -11,7 +11,7 @@ namespace Bullet
 
 		float PointBulletController::GetBulletRadius()
 		{
-			return pointBulletRadius;
+			return bulletRadius;
 		}
 	}
 }

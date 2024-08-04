@@ -5,14 +5,14 @@ namespace Bullet
 {
     namespace Controller
     {
-        class PointBulletController : public BulletController
+        class AreaBulletController : public BulletController
         {
         private:
-            const float bulletRadius = 100.f;
+            const float bulletRadius = 300.f;
 
         public:
-            PointBulletController(BulletType type);
-            ~PointBulletController();
+            AreaBulletController(BulletType type);
+            ~AreaBulletController();
 
             float GetBulletRadius() override;
         };

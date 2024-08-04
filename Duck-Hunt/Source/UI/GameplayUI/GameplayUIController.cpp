@@ -31,7 +31,7 @@ namespace UI
 
         void GameplayUIController::InitializeImage()
         {
-            playerhealthCounterImage->Initialize(Config::playerHealthCounterTexturePath, playerhealthCounterSpriteWidth, playerhealthCounterSpriteHeight, sf::Vector2f(0, 0));
+            playerhealthCounterImage->Initialize(Config::playerHealthTexturePath, playerhealthCounterSpriteWidth, playerhealthCounterSpriteHeight, sf::Vector2f(0, 0));
         }
 
         void GameplayUIController::InitializeText()

@@ -31,6 +31,8 @@
     <ClCompile Include="Source\Bullet\BulletModel.cpp" />
     <ClCompile Include="Source\Bullet\Controllers\PointBulletController.cpp" />
     <ClCompile Include="Source\Player\PlayerView.cpp" />
+    <ClCompile Include="Source\Bullet\Controllers\AreaBulletController.cpp" />
+    <ClCompile Include="Source\Enemy\Controllers\PowerDuckController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Main\GameService.h" />
@@ -66,5 +68,7 @@
     <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\Bullet\Controllers\PointBulletController.h" />
     <ClInclude Include="Header\Player\PlayerView.h" />
+    <ClInclude Include="Header\Bullet\Controllers\AreaBulletController.h" />
+    <ClInclude Include="Header\Enemy\Controllers\PowerDuckController.h" />
   </ItemGroup>
 </Project>

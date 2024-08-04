@@ -36,7 +36,7 @@ namespace UI
             if (imageTexture.loadFromFile(texturePath))
             {
                 imageSprite.setTexture(imageTexture);
-            }
+            } 
         }
 
         void ImageView::SetTextureRect(sf::IntRect textureRect)

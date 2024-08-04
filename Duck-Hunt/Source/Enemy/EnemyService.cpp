@@ -1,6 +1,7 @@
 #include "../../Header/Enemy/EnemyService.h"
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Enemy/Controllers/DuckController.h"
+#include "../../Header/Enemy/Controllers/PowerDuckController.h"
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
 
@@ -83,7 +84,7 @@ namespace Enemy
 		case::Enemy::EnemyType::DUCK:
 			return new Controller::DuckController(Enemy::EnemyType::DUCK);
 		case::Enemy::EnemyType::POWER_DUCK:
-			return new Controller::DuckController(Enemy::EnemyType::DUCK);
+			return new Controller::PowerDuckController(Enemy::EnemyType::POWER_DUCK);
 		default:
 			return nullptr;
 		}

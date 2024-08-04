@@ -10,7 +10,7 @@ namespace Enemy
         private:
             float horizontalMovementSpeed = 1000.0f;
             float verticalMovementSpeed = 200.f;
-            float enemyDeathRadius = 500.f;
+            float enemyDeathRadius = 100.f;
 
         public:
             DuckController(EnemyType type);

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
+#include "../../Header/Bullet/BulletConfig.h"
 
 namespace Projectile
 {
@@ -11,8 +12,9 @@ namespace Projectile
 		virtual void Render() = 0;
 
 		virtual sf::Vector2f GetProjectilePosition() = 0;
-
 		virtual void OnShoot(sf::Vector2f position) = 0;
+		virtual float GetBulletRadius() = 0;
+		virtual Bullet::BulletType GetBulletType() = 0;
 
 		virtual ~IProjectile() {};
 	};

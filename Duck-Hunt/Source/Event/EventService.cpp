@@ -3,7 +3,11 @@
 
 namespace Event {
     using namespace Global;
-    EventService::EventService() { gameWindow = nullptr; }
+    EventService::EventService() 
+    { 
+        gameWindow = nullptr; 
+        mousePressDuration = sf::Time::Zero;
+    }
 
     EventService::~EventService() = default; //calls the default destructor
 
@@ -39,15 +43,22 @@ namespace Event {
             {
             case ButtonState::RELEASED:
                 currentButtonState = ButtonState::PRESSED;
+                mousePressClock.restart();
+                mousePressDuration = sf::Time::Zero;
                 break;
             case ButtonState::PRESSED:
-                currentButtonState = ButtonState::HELD;
+                mousePressDuration = mousePressClock.getElapsedTime();
+                if (mousePressDuration.asSeconds() >= mouseHoldDurationInSeconds)
+                {
+                    currentButtonState = ButtonState::HELD;
+                }
                 break;
             }
         }
         else
         {
             currentButtonState = ButtonState::RELEASED;
+            mousePressDuration = sf::Time::Zero;
         }
     }
 

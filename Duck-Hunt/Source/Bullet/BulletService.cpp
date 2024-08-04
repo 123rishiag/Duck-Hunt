@@ -29,7 +29,8 @@ namespace Bullet
 
 	void BulletService::Render()
 	{
-		//for (int i = 0; i < bulletList.size(); i++) bulletList[i]->Render();
+		for (IProjectile * bullet : bulletList)
+			bullet->Render();
 	}
 
 	BulletController* BulletService::CreateBullet(BulletType bulletType)
@@ -98,6 +99,15 @@ namespace Bullet
 			bullet->OnShoot(position);
 			break;
 		}
+	}
+
+	Projectile::IProjectile* BulletService::GetCurrentBullet()
+	{
+		if (IsValidBullet(0, bulletList))
+		{
+			return bulletList[0];
+		}
+		return nullptr;
 	}
 
 	BulletType BulletService::GetRandomBulletType() const

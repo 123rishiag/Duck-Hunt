@@ -42,7 +42,7 @@ namespace Bullet
     {
         return bulletModel->GetBulletPosition();
     }
-    BulletType BulletController::GetBulletType() const
+    BulletType BulletController::GetBulletType()
     {
         return bulletModel->GetBulletType();
     }

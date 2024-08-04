@@ -2,12 +2,13 @@
 
 namespace Player
 {
-    PlayerModel::PlayerModel() {}
+    PlayerModel::PlayerModel() { }
 
-    PlayerModel::~PlayerModel() {}
+    PlayerModel::~PlayerModel() { }
 
     void PlayerModel::Initialize()
     {
+        playerHealth = playerMaxHealth;
     }
 
     void PlayerModel::ReducePlayerHealth(int healthAmount)
@@ -46,5 +47,28 @@ namespace Player
     int PlayerModel::GetPlayerScore() const
     {
         return playerScore;
+    }
+
+    sf::Vector2f PlayerModel::GetPlayerPosition() const { return playerPosition; }
+    void PlayerModel::SetPlayerPosition(sf::Vector2f position) { playerPosition = position; }
+
+    BulletType PlayerModel::GetBulletType() const
+    {
+        return currentBulletType;
+    }
+
+    void PlayerModel::SetBulletType(BulletType type)
+    {
+        currentBulletType = type;
+    }
+
+    float PlayerModel::GetBulletRadius() const
+    {
+        return currentBulletRadius;
+    }
+
+    void PlayerModel::SetBulletRadius(float radius)
+    {
+        currentBulletRadius = radius;
     }
 }

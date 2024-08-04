@@ -1,8 +1,11 @@
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 namespace Enemy
 {
+	using namespace Global;
+
 	EnemyModel::EnemyModel(EnemyType type)
 	{
 		enemyType = type;
@@ -12,11 +15,11 @@ namespace Enemy
 
 	void EnemyModel::Initialize(float hSpeed, float ySpeed, float radius)
 	{
-		enemyPosition = referencePosition;
-		enemyDeathRadius = radius;
 		enemyState = EnemyState::ALIVE;
-		horizontalMovementDirection = HorizontalMovementDirection::RIGHT;
-		verticalMovementDirection = VerticalMovementDirection::UP;
+		enemyPosition = sf::Vector2f(static_cast<int>(leftMostPosition) + (std::rand() % (static_cast<int>(rightMostPosition) - static_cast<int>(leftMostPosition) + 1)) , downMostPosition);
+		enemyDeathRadius = radius;
+		horizontalMovementDirection = ServiceLocator::GetInstance()->GetEnemyService()->GetRandomEnemyHorizontalMovementDirection();
+		verticalMovementDirection = ServiceLocator::GetInstance()->GetEnemyService()->GetRandomEnemyVerticalMovementDirection();
 	}
 
 	sf::Vector2f EnemyModel::GetReferencePosition() const

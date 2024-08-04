@@ -6,6 +6,8 @@ namespace Enemy
 {
 
 	enum class EnemyType;
+	enum class HorizontalMovementDirection;
+	enum class VerticalMovementDirection;
 	class EnemyController;
 
 	class EnemyService
@@ -34,6 +36,8 @@ namespace Enemy
 
 		void Reset(bool increaseScore);
 
+		HorizontalMovementDirection GetRandomEnemyHorizontalMovementDirection() const;
+		VerticalMovementDirection GetRandomEnemyVerticalMovementDirection() const;
 		EnemyController* SpawnEnemy();
 		void DestroyEnemy(EnemyController* enemyController);
 		void DestroyEnemyByPosition(sf::Vector2f position, float radius);

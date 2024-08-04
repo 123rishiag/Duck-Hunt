@@ -15,7 +15,18 @@ namespace Enemy
         EnemyView* enemyView;
         EnemyModel* enemyModel;
 
-        virtual void Move() = 0;
+        float horizontalOffset;
+        float verticalOffset;
+        float previousHorizontalOffset = 0.0f;
+        float previousVerticalOffset = 0.0f;
+        float smoothingFactor = 0.00001f;
+
+        void Move();
+        void MoveHorizontal();
+        void MoveVertical();
+
+        float GetRandomOffset();
+        float SmoothOffset(float currentOffset, float newOffset);
 
     public:
         EnemyController(EnemyType type);

@@ -18,6 +18,7 @@ namespace Event {
     {
         ProcessEvents();
         UpdateMouseButtonsState(leftMouseButtonState, sf::Mouse::Left);
+        UpdateMouseButtonsState(rightMouseButtonState, sf::Mouse::Right);
     }
 
     void EventService::ProcessEvents()
@@ -86,6 +87,8 @@ namespace Event {
     bool EventService::GameWindowWasClosed() const { return gameEvent.type == sf::Event::Closed; }
 
     bool EventService::PressedLeftMouseButton() const { return leftMouseButtonState == ButtonState::PRESSED; }
+
+    bool EventService::PressedRightMouseButton() const { return rightMouseButtonState == ButtonState::PRESSED; }
 
     sf::Vector2f  EventService::GetMousePosition() const 
     {

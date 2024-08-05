@@ -18,6 +18,7 @@ namespace Event {
 		sf::RenderWindow* gameWindow; //ptr to our game window
 
 		ButtonState leftMouseButtonState;
+		ButtonState rightMouseButtonState;
 
 		bool IsGameWindowOpen() const;
 		bool GameWindowWasClosed() const; //for the condition we already had - the title bar cross.
@@ -38,6 +39,7 @@ namespace Event {
 		bool IsKeyboardEvent() const;
 
 		bool PressedLeftMouseButton() const;
+		bool PressedRightMouseButton() const;
 
 		sf::Vector2f GetMousePosition() const;
 	};

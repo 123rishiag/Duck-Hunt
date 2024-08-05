@@ -66,12 +66,12 @@ namespace Player
     sf::Vector2f PlayerModel::GetPlayerPosition() const { return playerPosition; }
     void PlayerModel::SetPlayerPosition(sf::Vector2f position) { playerPosition = position; }
 
-    BulletType PlayerModel::GetBulletType() const
+    BulletType PlayerModel::GetCurrentBulletType() const
     {
         return currentBulletType;
     }
 
-    void PlayerModel::SetBulletType(BulletType type)
+    void PlayerModel::SetCurrentBulletType(BulletType type)
     {
         currentBulletType = type;
     }

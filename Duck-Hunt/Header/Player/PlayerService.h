@@ -1,8 +1,10 @@
 #pragma once
+#include"../../Header/Bullet/BulletConfig.h"
 
 namespace Player
 {
     class PlayerController;
+    enum class BulletType;
 
     class PlayerService
     {
@@ -27,5 +29,6 @@ namespace Player
         int GetPlayerPointAmmo() const;
         int GetPlayerAreaAmmo() const;
         int GetPlayerScore() const;
+        BulletType GetCurrentBulletType();
     };
 }

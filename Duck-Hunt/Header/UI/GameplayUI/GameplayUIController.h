@@ -34,6 +34,7 @@ namespace UI
 			const float playerAmmoSpriteWidth = 50.f;
 			const float playerAmmoSpriteHeight = 50.f;
 			UI::UIElement::ImageView* playerAmmoImage;
+			const float playerCurrentBulletScaleFactor = 1.3f;
 
 			const sf::Vector2f enemyPosition = sf::Vector2f(800.f, 900.f);
 			const float enemyYOffset = 15.f;

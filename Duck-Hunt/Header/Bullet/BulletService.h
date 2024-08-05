@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <unordered_map>
 #include "SFML/System/Vector2.hpp"
 #include "../../Header/Projectile/IProjectile.h"
 
@@ -37,6 +38,7 @@ namespace Bullet
 
 		BulletController* SpawnBullet(BulletType bulletType);
 		void OnShoot(sf::Vector2f position);
+		void ChangeBullets();
 		Projectile::IProjectile* GetCurrentBullet();
 		std::vector<Projectile::IProjectile*> GetAllBullets();
 		void DestroyBullet(BulletController* bulletController);

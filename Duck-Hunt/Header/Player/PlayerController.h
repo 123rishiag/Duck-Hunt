@@ -42,7 +42,7 @@ namespace Player
 
         float GetBulletRadius() const;
         void SetBulletRadius(float radius);
-        BulletType GetBulletType() const;
-        void SetBulletType(BulletType bulletType);
+        BulletType GetCurrentBulletType() const;
+        void SetCurrentBulletType(BulletType bulletType);
     };
 }

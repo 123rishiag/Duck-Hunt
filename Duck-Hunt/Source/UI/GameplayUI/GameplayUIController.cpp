@@ -4,6 +4,7 @@
 #include "../../Header/Main/GameService.h"
 #include"../../Header/Enemy/EnemyConfig.h"
 #include"../../Header/Bullet/BulletConfig.h"
+#include"../../Header/Utility/Utility.h"
 
 namespace UI
 {
@@ -86,12 +87,24 @@ namespace UI
 
         void GameplayUIController::DrawPlayerAmmo()
         {
-            int ammoCounter = 0;
 
+            int bulletTypeInt = static_cast<int>(ServiceLocator::GetInstance()->GetPlayerService()->GetCurrentBulletType());
+            Bullet::BulletType playerBulletType = Utility::ToEnum<Bullet::BulletType>(bulletTypeInt);
+
+            int ammoCounter = 0;
+            
             for (int counter = 0; counter < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerPointAmmo(); counter++)
             {
                 playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + (counter * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
                 playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(Bullet::BulletType::POINT_BULLET));
+                if (playerBulletType == Bullet::BulletType::POINT_BULLET)
+                {
+                    playerAmmoImage->SetScale(playerAmmoSpriteWidth * playerCurrentBulletScaleFactor, playerAmmoSpriteHeight * playerCurrentBulletScaleFactor);
+                }
+                else
+                {
+                    playerAmmoImage->SetScale(playerAmmoSpriteWidth, playerAmmoSpriteHeight);
+                }
                 playerAmmoImage->Render();
                 ammoCounter += 1;
             }
@@ -100,9 +113,18 @@ namespace UI
 
             for (int counter = 0; counter < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerAreaAmmo(); counter++)
             {
-                playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + (ammoCounter * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
+                playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + ((ammoCounter * playerCurrentBulletScaleFactor) * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
                 playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(Bullet::BulletType::AREA_BULLET));
+                if (playerBulletType == Bullet::BulletType::AREA_BULLET)
+                {
+                    playerAmmoImage->SetScale(playerAmmoSpriteWidth * playerCurrentBulletScaleFactor, playerAmmoSpriteHeight * playerCurrentBulletScaleFactor);
+                }
+                else
+                {
+                    playerAmmoImage->SetScale(playerAmmoSpriteWidth, playerAmmoSpriteHeight);
+                }
                 playerAmmoImage->Render();
+                ammoCounter += 1;
             }
         }
         

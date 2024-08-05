@@ -119,6 +119,37 @@ namespace Bullet
 		ReducePlayerAmmo(bullet->GetBulletType());
 	}
 
+	void BulletService::ChangeBullets()
+	{
+		if (!IsValidBullet(0, bulletList)) return;
+
+		// Map to store the bullet type and their corresponding bullets
+		std::unordered_map<BulletType, std::vector<Projectile::IProjectile*>> bulletMap;
+
+		// Categorize bullets based on their type
+		for (Projectile::IProjectile* bullet : bulletList)
+		{
+			bulletMap[bullet->GetBulletType()].push_back(bullet);
+		}
+
+		// Vector to store the bullet types in the order they were found
+		std::vector<BulletType> bulletTypes;
+		for (const auto& pair : bulletMap)
+		{
+			bulletTypes.push_back(pair.first);
+		}
+
+		// Rotate the bullet types to the left
+		std::rotate(bulletTypes.begin(), bulletTypes.begin() + 1, bulletTypes.end());
+
+		// Clear the original list and reorder based on the rotated bullet types
+		bulletList.clear();
+		for (const auto& type : bulletTypes)
+		{
+			bulletList.insert(bulletList.end(), bulletMap[type].begin(), bulletMap[type].end());
+		}
+	}
+
 	Projectile::IProjectile* BulletService::GetCurrentBullet()
 	{
 		if (IsValidBullet(0, bulletList))

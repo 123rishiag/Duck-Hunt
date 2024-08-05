@@ -38,8 +38,8 @@ namespace Player
         sf::Vector2f GetPlayerPosition() const;
         void SetPlayerPosition(sf::Vector2f position);
 
-        BulletType GetBulletType() const;
-        void SetBulletType(BulletType type);
+        BulletType GetCurrentBulletType() const;
+        void SetCurrentBulletType(BulletType type);
 
         float GetBulletRadius() const;
         void SetBulletRadius(float radius);

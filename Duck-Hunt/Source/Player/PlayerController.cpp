@@ -52,6 +52,11 @@ namespace Player
         {
             OnShoot(GetPlayerPosition());
         }
+
+        if(eventService->PressedRightMouseButton())
+        {
+            ServiceLocator::GetInstance()->GetBulletService()->ChangeBullets();;
+        }
     }
 
     void PlayerController::SetCurrentBullet()
@@ -61,7 +66,7 @@ namespace Player
         {
             int bulletTypeInt = static_cast<int>(projectile->GetBulletType());
             Player::BulletType playerBulletType = ToEnum<Player::BulletType>(bulletTypeInt);
-            SetBulletType(playerBulletType);
+            SetCurrentBulletType(playerBulletType);
             SetBulletRadius(projectile->GetBulletRadius());
         }
     }
@@ -135,13 +140,13 @@ namespace Player
         playerModel->SetBulletRadius(radius);
     }
 
-    BulletType PlayerController::GetBulletType() const
+    BulletType PlayerController::GetCurrentBulletType() const
     {
-        return playerModel->GetBulletType();
+        return playerModel->GetCurrentBulletType();
     }
 
-    void PlayerController::SetBulletType(BulletType bulletType)
+    void PlayerController::SetCurrentBulletType(BulletType bulletType)
     {
-        playerModel->SetBulletType(bulletType);
+        playerModel->SetCurrentBulletType(bulletType);
     }
 }

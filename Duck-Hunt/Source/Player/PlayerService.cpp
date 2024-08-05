@@ -73,4 +73,9 @@ namespace Player
         return playerController->GetPlayerScore();
     }
 
+    BulletType PlayerService::GetCurrentBulletType()
+    {
+        return playerController->GetCurrentBulletType();
+    }
+
 }

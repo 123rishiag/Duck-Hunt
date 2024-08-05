@@ -86,15 +86,23 @@ namespace UI
 
         void GameplayUIController::DrawPlayerAmmo()
         {
-            int counter = 1;
-            for (auto bullet : ServiceLocator::GetInstance()->GetBulletService()->GetAllBullets())
+            int ammoCounter = 0;
+
+            for (int counter = 0; counter < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerPointAmmo(); counter++)
             {
                 playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + (counter * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
-                playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(
-                    ServiceLocator::GetInstance()->GetBulletService()->GetBulletType(bullet)
-                ));
+                playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(Bullet::BulletType::POINT_BULLET));
                 playerAmmoImage->Render();
-                counter += 1;
+                ammoCounter += 1;
+            }
+
+            ammoCounter += 1;
+
+            for (int counter = 0; counter < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerAreaAmmo(); counter++)
+            {
+                playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + (ammoCounter * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
+                playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(Bullet::BulletType::AREA_BULLET));
+                playerAmmoImage->Render();
             }
         }
         

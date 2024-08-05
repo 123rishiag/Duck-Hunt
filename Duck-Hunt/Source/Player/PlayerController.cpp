@@ -81,14 +81,19 @@ namespace Player
         playerModel->IncreasePlayerScore(score);
     }
 
-    void PlayerController::ReducePlayerAmmo()
+    void PlayerController::ReducePlayerPointAmmo()
     {
-        playerModel->ReducePlayerAmmo();
+        playerModel->ReducePlayerPointAmmo();
     }
 
-    void PlayerController::ResetPlayerAmmo(int ammoCount)
+    void PlayerController::ReducePlayerAreaAmmo()
     {
-        playerModel->ResetPlayerAmmo(ammoCount);
+        playerModel->ReducePlayerAreaAmmo();
+    }
+
+    void PlayerController::ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount)
+    {
+        playerModel->ResetPlayerAmmo(pointAmmoCount, areaAmmoCount);
     }
 
     int PlayerController::GetPlayerHealth() const
@@ -96,9 +101,14 @@ namespace Player
         return playerModel->GetPlayerHealth();
     }
 
-    int PlayerController::GetPlayerAmmo() const
+    int PlayerController::GetPlayerPointAmmo() const
     {
-        return playerModel->GetPlayerAmmo();
+        return playerModel->GetPlayerPointAmmo();
+    }
+
+    int PlayerController::GetPlayerAreaAmmo() const
+    {
+        return playerModel->GetPlayerAreaAmmo();
     }
 
     int PlayerController::GetPlayerScore() const

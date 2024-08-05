@@ -19,11 +19,13 @@ namespace Player
 
         void ReducePlayerHealth(int healthAmount);
         void IncreasePlayerScore(int score);
-        void ReducePlayerAmmo();
-        void ResetPlayerAmmo(int ammoCount);
+        void ReducePlayerPointAmmo();
+        void ReducePlayerAreaAmmo();
+        void ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount);
 
         int GetPlayerHealth() const;
-        int GetPlayerAmmo() const;
+        int GetPlayerPointAmmo() const;
+        int GetPlayerAreaAmmo() const;
         int GetPlayerScore() const;
     };
 }

@@ -14,12 +14,13 @@ namespace Bullet
 		std::vector<Projectile::IProjectile*> flaggedBulletList;
 		std::vector<Projectile::IProjectile*> bulletList;
 
-		int bulletCount;
-		int maxBullet = 10;
+		int pointBulletCount;
+		int areaBulletCount;
 
 		void ProcessBulletSpawn();
-		BulletType GetRandomBulletType() const;
 		BulletController* CreateBullet(BulletType bulletType);
+
+		void ReducePlayerAmmo(BulletType bulletType);
 
 		bool IsValidBullet(int indexI, std::vector<Projectile::IProjectile*>& bulletList);
 		void DestroyFlaggedBullets();
@@ -34,7 +35,7 @@ namespace Bullet
 		void Update();
 		void Render();
 
-		BulletController* SpawnBullet();
+		BulletController* SpawnBullet(BulletType bulletType);
 		void OnShoot(sf::Vector2f position);
 		Projectile::IProjectile* GetCurrentBullet();
 		std::vector<Projectile::IProjectile*> GetAllBullets();

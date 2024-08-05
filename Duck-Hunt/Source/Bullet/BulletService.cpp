@@ -18,6 +18,8 @@ namespace Bullet
 
 	void BulletService::Initialize()
 	{
+		pointBulletCount = 0;
+		areaBulletCount = 0;
 	}
 
 	void BulletService::Update()
@@ -74,30 +76,47 @@ namespace Bullet
 
 	void BulletService::ProcessBulletSpawn()
 	{
-		if (bulletCount < maxBullet)
+		while(pointBulletCount < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerPointAmmo())
 		{
-			SpawnBullet(); //spawn
+			SpawnBullet(Bullet::BulletType::POINT_BULLET); //spawn
+			pointBulletCount += 1;
+		}
+
+		while (areaBulletCount < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerAreaAmmo())
+		{
+			SpawnBullet(Bullet::BulletType::AREA_BULLET); //spawn
+			areaBulletCount += 1;
 		}
 	}
 
-	BulletController* BulletService::SpawnBullet()
+	BulletController* BulletService::SpawnBullet(BulletType bulletType)
 	{
-		BulletController* bulletController = CreateBullet(GetRandomBulletType());
+		BulletController* bulletController = CreateBullet(bulletType);
 		bulletController->Initialize();
 
 		bulletList.push_back(bulletController);
-		bulletCount += 1;
 		return bulletController;
+	}
+
+	void BulletService::ReducePlayerAmmo(BulletType bulletType)
+	{
+		switch (bulletType)
+		{
+		case::Bullet::BulletType::POINT_BULLET:
+			ServiceLocator::GetInstance()->GetPlayerService()->ReducePlayerPointAmmo();
+			break;
+		case::Bullet::BulletType::AREA_BULLET:
+			ServiceLocator::GetInstance()->GetPlayerService()->ReducePlayerAreaAmmo();
+			break;
+		}
 	}
 
 	void BulletService::OnShoot(sf::Vector2f position)
 	{
 		if (!IsValidBullet(0, bulletList)) return;
-		for (IProjectile* bullet : bulletList)
-		{
-			bullet->OnShoot(position);
-			break;
-		}
+		IProjectile* bullet = GetCurrentBullet();
+		bullet->OnShoot(position);
+		ReducePlayerAmmo(bullet->GetBulletType());
 	}
 
 	Projectile::IProjectile* BulletService::GetCurrentBullet()
@@ -114,12 +133,6 @@ namespace Bullet
 		return bulletList;
 	}
 
-	BulletType BulletService::GetRandomBulletType() const
-	{
-		int randomValue = std::rand() % (static_cast<int>(Bullet::BulletType::AREA_BULLET) + 1);
-		return static_cast<Bullet::BulletType>(randomValue); //cast int to BulletType enum class
-	}
-
 	void BulletService::DestroyBullet(BulletController* bulletController)
 	{
 		if (std::find(flaggedBulletList.begin(), flaggedBulletList.end(), bulletController) == flaggedBulletList.end())
@@ -134,5 +147,10 @@ namespace Bullet
 		return projectile->GetBulletType();
 	}
 
-	void BulletService::Reset() { Destroy(); }
+	void BulletService::Reset() 
+	{ 
+		Destroy(); 
+		pointBulletCount = 0;
+		areaBulletCount = 0;
+	}
 }

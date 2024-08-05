@@ -21,17 +21,26 @@ namespace Player
         playerScore += score;
     }
 
-    void PlayerModel::ReducePlayerAmmo()
+    void PlayerModel::ReducePlayerPointAmmo()
     {
-        if (playerAmmo > 0)
+        if (playerPointAmmo > 0)
         {
-            playerAmmo -= 1;
+            playerPointAmmo -= 1;
         }
     }
 
-    void PlayerModel::ResetPlayerAmmo(int ammoCount)
+    void PlayerModel::ReducePlayerAreaAmmo()
     {
-        playerAmmo = ammoCount;
+        if (playerAreaAmmo > 0)
+        {
+            playerAreaAmmo -= 1;
+        }
+    }
+
+    void PlayerModel::ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount)
+    {
+        playerPointAmmo = pointAmmoCount;
+        playerAreaAmmo = areaAmmoCount;
     }
 
     int PlayerModel::GetPlayerHealth() const
@@ -39,9 +48,14 @@ namespace Player
         return playerHealth;
     }
 
-    int PlayerModel::GetPlayerAmmo() const
+    int PlayerModel::GetPlayerPointAmmo() const
     {
-        return playerAmmo;
+        return playerPointAmmo;
+    }
+
+    int PlayerModel::GetPlayerAreaAmmo() const
+    {
+        return playerAreaAmmo;
     }
 
     int PlayerModel::GetPlayerScore() const

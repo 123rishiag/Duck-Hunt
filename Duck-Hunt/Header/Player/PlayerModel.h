@@ -11,7 +11,8 @@ namespace Player
         const int playerMaxHealth = 3;
 
         int playerHealth = 3;
-        int playerAmmo = 10;
+        int playerPointAmmo = 3;
+        int playerAreaAmmo = 1;
         int playerScore = 0;
 
         sf::Vector2f playerPosition;
@@ -25,11 +26,13 @@ namespace Player
         void Initialize();
         void ReducePlayerHealth(int healthAmount);
         void IncreasePlayerScore(int score);
-        void ReducePlayerAmmo();
-        void ResetPlayerAmmo(int ammoCount);
+        void ReducePlayerPointAmmo();
+        void ReducePlayerAreaAmmo();
+        void ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount);
 
         int GetPlayerHealth() const;
-        int GetPlayerAmmo() const;
+        int GetPlayerPointAmmo() const;
+        int GetPlayerAreaAmmo() const;
         int GetPlayerScore() const;
 
         sf::Vector2f GetPlayerPosition() const;

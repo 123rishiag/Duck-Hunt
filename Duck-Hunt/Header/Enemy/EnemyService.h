@@ -18,9 +18,9 @@ namespace Enemy
 		std::vector<EnemyController*> flaggedEnemyList;
 
 		int enemyCount;
-		int maxEnemies = 3;
+		int maxEnemies;
 
-		void UpdateMaxEnemy(int number);
+		void UpdateMaxEnemy(int maxEnemyCount);
 		void ProcessEnemySpawn();
 		EnemyType GetRandomEnemyType() const;
 		EnemyController* CreateEnemy(EnemyType enemyType) const;
@@ -44,13 +44,14 @@ namespace Enemy
 		EnemyController* SpawnEnemy();
 		EnemyController* GetCurrentEnemy();
 		std::vector<EnemyController*> GetAllEnemies();
+		int GetEnemiesCount() const;
 
 		void DestroyEnemy(EnemyController* enemyController, bool increaseScore);
 		void DestroyEnemyByPosition(sf::Vector2f position, float radius);
 
 		EnemyType GetEnemyType(EnemyController* enemyController) const;
 
-		void Reset(bool increaseScore);
+		void Reset(bool increaseScore, int maxEnemyCount);
 
 	};
 }

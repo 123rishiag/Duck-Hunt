@@ -180,8 +180,8 @@ namespace Bullet
 
 	void BulletService::Reset() 
 	{ 
-		Destroy(); 
 		pointBulletCount = 0;
 		areaBulletCount = 0;
+		Destroy();
 	}
 }

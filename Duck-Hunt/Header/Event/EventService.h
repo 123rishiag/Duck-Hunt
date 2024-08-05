@@ -42,5 +42,7 @@ namespace Event {
 		bool PressedRightMouseButton() const;
 
 		sf::Vector2f GetMousePosition() const;
+
+		void CloseWindow();
 	};
 }

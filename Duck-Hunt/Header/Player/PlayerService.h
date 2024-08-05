@@ -30,5 +30,7 @@ namespace Player
         int GetPlayerAreaAmmo() const;
         int GetPlayerScore() const;
         BulletType GetCurrentBulletType();
+
+        void Reset(int pointAmmoCount, int areaAmmoCount);
     };
 }

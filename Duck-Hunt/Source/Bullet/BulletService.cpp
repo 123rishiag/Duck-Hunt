@@ -129,5 +129,10 @@ namespace Bullet
 		}
 	}
 
+	BulletType BulletService::GetBulletType(Projectile::IProjectile* projectile) const
+	{
+		return projectile->GetBulletType();
+	}
+
 	void BulletService::Reset() { Destroy(); }
 }

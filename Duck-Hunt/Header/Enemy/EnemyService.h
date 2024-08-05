@@ -39,14 +39,18 @@ namespace Enemy
 		void Update();
 		void Render();
 
-		void Reset(bool increaseScore);
-
 		HorizontalMovementDirection GetRandomEnemyHorizontalMovementDirection() const;
 		VerticalMovementDirection GetRandomEnemyVerticalMovementDirection() const;
 		EnemyController* SpawnEnemy();
 		EnemyController* GetCurrentEnemy();
 		std::vector<EnemyController*> GetAllEnemies();
-		void DestroyEnemy(EnemyController* enemyController);
+
+		void DestroyEnemy(EnemyController* enemyController, bool increaseScore);
 		void DestroyEnemyByPosition(sf::Vector2f position, float radius);
+
+		EnemyType GetEnemyType(EnemyController* enemyController) const;
+
+		void Reset(bool increaseScore);
+
 	};
 }

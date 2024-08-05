@@ -12,7 +12,7 @@ namespace Enemy
 		std::srand(static_cast<unsigned>(std::time(nullptr)));
 	}
 
-	EnemyService::~EnemyService() { Destroy(true); }
+	EnemyService::~EnemyService() { Destroy(false); }
 
 	void EnemyService::Initialize()
 	{
@@ -104,12 +104,16 @@ namespace Enemy
 	}
 
 	// Function to destroy an enemy controller object from the enemy_list vector.
-	void EnemyService::DestroyEnemy(EnemyController* enemyController)
+	void EnemyService::DestroyEnemy(EnemyController* enemyController, bool increaseScore)
 	{
 		if (std::find(flaggedEnemyList.begin(), flaggedEnemyList.end(), enemyController) == flaggedEnemyList.end())
 		{
 			flaggedEnemyList.push_back(enemyController);
 			enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
+		}
+
+		if (increaseScore == true) {
+			ServiceLocator::GetInstance()->GetPlayerService()->IncreasePlayerScore(enemyController->GetEnemyDeathScore());
 		}
 	}
 
@@ -157,7 +161,7 @@ namespace Enemy
 		// Flag all selected enemies for destruction
 		for (auto& enemy : enemiesToDestroy)
 		{
-			enemy->Destroy();
+			enemy->Destroy(true);
 		}
 	}
 
@@ -165,12 +169,14 @@ namespace Enemy
 	{
 		for (auto enemy : enemyList)
 		{
-			enemy->Destroy();
-			if (increaseScore == true) {
-				//ServiceLocator::GetInstance()->GetPlayerService()->IncreaseEnemiesKilled(1);
-			}
+			enemy->Destroy(increaseScore);
 		}
 		enemyList.clear();
+	}
+
+	EnemyType EnemyService::GetEnemyType(EnemyController* enemyController) const
+	{
+		return enemyController->GetEnemyType();
 	}
 
 	void EnemyService::Reset(bool increaseScore)

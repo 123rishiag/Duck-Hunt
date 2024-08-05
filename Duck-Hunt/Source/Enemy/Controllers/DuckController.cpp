@@ -22,5 +22,9 @@ namespace Enemy
         {
             return enemyDeathRadius;
         }
+
+        int DuckController::GetEnemyDeathScore() {
+            return enemyDeathScore;
+        }
     }
 }

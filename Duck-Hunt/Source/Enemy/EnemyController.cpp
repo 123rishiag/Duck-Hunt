@@ -153,9 +153,9 @@ namespace Enemy
 		return enemyModel->GetEnemyPosition();
 	}
 
-	void EnemyController::Destroy()
+	void EnemyController::Destroy(bool increaseScore)
 	{
-		ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
+		ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this, increaseScore);
 	}
 
 }

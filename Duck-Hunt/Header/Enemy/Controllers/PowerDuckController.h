@@ -11,6 +11,7 @@ namespace Enemy
             float horizontalMovementSpeed = 1500.0f;
             float verticalMovementSpeed = 300.f;
             float enemyDeathRadius = 600.f;
+            int enemyDeathScore = 200;
 
         public:
             PowerDuckController(EnemyType type);
@@ -19,6 +20,7 @@ namespace Enemy
             float GetEnemyHorizontalMovementSpeed() override;
             float GetEnemyVerticalMovementSpeed() override;
             float GetEnemyDeathRadius() override;
+            int GetEnemyDeathScore() override;
         };
     }
 }

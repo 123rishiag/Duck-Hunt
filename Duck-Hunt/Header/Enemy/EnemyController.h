@@ -36,7 +36,7 @@ namespace Enemy
         void Update();
         void Render();
 
-        void Destroy();
+        void Destroy(bool increaseScore);
 
         EnemyType GetEnemyType() const;
         EnemyState GetEnemyState() const;
@@ -45,5 +45,6 @@ namespace Enemy
         virtual float GetEnemyHorizontalMovementSpeed() = 0;
         virtual float GetEnemyVerticalMovementSpeed() = 0;
         virtual float GetEnemyDeathRadius() = 0;
+        virtual int GetEnemyDeathScore() = 0;
     };
 }

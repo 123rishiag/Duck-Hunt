@@ -17,6 +17,13 @@ namespace Player
         void Update();
         void Render();
 
-        PlayerController* GetPlayerController() const;
+        void ReducePlayerHealth(int healthAmount);
+        void IncreasePlayerScore(int score);
+        void ReducePlayerAmmo();
+        void ResetPlayerAmmo(int ammoCount);
+
+        int GetPlayerHealth() const;
+        int GetPlayerAmmo() const;
+        int GetPlayerScore() const;
     };
 }

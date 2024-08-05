@@ -40,6 +40,9 @@ namespace Bullet
 		std::vector<Projectile::IProjectile*> GetAllBullets();
 		void DestroyBullet(BulletController* bulletController);
 
+
+		BulletType GetBulletType(Projectile::IProjectile* projectile) const;
+
 		void Reset();
 	};
 }

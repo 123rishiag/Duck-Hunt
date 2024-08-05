@@ -28,9 +28,39 @@ namespace Player
         playerController->Render();
     }
 
-    PlayerController* PlayerService::GetPlayerController() const
+    void PlayerService::ReducePlayerHealth(int healthAmount)
     {
-        return playerController;
+        playerController->ReducePlayerHealth(healthAmount);
+    }
+
+    void PlayerService::IncreasePlayerScore(int score)
+    {
+        playerController->IncreasePlayerScore(score);
+    }
+
+    void PlayerService::ReducePlayerAmmo()
+    {
+        playerController->ReducePlayerAmmo();
+    }
+
+    void PlayerService::ResetPlayerAmmo(int ammoCount)
+    {
+        playerController->ResetPlayerAmmo(ammoCount);
+    }
+
+    int PlayerService::GetPlayerHealth() const
+    {
+        return playerController->GetPlayerHealth();
+    }
+
+    int PlayerService::GetPlayerAmmo() const
+    {
+        return playerController->GetPlayerAmmo();
+    }
+
+    int PlayerService::GetPlayerScore() const
+    {
+        return playerController->GetPlayerScore();
     }
 
 }

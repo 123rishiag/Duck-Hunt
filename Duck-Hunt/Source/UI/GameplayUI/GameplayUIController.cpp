@@ -3,9 +3,7 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Main/GameService.h"
 #include"../../Header/Enemy/EnemyConfig.h"
-#include "../../Header/Player/PlayerController.h"
-#include "../../Header/Enemy/EnemyController.h"
-#include "../../Header/Bullet/BulletController.h"
+#include"../../Header/Bullet/BulletConfig.h"
 
 namespace UI
 {
@@ -14,7 +12,6 @@ namespace UI
         using namespace Main;
         using namespace Global;
         using namespace UI::UIElement;
-        using namespace Player;
         using namespace Enemy;
         using namespace Bullet;
 
@@ -72,14 +69,14 @@ namespace UI
 
         void GameplayUIController::UpdateScoreText()
         {
-            int playerScore = ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerController()->GetPlayerScore();
+            int playerScore = ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerScore();
             sf::String scoreString = "Score  :  " + std::to_string(playerScore);
             scoreText->SetText(scoreString);
         }
 
         void GameplayUIController::DrawPlayerLives()
         {
-            int playerHealth = ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerController()->GetPlayerHealth();
+            int playerHealth = ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerHealth();
             for (int counter = 0; counter < playerHealth; counter++)
             {
                 playerLivesImage->SetPosition(sf::Vector2f(playerLivesPosition.x + playerLivesXOffset + (counter * playerLivesSpacing), playerLivesPosition.y + playerLivesYOffset));
@@ -93,7 +90,9 @@ namespace UI
             for (auto bullet : ServiceLocator::GetInstance()->GetBulletService()->GetAllBullets())
             {
                 playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + (counter * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
-                playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(bullet->GetBulletType()));
+                playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(
+                    ServiceLocator::GetInstance()->GetBulletService()->GetBulletType(bullet)
+                ));
                 playerAmmoImage->Render();
                 counter += 1;
             }
@@ -105,7 +104,9 @@ namespace UI
             for (auto enemy : ServiceLocator::GetInstance()->GetEnemyService()->GetAllEnemies())
             {
                 enemyImage->SetPosition(sf::Vector2f(enemyPosition.x + enemyXOffset + (counter * enemySpacing), enemyPosition.y + enemyYOffset));
-                enemyImage->SetTexture(EnemyConfig::GetEnemyTexturePath(enemy->GetEnemyType()));
+                enemyImage->SetTexture(EnemyConfig::GetEnemyTexturePath(
+                    ServiceLocator::GetInstance()->GetEnemyService()->GetEnemyType(enemy)
+                ));
                 enemyImage->Render();
                 counter += 1;
             }

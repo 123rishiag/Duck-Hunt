@@ -13,6 +13,10 @@ namespace Enemy
             float enemyDeathRadius = 100.f;
             int enemyDeathScore = 100;
 
+            void Move() override;
+            void MoveHorizontal();
+            void MoveVertical();
+
         public:
             DuckController(EnemyType type);
             ~DuckController();

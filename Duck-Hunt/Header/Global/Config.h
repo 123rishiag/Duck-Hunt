@@ -11,10 +11,6 @@ namespace Global
 
 		static const sf::String playerTexturePath;
 		static const sf::String playerHealthTexturePath;
-		static const sf::String duckTexturePath;
-		static const sf::String powerDuckTexturePath;
-		static const sf::String pointBulletTexturePath;
-		static const sf::String areaBulletTexturePath;
 
 		static const sf::String playButtonTexturePath;
 		static const sf::String instructionsButtonTexturePath;

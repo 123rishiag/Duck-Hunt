@@ -14,8 +14,6 @@ namespace Player
         PlayerView* playerView;
         PlayerModel* playerModel;
 
-        template <typename Enum>
-        Enum ToEnum(int value);
         void ProcessPlayerInput();
         void SetCurrentBullet();
         void OnShoot(sf::Vector2f position);
@@ -32,6 +30,7 @@ namespace Player
         void IncreasePlayerScore(int score);
         void ReducePlayerAmmo();
         void ResetPlayerAmmo(int ammoCount);
+
         int GetPlayerHealth() const;
         int GetPlayerAmmo() const;
         int GetPlayerScore() const;

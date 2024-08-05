@@ -27,7 +27,7 @@ namespace Enemy
 
 	void EnemyView::InitializeImage()
 	{
-		enemyImage->Initialize(GetEnemyTexturePath(), enemySpriteWidth, enemySpriteHeight, enemyController->GetEnemyPosition());
+		enemyImage->Initialize(EnemyConfig::GetEnemyTexturePath(enemyController->GetEnemyType()), enemySpriteWidth, enemySpriteHeight, enemyController->GetEnemyPosition());
 	}
 
 	void EnemyView::Update()
@@ -40,17 +40,6 @@ namespace Enemy
 	void EnemyView::Render()
 	{
 		enemyImage->Render();
-	}
-
-	sf::String EnemyView::GetEnemyTexturePath()
-	{
-		switch (enemyController->GetEnemyType())
-		{
-		case::Enemy::EnemyType::DUCK:
-			return Config::duckTexturePath;
-		case::Enemy::EnemyType::POWER_DUCK:
-			return Config::powerDuckTexturePath;
-		}
 	}
 
 	const sf::Sprite& EnemyView::GetEnemySprite() const

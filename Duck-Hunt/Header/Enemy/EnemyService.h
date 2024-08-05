@@ -5,10 +5,10 @@
 
 namespace Enemy
 {
-
 	enum class EnemyType;
 	enum class HorizontalMovementDirection;
 	enum class VerticalMovementDirection;
+
 	class EnemyController;
 
 	class EnemyService
@@ -24,6 +24,9 @@ namespace Enemy
 		void ProcessEnemySpawn();
 		EnemyType GetRandomEnemyType() const;
 		EnemyController* CreateEnemy(EnemyType enemyType) const;
+
+		bool IsValidEnemy(int indexI, std::vector<EnemyController*>& enemyList);
+
 		void DestroyFlaggedEnemies();
 		void DestroyEnemyRecursive(sf::Vector2f position, float radius, std::unordered_set<EnemyController*>& enemiesToDestroy);
 		void Destroy(bool increaseScore); // function to delete enemy
@@ -41,6 +44,8 @@ namespace Enemy
 		HorizontalMovementDirection GetRandomEnemyHorizontalMovementDirection() const;
 		VerticalMovementDirection GetRandomEnemyVerticalMovementDirection() const;
 		EnemyController* SpawnEnemy();
+		EnemyController* GetCurrentEnemy();
+		std::vector<EnemyController*> GetAllEnemies();
 		void DestroyEnemy(EnemyController* enemyController);
 		void DestroyEnemyByPosition(sf::Vector2f position, float radius);
 	};

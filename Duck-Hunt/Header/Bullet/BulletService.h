@@ -15,7 +15,7 @@ namespace Bullet
 		std::vector<Projectile::IProjectile*> bulletList;
 
 		int bulletCount;
-		int maxBullet = 300;
+		int maxBullet = 10;
 
 		void ProcessBulletSpawn();
 		BulletType GetRandomBulletType() const;
@@ -37,6 +37,7 @@ namespace Bullet
 		BulletController* SpawnBullet();
 		void OnShoot(sf::Vector2f position);
 		Projectile::IProjectile* GetCurrentBullet();
+		std::vector<Projectile::IProjectile*> GetAllBullets();
 		void DestroyBullet(BulletController* bulletController);
 
 		void Reset();

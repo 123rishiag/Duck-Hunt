@@ -21,9 +21,7 @@ namespace Enemy
         float previousVerticalOffset = 0.0f;
         float smoothingFactor = 0.00001f;
 
-        void Move();
-        void MoveHorizontal();
-        void MoveVertical();
+        virtual void Move() = 0;
 
         float GetRandomOffset();
         float SmoothOffset(float currentOffset, float newOffset);

@@ -13,6 +13,11 @@ namespace Enemy
             float enemyDeathRadius = 600.f;
             int enemyDeathScore = 200;
 
+            void Move() override;
+            void MoveHorizontal();
+            void MoveVertical();
+
+
         public:
             PowerDuckController(EnemyType type);
             ~PowerDuckController();

@@ -99,4 +99,9 @@ namespace Event {
         }
         return sf::Vector2f(0.0f, 0.0f); // Return a default value if gameWindow is not set
     }
+
+    void EventService::CloseWindow()
+    {
+        gameWindow->close();
+    }
 }

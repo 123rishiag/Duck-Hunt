@@ -34,9 +34,9 @@ namespace Enemy
 			enemy->Render();
 	}
 
-	void EnemyService::UpdateMaxEnemy(int number)
+	void EnemyService::UpdateMaxEnemy(int maxEnemyCount)
 	{
-		maxEnemies = number;
+		maxEnemies = maxEnemyCount;
 	}
 
 	void EnemyService::ProcessEnemySpawn()
@@ -111,7 +111,6 @@ namespace Enemy
 			flaggedEnemyList.push_back(enemyController);
 			enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
 		}
-
 		if (increaseScore == true) {
 			ServiceLocator::GetInstance()->GetPlayerService()->IncreasePlayerScore(enemyController->GetEnemyDeathScore());
 		}
@@ -129,6 +128,12 @@ namespace Enemy
 	std::vector<EnemyController*> EnemyService::GetAllEnemies()
 	{
 		return enemyList;
+	}
+
+
+	int EnemyService::GetEnemiesCount() const
+	{
+		return static_cast<int>(enemyList.size());;
 	}
 
 	// Recursive function to flag enemies for destruction
@@ -179,10 +184,11 @@ namespace Enemy
 		return enemyController->GetEnemyType();
 	}
 
-	void EnemyService::Reset(bool increaseScore)
+	void EnemyService::Reset(bool increaseScore, int maxEnemyCount)
 	{
-		Destroy(increaseScore);
 		enemyCount = 0;
+		UpdateMaxEnemy(maxEnemyCount);
+		Destroy(increaseScore);
 	}
 
 }

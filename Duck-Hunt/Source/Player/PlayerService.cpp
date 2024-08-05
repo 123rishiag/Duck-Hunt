@@ -78,4 +78,9 @@ namespace Player
         return playerController->GetCurrentBulletType();
     }
 
+    void PlayerService::Reset(int pointAmmoCount, int areaAmmoCount)
+    {
+        ResetPlayerAmmo(pointAmmoCount, areaAmmoCount);
+    }
+
 }

@@ -7,10 +7,6 @@ namespace Global
 
 	const sf::String Config::playerTexturePath = "assets/textures/player.png";
 	const sf::String Config::playerHealthTexturePath = "assets/textures/player_health.png";
-	const sf::String Config::duckTexturePath = "assets/textures/duck.png";
-	const sf::String Config::powerDuckTexturePath = "assets/textures/power_duck.png";
-	const sf::String Config::pointBulletTexturePath = "assets/textures/point_bullet.png";
-	const sf::String Config::areaBulletTexturePath = "assets/textures/area_bullet.png";
 
 	const sf::String Config::playButtonTexturePath = "assets/textures/play_button.png";
 	const sf::String Config::instructionsButtonTexturePath = "assets/textures/instructions_button.png";

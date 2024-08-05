@@ -18,7 +18,6 @@ namespace Enemy
 
         void CreateUIElements();
         void InitializeImage();
-        sf::String GetEnemyTexturePath();
 
         void Destroy();
 

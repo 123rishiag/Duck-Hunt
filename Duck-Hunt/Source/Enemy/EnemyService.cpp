@@ -1,5 +1,4 @@
 #include "../../Header/Enemy/EnemyService.h"
-#include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Enemy/Controllers/DuckController.h"
 #include "../../Header/Enemy/Controllers/PowerDuckController.h"
 #include "../../Header/Enemy/EnemyConfig.h"
@@ -90,6 +89,11 @@ namespace Enemy
 		}
 	}
 
+	bool EnemyService::IsValidEnemy(int index, std::vector<EnemyController*>& enemyList)
+	{
+		return index >= 0 && index < enemyList.size() && enemyList[index] != nullptr;
+	}
+
 	void EnemyService::DestroyFlaggedEnemies()
 	{
 		for (auto& enemy : flaggedEnemyList)
@@ -107,6 +111,20 @@ namespace Enemy
 			flaggedEnemyList.push_back(enemyController);
 			enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
 		}
+	}
+
+	EnemyController* EnemyService::GetCurrentEnemy()
+	{
+		if (IsValidEnemy(0, enemyList))
+		{
+			return enemyList[0];
+		}
+		return nullptr;
+	}
+
+	std::vector<EnemyController*> EnemyService::GetAllEnemies()
+	{
+		return enemyList;
 	}
 
 	// Recursive function to flag enemies for destruction

@@ -109,6 +109,11 @@ namespace Bullet
 		return nullptr;
 	}
 
+	std::vector<Projectile::IProjectile*> BulletService::GetAllBullets()
+	{
+		return bulletList;
+	}
+
 	BulletType BulletService::GetRandomBulletType() const
 	{
 		int randomValue = std::rand() % (static_cast<int>(Bullet::BulletType::AREA_BULLET) + 1);

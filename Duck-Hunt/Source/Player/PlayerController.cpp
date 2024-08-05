@@ -4,12 +4,14 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Projectile/IProjectile.h"
+#include "../../Header/Utility/Utility.h"
 
 namespace Player
 {
     using namespace Global;
     using namespace Event;
     using namespace Projectile;
+    using namespace Utility;
 
     PlayerController::PlayerController()
     {
@@ -39,12 +41,6 @@ namespace Player
     void PlayerController::Render()
     {
         playerView->Render(); // render the view
-    }
-
-    template <typename Enum>
-    Enum PlayerController::ToEnum(int value)
-    {
-        return static_cast<Enum>(value);
     }
 
     void PlayerController::ProcessPlayerInput()

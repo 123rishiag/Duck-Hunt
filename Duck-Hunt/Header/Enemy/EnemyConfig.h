@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 namespace Enemy
 {
@@ -24,5 +25,13 @@ namespace Enemy
     {
         UP,
         DOWN,
+    };
+
+    class EnemyConfig
+    {
+    public:
+        static const sf::String duckTexturePath;
+        static const sf::String powerDuckTexturePath;
+        static const sf::String GetEnemyTexturePath(EnemyType enemyType);
     };
 }

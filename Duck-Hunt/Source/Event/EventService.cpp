@@ -1,12 +1,10 @@
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Global/ServiceLocator.h"
-
 namespace Event {
     using namespace Global;
     EventService::EventService() 
     { 
         gameWindow = nullptr; 
-        mousePressDuration = sf::Time::Zero;
     }
 
     EventService::~EventService() = default; //calls the default destructor
@@ -43,22 +41,15 @@ namespace Event {
             {
             case ButtonState::RELEASED:
                 currentButtonState = ButtonState::PRESSED;
-                mousePressClock.restart();
-                mousePressDuration = sf::Time::Zero;
                 break;
             case ButtonState::PRESSED:
-                mousePressDuration = mousePressClock.getElapsedTime();
-                if (mousePressDuration.asSeconds() >= mouseHoldDurationInSeconds)
-                {
-                    currentButtonState = ButtonState::HELD;
-                }
+                 currentButtonState = ButtonState::HELD;
                 break;
             }
         }
         else
         {
             currentButtonState = ButtonState::RELEASED;
-            mousePressDuration = sf::Time::Zero;
         }
     }
 

@@ -19,9 +19,9 @@ namespace Wave
         void Initialize();
         void Update();
 
+        void UpdateConfig(const WaveConfig& config);
+
         bool IsWaveWon() const;
         bool IsWaveLost() const;
-
-        void Destroy();
     };
 }

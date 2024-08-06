@@ -10,9 +10,7 @@ namespace Wave
 		waveConfig = config;
 	}
 
-	WaveController::~WaveController() {
-		Destroy();
-	}
+	WaveController::~WaveController() {	}
 
 	void WaveController::Initialize()
 	{
@@ -23,13 +21,24 @@ namespace Wave
 	{
 		if (clock.getElapsedTime() >= waveTime)
 		{
-			Destroy();
 			clock.restart();
 		}
 	}
 
+	void WaveController::UpdateConfig(const WaveConfig& config)
+	{
+		waveConfig = config;
+	}
+
 	bool WaveController::IsWaveWon() const
 	{
+		int enemyCount = 0;
+		enemyCount += ServiceLocator::GetInstance()->GetEnemyService()->GetEnemiesCount();
+
+		if (enemyCount == 0)
+		{
+			return true;
+		}
 		return false;
 	}
 
@@ -47,10 +56,5 @@ namespace Wave
 			return true;
 		}
 		return false;
-	}
-
-	void WaveController::Destroy()
-	{
-		ServiceLocator::GetInstance()->GetWaveService()->DestroyWave(this);
 	}
 }

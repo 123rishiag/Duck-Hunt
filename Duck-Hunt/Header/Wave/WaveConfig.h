@@ -2,13 +2,20 @@
 
 namespace Wave
 {
+    enum class WaveType
+    {
+        WAVE_1,
+        WAVE_2,
+        WAVE_END,
+    };
+
     struct WaveConfig
     {
         int playerPointAmmo;
         int playerAreaAmmo;
         int enemyCount;
 
-        float waveDuration; //duration of a single wave
+        float waveDuration; //duration of a wave
 
         WaveConfig() = default; // Use default for default constructor
 

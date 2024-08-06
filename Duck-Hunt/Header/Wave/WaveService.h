@@ -1,27 +1,25 @@
 #pragma once
 #include <vector>
 #include <SFML/System/Vector2.hpp>
-#include "../../Header/Wave/WaveController.h"
 
 namespace Wave
 {
-	enum class WaveType
-	{
-		WAVE_1,
-		WAVE_2,
-	};
+	enum class WaveType;
+	struct WaveConfig;
+	class WaveController;
 
 	class WaveService
 	{
 	private:
-		std::vector<WaveController*> waveList;
-		std::vector<WaveController*> flaggedWaveList;
 
 		WaveType currentWaveType;
+		WaveController* waveController;
 
-		WaveConfig GetWaveConfig(WaveType waveType);
-		void DestroyFlaggedWaves();
-		void Destroy();
+		void ProcessWave();
+		void LoadWave();
+
+		WaveConfig GetWaveConfig(WaveType waveType) const;
+		WaveType GetNextWaveType(WaveType waveType) const;
 
 	public:
 		WaveService();
@@ -31,8 +29,5 @@ namespace Wave
 		void Update();
 
 		void Reset();
-
-		void SpawnWave(WaveType waveType);
-		void DestroyWave(WaveController* waveController);
 	};
 }

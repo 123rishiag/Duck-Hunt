@@ -1,10 +1,14 @@
 #pragma once
 #include <vector>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace Wave
 {
 	enum class WaveType;
+	enum class WaveState;
+	enum class WaveResult;
+
 	struct WaveConfig;
 	class WaveController;
 
@@ -27,9 +31,14 @@ namespace Wave
 		void LoadWave();
 		void HoldWave();
 
+		sf::String GetWaveName() const;
 		float GetWaveTimeLeft() const;
 		WaveConfig GetWaveConfig(WaveType waveType) const;
 		void SetNextWaveType();
+
+		WaveType GetWaveType() const;
+		WaveState GetWaveState() const;
+		WaveResult GetWaveResult() const;
 
 		void Reset();
 	};

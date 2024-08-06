@@ -63,7 +63,6 @@ namespace Wave
 			break;
 
 		case WaveState::WAVE_RESULT:
-			currentWaveResult = Wave::WaveResult::WAVE_UNDECIDED;
 			if (stateTime >= waveResultTime)
 			{
 				currentWaveState = WaveState::WAVE_BOOT;
@@ -77,6 +76,11 @@ namespace Wave
 	void WaveController::UpdateConfig(const WaveConfig& config)
 	{
 		waveConfig = config;
+	}
+
+	sf::String WaveController::GetWaveName() const
+	{
+		return waveConfig.waveName;
 	}
 
 	float WaveController::GetWaveTimeLeft() const

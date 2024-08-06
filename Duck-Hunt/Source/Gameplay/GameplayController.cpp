@@ -9,7 +9,13 @@ namespace Gameplay
 
 	void GameplayController::Initialize() { gameplayView->Initialize(); }
 
-	void GameplayController::Update() { gameplayView->Update(); }
+	void GameplayController::Update() { gameplayView->Update(); 
+	}
 
 	void GameplayController::Render() { gameplayView->Render(); }
+
+	void GameplayController::ActivateBackgroundAlpha(bool isActivated)
+	{
+		gameplayView->ActivateBackgroundAlpha(isActivated);
+	}
 }

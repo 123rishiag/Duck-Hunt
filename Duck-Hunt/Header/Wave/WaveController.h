@@ -30,6 +30,7 @@ namespace Wave
         void Update();
 
         void UpdateConfig(const WaveConfig& config);
+        sf::String GetWaveName() const;
         float GetWaveTimeLeft() const;
         void SetWaveTimeLeft();
 

@@ -19,6 +19,11 @@ namespace Gameplay
 
 	void GameplayService::Render() { gameplayController->Render(); }
 
+	void GameplayService::ActivateBackgroundAlpha(bool isActivated)
+	{
+		gameplayController->ActivateBackgroundAlpha(isActivated);
+	}
+
 	void GameplayService::Restart()
 	{
 		ServiceLocator::GetInstance()->GetWaveService()->Reset();

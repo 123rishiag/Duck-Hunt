@@ -15,13 +15,21 @@ namespace UI
 			const float fontSize = 50.f;
 			const sf::Color textColor = sf::Color::White;
 
-			const float scoreTextXPosition = 1650.f;
+			const float scoreTextXPosition = 1600.f;
 			const float scoreTextYPosition = 15.f;
 			UI::UIElement::TextView* scoreText;
 
 			const float waveTimeLeftTextXPosition = 1450.f;
 			const float waveTimeLeftTextYPosition = 1000.f;
 			UI::UIElement::TextView* waveTimeLeftText;
+
+			const float waveNameTextXPosition = 50.f;
+			const float waveNameTextYPosition = 1000.f;
+			UI::UIElement::TextView* waveNameText;
+
+			const float waveInfoTextXPosition = 775.f;
+			const float waveInfoTextYPosition = 450.f;
+			UI::UIElement::TextView* waveInfoText;
 
 			const sf::Vector2f playerLivesPosition = sf::Vector2f(0.f, 0.f);
 			const float playerLivesYOffset = 15.f;
@@ -54,6 +62,8 @@ namespace UI
 
 			void UpdateScoreText();
 			void UpdateWaveTimeLeftText();
+			void UpdateWaveNameText();
+			void UpdateWaveInfoText();
 			void DrawPlayerLives();
 			void DrawPlayerAmmo();
 			void DrawEnemy();

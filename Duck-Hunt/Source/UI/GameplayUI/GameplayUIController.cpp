@@ -5,6 +5,8 @@
 #include"../../Header/Enemy/EnemyConfig.h"
 #include"../../Header/Bullet/BulletConfig.h"
 #include"../../Header/Utility/Utility.h"
+#include <iomanip>
+#include <sstream>
 
 namespace UI
 {
@@ -32,6 +34,7 @@ namespace UI
             playerAmmoImage = new ImageView();
             enemyImage = new ImageView();
             scoreText = new TextView();
+            waveTimeLeftText = new TextView();
         }
 
         void GameplayUIController::InitializeImage()
@@ -45,16 +48,22 @@ namespace UI
         {
             sf::String scoreString = "Score  :  0";
             scoreText->Initialize(scoreString, sf::Vector2f(scoreTextXPosition, scoreTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
+
+            sf::String elapsedTimeString = "Time Left  :  0 secs";
+            waveTimeLeftText->Initialize(elapsedTimeString, sf::Vector2f(waveTimeLeftTextXPosition, waveTimeLeftTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
         }
 
         void GameplayUIController::Update()
         {
             UpdateScoreText();
+            UpdateWaveTimeLeftText();
         }
 
         void GameplayUIController::Render()
         {
             scoreText->Render();
+            waveTimeLeftText->Render();
+
             DrawPlayerLives();
             DrawPlayerAmmo();
             DrawEnemy();
@@ -66,6 +75,7 @@ namespace UI
             playerAmmoImage->Show();
             enemyImage->Show();
             scoreText->Show();
+            waveTimeLeftText->Show();
         }
 
         void GameplayUIController::UpdateScoreText()
@@ -73,6 +83,24 @@ namespace UI
             int playerScore = ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerScore();
             sf::String scoreString = "Score  :  " + std::to_string(playerScore);
             scoreText->SetText(scoreString);
+        }
+
+        void GameplayUIController::UpdateWaveTimeLeftText()
+        {
+            float timeLeft = ServiceLocator::GetInstance()->GetWaveService()->GetWaveTimeLeft();
+
+            // Create a string stream and set the desired format
+            std::ostringstream stream;
+            stream << std::fixed << std::setprecision(1) << timeLeft;
+
+            // Convert the stream to a string
+            std::string timeLeftStr = stream.str();
+
+            // Convert the std::string to sf::String
+            sf::String timeLeftString = "Time Left  :  " + sf::String(timeLeftStr) + " secs";
+
+            // Set the text
+            waveTimeLeftText->SetText(timeLeftString);
         }
 
         void GameplayUIController::DrawPlayerLives()
@@ -148,6 +176,7 @@ namespace UI
             delete(playerAmmoImage);
             delete(enemyImage);
             delete(scoreText);
+            delete(waveTimeLeftText);
         }
     }
 }

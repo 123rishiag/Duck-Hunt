@@ -13,11 +13,15 @@ namespace UI
 		private:
 			// Constants:
 			const float fontSize = 50.f;
+			const sf::Color textColor = sf::Color::White;
 
 			const float scoreTextXPosition = 1650.f;
 			const float scoreTextYPosition = 15.f;
-			const sf::Color textColor = sf::Color::White;
 			UI::UIElement::TextView* scoreText;
+
+			const float waveTimeLeftTextXPosition = 1450.f;
+			const float waveTimeLeftTextYPosition = 1000.f;
+			UI::UIElement::TextView* waveTimeLeftText;
 
 			const sf::Vector2f playerLivesPosition = sf::Vector2f(0.f, 0.f);
 			const float playerLivesYOffset = 15.f;
@@ -49,6 +53,7 @@ namespace UI
 			void InitializeText();
 
 			void UpdateScoreText();
+			void UpdateWaveTimeLeftText();
 			void DrawPlayerLives();
 			void DrawPlayerAmmo();
 			void DrawEnemy();

@@ -47,7 +47,6 @@ namespace Wave
 			if (IsWaveWon() || IsWaveLost())
 			{
 				currentWaveState = WaveState::WAVE_RESULT;
-				ServiceLocator::GetInstance()->GetWaveService()->HoldWave();
 				if (IsWaveWon())
 				{
 					currentWaveResult = Wave::WaveResult::WAVE_WON;
@@ -58,6 +57,7 @@ namespace Wave
 					ServiceLocator::GetInstance()->GetPlayerService()->ReducePlayerHealth(1);
 					currentWaveResult = Wave::WaveResult::WAVE_LOST;
 				}
+				ServiceLocator::GetInstance()->GetWaveService()->HoldWave();
 				stateTime = 0;
 			}
 			break;

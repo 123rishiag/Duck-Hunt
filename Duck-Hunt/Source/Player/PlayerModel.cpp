@@ -48,6 +48,11 @@ namespace Player
         return playerHealth;
     }
 
+    void PlayerModel::ResetPlayerHealth()
+    {
+        playerHealth = playerMaxHealth;
+    }
+
     int PlayerModel::GetPlayerPointAmmo() const
     {
         return playerPointAmmo;

@@ -36,6 +36,7 @@ namespace Wave
 		if (!ServiceLocator::GetInstance()->GetPlayerService()->IsPlayerAlive() || currentWaveType == Wave::WaveType::WAVE_END)
 		{
 			// ServiceLocator::GetInstance()->GetEventService()->CloseWindow();
+			ServiceLocator::GetInstance()->GetPlayerService()->ResetPlayerHealth();
 			Reset();
 		}	
 	}
@@ -81,7 +82,7 @@ namespace Wave
 	}
 
 	void WaveService::Reset() 
-	{ 
+	{
 		currentWaveType = Wave::WaveType::WAVE_1;
 	}
 

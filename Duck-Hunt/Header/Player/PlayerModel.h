@@ -31,6 +31,7 @@ namespace Player
         void ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount);
 
         int GetPlayerHealth() const;
+        void ResetPlayerHealth();
         int GetPlayerPointAmmo() const;
         int GetPlayerAreaAmmo() const;
         int GetPlayerScore() const;

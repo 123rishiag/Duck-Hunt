@@ -168,8 +168,8 @@
     <ClCompile Include="Source\UI\UIElement\UIView.cpp" />
     <ClCompile Include="Source\UI\UIService.cpp" />
     <ClCompile Include="Source\Wave\WaveService.cpp" />
-    <ClCompile Include="Source\Wave\WaveSystem.cpp" />
-    <ClCompile Include="Source\Wave\WaveSystemConfig.cpp" />
+    <ClCompile Include="Source\Wave\WaveController.cpp" />
+    <ClCompile Include="Source\Wave\WaveConfig.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Bullet\BulletConfig.h" />
@@ -209,8 +209,8 @@
     <ClInclude Include="Header\UI\UIService.h" />
     <ClInclude Include="Header\Utility\Utility.h" />
     <ClInclude Include="Header\Wave\WaveService.h" />
-    <ClInclude Include="Header\Wave\WaveSystem.h" />
-    <ClInclude Include="Header\Wave\WaveSystemConfig.h" />
+    <ClInclude Include="Header\Wave\WaveController.h" />
+    <ClInclude Include="Header\Wave\WaveConfig.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

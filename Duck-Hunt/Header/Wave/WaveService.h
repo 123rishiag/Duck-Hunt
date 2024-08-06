@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <SFML/System/Vector2.hpp>
-#include "../../Header/Wave/WaveSystem.h"
+#include "../../Header/Wave/WaveController.h"
 
 namespace Wave
 {
@@ -14,13 +14,13 @@ namespace Wave
 	class WaveService
 	{
 	private:
-		std::vector<WaveSystem*> waveSystemList;
-		std::vector<WaveSystem*> flaggedWaveSystemList;
+		std::vector<WaveController*> waveList;
+		std::vector<WaveController*> flaggedWaveList;
 
 		WaveType currentWaveType;
 
-		WaveSystemConfig GetWaveSystemConfig(WaveType waveType);
-		void DestroyFlaggedWaveSystem();
+		WaveConfig GetWaveConfig(WaveType waveType);
+		void DestroyFlaggedWaves();
 		void Destroy();
 
 	public:
@@ -32,7 +32,7 @@ namespace Wave
 
 		void Reset();
 
-		void SpawnWaveSystem(WaveType waveType);
-		void DestroyWaveSystem(WaveSystem* waveSystem);
+		void SpawnWave(WaveType waveType);
+		void DestroyWave(WaveController* waveController);
 	};
 }

@@ -1,5 +1,5 @@
 #include "../../Header/Wave/WaveService.h"
-#include "../../Header/Wave/WaveSystemConfig.h"
+#include "../../Header/Wave/WaveConfig.h"
 
 namespace Wave
 {
@@ -14,49 +14,49 @@ namespace Wave
 
 	void WaveService::Update()
 	{
-		for (WaveSystem* waveSystem : waveSystemList)
-			waveSystem->Update();
+		for (WaveController* waveController : waveList)
+			waveController->Update();
 
-		DestroyFlaggedWaveSystem();
+		DestroyFlaggedWaves();
 	}
 
-	void WaveService::SpawnWaveSystem(WaveType waveType)
+	void WaveService::SpawnWave(WaveType waveType)
 	{
-		WaveSystem* waveSystem = new WaveSystem(GetWaveSystemConfig(waveType));
-		waveSystem->Initialize();
-		waveSystemList.push_back(waveSystem);
+		WaveController* waveController = new WaveController(GetWaveConfig(waveType));
+		waveController->Initialize();
+		waveList.push_back(waveController);
 	}
 
-	void WaveService::DestroyWaveSystem(WaveSystem* waveSystem)
+	void WaveService::DestroyWave(WaveController* waveController)
 	{
-		flaggedWaveSystemList.push_back(waveSystem);
-		waveSystemList.erase(std::remove(waveSystemList.begin(), waveSystemList.end(), waveSystem), waveSystemList.end());
+		flaggedWaveList.push_back(waveController);
+		waveList.erase(std::remove(waveList.begin(), waveList.end(), waveController), waveList.end());
 	}
 
-	WaveSystemConfig WaveService::GetWaveSystemConfig(WaveType waveType)
+	WaveConfig WaveService::GetWaveConfig(WaveType waveType)
 	{
 		switch (waveType)
 		{
 		case Wave::WaveType::WAVE_1:
-			return WaveSystemConfig(3, 1, 3, 20.0f);
+			return WaveConfig(3, 1, 3, 20.0f);
 		case Wave::WaveType::WAVE_2:
-			return WaveSystemConfig(5, 2, 5, 30.0f);
+			return WaveConfig(5, 2, 5, 30.0f);
 		}
 	}
 
-	void WaveService::DestroyFlaggedWaveSystem()
+	void WaveService::DestroyFlaggedWaves()
 	{
-		for (WaveSystem* waveSystem : flaggedWaveSystemList)
-			delete (waveSystem);
+		for (WaveController* waveController : flaggedWaveList)
+			delete (waveController);
 
-		flaggedWaveSystemList.clear();
+		flaggedWaveList.clear();
 	}
 
 	void WaveService::Reset() { Destroy(); }
 
 	void WaveService::Destroy()
 	{
-		for (WaveSystem* waveSystem : waveSystemList)
-			delete (waveSystem);
+		for (WaveController* waveController : waveList)
+			delete (waveController);
 	}
 }

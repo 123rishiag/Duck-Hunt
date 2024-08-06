@@ -27,28 +27,30 @@ namespace Wave
 	{
 		waveController->Update();
 		waveController->UpdateConfig(GetWaveConfig(currentWaveType));
-		ProcessWave();
+
+		GameOver();
 	}
 
-	void WaveService::ProcessWave()
+	void WaveService::GameOver()
 	{
-		if (waveController->IsWaveWon()) 
+		if (!ServiceLocator::GetInstance()->GetPlayerService()->IsPlayerAlive() || currentWaveType == Wave::WaveType::WAVE_END)
 		{
-			LoadWave();
-			currentWaveType = GetNextWaveType(currentWaveType);
-		}
-		
-		if (waveController->IsWaveLost())
-		{
-			ServiceLocator::GetInstance()->GetPlayerService()->ReducePlayerHealth(1);
-			LoadWave();
-		}
+			// ServiceLocator::GetInstance()->GetEventService()->CloseWindow();
+			Reset();
+		}	
 	}
 
 	void WaveService::LoadWave()
 	{
 		WaveConfig waveConfig = GetWaveConfig(currentWaveType);
-		waveController->SetWaveTimeLeft();
+		ServiceLocator::GetInstance()->GetPlayerService()->Reset(waveConfig.playerPointAmmo, waveConfig.playerAreaAmmo);
+		ServiceLocator::GetInstance()->GetEnemyService()->Reset(false, waveConfig.enemyCount);
+		ServiceLocator::GetInstance()->GetBulletService()->Reset();
+	}
+
+	void WaveService::HoldWave()
+	{
+		WaveConfig waveConfig = GetWaveConfig(Wave::WaveType::WAVE_END);
 		ServiceLocator::GetInstance()->GetPlayerService()->Reset(waveConfig.playerPointAmmo, waveConfig.playerAreaAmmo);
 		ServiceLocator::GetInstance()->GetEnemyService()->Reset(false, waveConfig.enemyCount);
 		ServiceLocator::GetInstance()->GetBulletService()->Reset();
@@ -67,13 +69,10 @@ namespace Wave
 		}
 	}
 
-	WaveType WaveService::GetNextWaveType(WaveType waveType) const
+	void WaveService::SetNextWaveType()
 	{
-		int waveNumber = static_cast<int>(waveType) + 1;
-		if (waveNumber >= static_cast<int>(WaveType::WAVE_END)) {
-			waveNumber = 0;  // Wrap around to the first state
-		}
-		return static_cast<WaveType>(waveNumber);
+		int waveNumber = static_cast<int>(currentWaveType) + 1;
+		currentWaveType = static_cast<WaveType>(waveNumber);
 	}
 
 	float WaveService::GetWaveTimeLeft() const

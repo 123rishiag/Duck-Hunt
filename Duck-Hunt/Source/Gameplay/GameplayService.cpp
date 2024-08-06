@@ -15,11 +15,6 @@ namespace Gameplay
 	void GameplayService::Update() 
 	{
 		gameplayController->Update();
-
-		if (!ServiceLocator::GetInstance()->GetPlayerService()->IsPlayerAlive())
-		{
-			ServiceLocator::GetInstance()->GetEventService()->CloseWindow();
-		}
 	}
 
 	void GameplayService::Render() { gameplayController->Render(); }

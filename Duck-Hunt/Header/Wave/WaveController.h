@@ -9,6 +9,18 @@ namespace Wave
         WaveConfig waveConfig;
 
         float waveTimeLeft;
+        float stateTime;
+
+        const float waveBootTime = 3.f;
+        const float waveResultTime = 3.f;
+        
+        WaveState currentWaveState;
+        WaveResult currentWaveResult;
+
+        void UpdateWaveState();
+
+        bool IsWaveWon() const;
+        bool IsWaveLost() const;
 
     public:
         WaveController(const WaveConfig& config);
@@ -21,7 +33,9 @@ namespace Wave
         float GetWaveTimeLeft() const;
         void SetWaveTimeLeft();
 
-        bool IsWaveWon() const;
-        bool IsWaveLost() const;
+        WaveState GetWaveState() const;
+        WaveResult GetWaveResult() const;
+
+        void Reset();
     };
 }

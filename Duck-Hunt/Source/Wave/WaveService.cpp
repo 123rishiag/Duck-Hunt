@@ -48,6 +48,7 @@ namespace Wave
 	void WaveService::LoadWave()
 	{
 		WaveConfig waveConfig = GetWaveConfig(currentWaveType);
+		waveController->SetWaveTimeLeft();
 		ServiceLocator::GetInstance()->GetPlayerService()->Reset(waveConfig.playerPointAmmo, waveConfig.playerAreaAmmo);
 		ServiceLocator::GetInstance()->GetEnemyService()->Reset(false, waveConfig.enemyCount);
 		ServiceLocator::GetInstance()->GetBulletService()->Reset();
@@ -58,9 +59,9 @@ namespace Wave
 		switch (waveType)
 		{
 		case Wave::WaveType::WAVE_1:
-			return WaveConfig(3, 1, 3, 20.0f);
+			return WaveConfig(3, 1, 3, 10.0f);
 		case Wave::WaveType::WAVE_2:
-			return WaveConfig(5, 2, 5, 2.0f);
+			return WaveConfig(5, 2, 5, 15.0f);
 		default:
 			return WaveConfig(0, 0, 0, 0.f);
 		}
@@ -73,6 +74,11 @@ namespace Wave
 			waveNumber = 0;  // Wrap around to the first state
 		}
 		return static_cast<WaveType>(waveNumber);
+	}
+
+	float WaveService::GetWaveTimeLeft() const
+	{
+		return waveController->GetWaveTimeLeft();
 	}
 
 	void WaveService::Reset() 

@@ -28,6 +28,8 @@ namespace Wave
 		void Initialize();
 		void Update();
 
+		float GetWaveTimeLeft() const;
+
 		void Reset();
 	};
 }

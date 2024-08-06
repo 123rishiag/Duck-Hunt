@@ -14,20 +14,31 @@ namespace Wave
 
 	void WaveController::Initialize()
 	{
-		waveTime = sf::seconds(waveConfig.waveDuration);
+		waveTimeLeft = waveConfig.waveDuration;
 	}
 
 	void WaveController::Update()
 	{
-		if (clock.getElapsedTime() >= waveTime)
+		waveTimeLeft -= ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+		if (waveTimeLeft < 0)
 		{
-			clock.restart();
+			waveTimeLeft = 0;
 		}
 	}
 
 	void WaveController::UpdateConfig(const WaveConfig& config)
 	{
 		waveConfig = config;
+	}
+
+	float WaveController::GetWaveTimeLeft() const
+	{
+		return waveTimeLeft;
+	}
+
+	void WaveController::SetWaveTimeLeft()
+	{
+		waveTimeLeft = waveConfig.waveDuration;
 	}
 
 	bool WaveController::IsWaveWon() const

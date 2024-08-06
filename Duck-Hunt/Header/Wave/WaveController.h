@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "../../Header/Wave/WaveConfig.h"
 
 namespace Wave
@@ -9,8 +8,7 @@ namespace Wave
     private:
         WaveConfig waveConfig;
 
-        sf::Clock clock;
-        sf::Time waveTime;
+        float waveTimeLeft;
 
     public:
         WaveController(const WaveConfig& config);
@@ -20,6 +18,8 @@ namespace Wave
         void Update();
 
         void UpdateConfig(const WaveConfig& config);
+        float GetWaveTimeLeft() const;
+        void SetWaveTimeLeft();
 
         bool IsWaveWon() const;
         bool IsWaveLost() const;

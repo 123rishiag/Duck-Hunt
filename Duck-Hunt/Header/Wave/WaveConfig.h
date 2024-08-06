@@ -2,6 +2,20 @@
 
 namespace Wave
 {
+    enum class WaveState
+    {
+        WAVE_BOOT,
+        WAVE_PLAY,
+        WAVE_RESULT,
+    };
+
+    enum class WaveResult
+    {
+        WAVE_UNDECIDED,
+        WAVE_WON,
+        WAVE_LOST,
+    };
+
     enum class WaveType
     {
         WAVE_1,

@@ -15,11 +15,7 @@ namespace Wave
 		WaveType currentWaveType;
 		WaveController* waveController;
 
-		void ProcessWave();
-		void LoadWave();
-
-		WaveConfig GetWaveConfig(WaveType waveType) const;
-		WaveType GetNextWaveType(WaveType waveType) const;
+		void GameOver();
 
 	public:
 		WaveService();
@@ -28,7 +24,12 @@ namespace Wave
 		void Initialize();
 		void Update();
 
+		void LoadWave();
+		void HoldWave();
+
 		float GetWaveTimeLeft() const;
+		WaveConfig GetWaveConfig(WaveType waveType) const;
+		void SetNextWaveType();
 
 		void Reset();
 	};

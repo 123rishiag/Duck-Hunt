@@ -34,6 +34,10 @@
     <ClCompile Include="Source\Bullet\Controllers\AreaBulletController.cpp" />
     <ClCompile Include="Source\Enemy\Controllers\PowerDuckController.cpp" />
     <ClCompile Include="Source\Enemy\EnemyConfig.cpp" />
+    <ClCompile Include="Source\Bullet\BulletConfig.cpp" />
+    <ClCompile Include="Source\Wave\WaveSystemConfig.cpp" />
+    <ClCompile Include="Source\Wave\WaveSystem.cpp" />
+    <ClCompile Include="Source\Wave\WaveService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Main\GameService.h" />
@@ -72,5 +76,8 @@
     <ClInclude Include="Header\Bullet\Controllers\AreaBulletController.h" />
     <ClInclude Include="Header\Enemy\Controllers\PowerDuckController.h" />
     <ClInclude Include="Header\Utility\Utility.h" />
+    <ClInclude Include="Header\Wave\WaveSystemConfig.h" />
+    <ClInclude Include="Header\Wave\WaveSystem.h" />
+    <ClInclude Include="Header\Wave\WaveService.h" />
   </ItemGroup>
 </Project>

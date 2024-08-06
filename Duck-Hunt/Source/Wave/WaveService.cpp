@@ -1,62 +1,83 @@
 #include "../../Header/Wave/WaveService.h"
 #include "../../Header/Wave/WaveConfig.h"
+#include "../../Header/Wave/WaveController.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 namespace Wave
 {
-	WaveService::WaveService() { }
+	using namespace Global;
 
-	WaveService::~WaveService() { Destroy(); }
+	WaveService::WaveService()
+	{
+		Reset();
+		waveController = new WaveController(GetWaveConfig(currentWaveType));
+	}
+
+	WaveService::~WaveService() 
+	{ 
+		delete (waveController);
+	}
 
 	void WaveService::Initialize() 
 	{ 
-		currentWaveType = Wave::WaveType::WAVE_1;
+		waveController->Initialize();
 	}
 
 	void WaveService::Update()
 	{
-		for (WaveController* waveController : waveList)
-			waveController->Update();
-
-		DestroyFlaggedWaves();
+		waveController->Update();
+		waveController->UpdateConfig(GetWaveConfig(currentWaveType));
+		ProcessWave();
 	}
 
-	void WaveService::SpawnWave(WaveType waveType)
+	void WaveService::ProcessWave()
 	{
-		WaveController* waveController = new WaveController(GetWaveConfig(waveType));
-		waveController->Initialize();
-		waveList.push_back(waveController);
+		if (waveController->IsWaveWon()) 
+		{
+			LoadWave();
+			currentWaveType = GetNextWaveType(currentWaveType);
+		}
+		
+		if (waveController->IsWaveLost())
+		{
+			ServiceLocator::GetInstance()->GetPlayerService()->ReducePlayerHealth(1);
+			LoadWave();
+		}
 	}
 
-	void WaveService::DestroyWave(WaveController* waveController)
+	void WaveService::LoadWave()
 	{
-		flaggedWaveList.push_back(waveController);
-		waveList.erase(std::remove(waveList.begin(), waveList.end(), waveController), waveList.end());
+		WaveConfig waveConfig = GetWaveConfig(currentWaveType);
+		ServiceLocator::GetInstance()->GetPlayerService()->Reset(waveConfig.playerPointAmmo, waveConfig.playerAreaAmmo);
+		ServiceLocator::GetInstance()->GetEnemyService()->Reset(false, waveConfig.enemyCount);
+		ServiceLocator::GetInstance()->GetBulletService()->Reset();
 	}
 
-	WaveConfig WaveService::GetWaveConfig(WaveType waveType)
+	WaveConfig WaveService::GetWaveConfig(WaveType waveType) const
 	{
 		switch (waveType)
 		{
 		case Wave::WaveType::WAVE_1:
 			return WaveConfig(3, 1, 3, 20.0f);
 		case Wave::WaveType::WAVE_2:
-			return WaveConfig(5, 2, 5, 30.0f);
+			return WaveConfig(5, 2, 5, 2.0f);
+		default:
+			return WaveConfig(0, 0, 0, 0.f);
 		}
 	}
 
-	void WaveService::DestroyFlaggedWaves()
+	WaveType WaveService::GetNextWaveType(WaveType waveType) const
 	{
-		for (WaveController* waveController : flaggedWaveList)
-			delete (waveController);
-
-		flaggedWaveList.clear();
+		int waveNumber = static_cast<int>(waveType) + 1;
+		if (waveNumber >= static_cast<int>(WaveType::WAVE_END)) {
+			waveNumber = 0;  // Wrap around to the first state
+		}
+		return static_cast<WaveType>(waveNumber);
 	}
 
-	void WaveService::Reset() { Destroy(); }
-
-	void WaveService::Destroy()
-	{
-		for (WaveController* waveController : waveList)
-			delete (waveController);
+	void WaveService::Reset() 
+	{ 
+		currentWaveType = Wave::WaveType::WAVE_1;
 	}
+
 }

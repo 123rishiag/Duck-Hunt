@@ -53,6 +53,11 @@ namespace Player
         playerController->ResetPlayerAmmo(pointAmmoCount, areaAmmoCount);
     }
 
+    bool PlayerService::IsPlayerAlive() const
+    {
+        return playerController->GetPlayerHealth() > 0 ? true : false;
+    }
+
     int PlayerService::GetPlayerHealth() const
     {
         return playerController->GetPlayerHealth();

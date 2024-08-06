@@ -1,6 +1,6 @@
 #include "../../Header/Gameplay/GameplayService.h"
 #include "../../Header/Gameplay/GameplayController.h"
-#include "../../header/Global/ServiceLocator.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 namespace Gameplay
 {
@@ -16,32 +16,9 @@ namespace Gameplay
 	{
 		gameplayController->Update();
 
-		int playerHealth = 0;
-		playerHealth += ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerHealth();
-
-		int playerAmmo = 0;
-		playerAmmo += ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerPointAmmo();
-		playerAmmo += ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerAreaAmmo();
-		
-		int enemyCount = 0;
-		enemyCount += ServiceLocator::GetInstance()->GetEnemyService()->GetEnemiesCount();
-
-		if (playerHealth == 0)
+		if (!ServiceLocator::GetInstance()->GetPlayerService()->IsPlayerAlive())
 		{
 			ServiceLocator::GetInstance()->GetEventService()->CloseWindow();
-		}
-		else if (enemyCount > 0 && playerAmmo == 0)
-		{
-			ServiceLocator::GetInstance()->GetPlayerService()->ReducePlayerHealth(1);
-			Restart();
-		}
-		else if(enemyCount == 0)
-		{
-			Restart();
-		}
-		else
-		{
-
 		}
 	}
 
@@ -49,8 +26,6 @@ namespace Gameplay
 
 	void GameplayService::Restart()
 	{
-		ServiceLocator::GetInstance()->GetPlayerService()->Reset(3, 2);
-		ServiceLocator::GetInstance()->GetEnemyService()->Reset(false, 3);
-		ServiceLocator::GetInstance()->GetBulletService()->Reset();
+		ServiceLocator::GetInstance()->GetWaveService()->Reset();
 	}
 }

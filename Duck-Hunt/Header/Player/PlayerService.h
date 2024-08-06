@@ -25,6 +25,7 @@ namespace Player
         void ReducePlayerAreaAmmo();
         void ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount);
 
+        bool IsPlayerAlive() const;
         int GetPlayerHealth() const;
         int GetPlayerPointAmmo() const;
         int GetPlayerAreaAmmo() const;

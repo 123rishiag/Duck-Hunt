@@ -106,6 +106,11 @@ namespace Player
         return playerModel->GetPlayerHealth();
     }
 
+    void PlayerController::ResetPlayerHealth()
+    {
+        playerModel->ResetPlayerHealth();
+    }
+
     int PlayerController::GetPlayerPointAmmo() const
     {
         return playerModel->GetPlayerPointAmmo();

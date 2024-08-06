@@ -62,11 +62,11 @@ namespace Wave
 		switch (waveType)
 		{
 		case Wave::WaveType::WAVE_1:
-			return WaveConfig(3, 1, 3, 10.0f);
+			return WaveConfig("Wave 1", 3, 1, 3, 10.0f);
 		case Wave::WaveType::WAVE_2:
-			return WaveConfig(5, 2, 5, 15.0f);
+			return WaveConfig("Wave 2", 5, 2, 5, 15.0f);
 		default:
-			return WaveConfig(0, 0, 0, 0.f);
+			return WaveConfig("Wave Default", 0, 0, 0, 0.f);
 		}
 	}
 
@@ -76,9 +76,29 @@ namespace Wave
 		currentWaveType = static_cast<WaveType>(waveNumber);
 	}
 
+	sf::String WaveService::GetWaveName() const
+	{
+		return waveController->GetWaveName();
+	}
+
 	float WaveService::GetWaveTimeLeft() const
 	{
 		return waveController->GetWaveTimeLeft();
+	}
+	
+	WaveType WaveService::GetWaveType() const
+	{
+		return currentWaveType;
+	}
+
+	WaveState WaveService::GetWaveState() const
+	{
+		return waveController->GetWaveState();
+	}
+
+	WaveResult WaveService::GetWaveResult() const
+	{
+		return waveController->GetWaveResult();
 	}
 
 	void WaveService::Reset() 

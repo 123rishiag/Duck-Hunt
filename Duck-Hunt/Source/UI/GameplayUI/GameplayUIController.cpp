@@ -5,6 +5,7 @@
 #include"../../Header/Enemy/EnemyConfig.h"
 #include"../../Header/Bullet/BulletConfig.h"
 #include"../../Header/Utility/Utility.h"
+#include "../../Header/Wave/WaveConfig.h"
 #include <iomanip>
 #include <sstream>
 
@@ -17,6 +18,7 @@ namespace UI
         using namespace UI::UIElement;
         using namespace Enemy;
         using namespace Bullet;
+        using namespace Wave;
 
         GameplayUIController::GameplayUIController() { CreateUIElements(); }
 
@@ -35,6 +37,8 @@ namespace UI
             enemyImage = new ImageView();
             scoreText = new TextView();
             waveTimeLeftText = new TextView();
+            waveNameText = new TextView();
+            waveInfoText = new TextView();
         }
 
         void GameplayUIController::InitializeImage()
@@ -51,18 +55,28 @@ namespace UI
 
             sf::String elapsedTimeString = "Time Left  :  0 secs";
             waveTimeLeftText->Initialize(elapsedTimeString, sf::Vector2f(waveTimeLeftTextXPosition, waveTimeLeftTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
+
+            sf::String waveNameString = "Wave Number";
+            waveNameText->Initialize(waveNameString, sf::Vector2f(waveNameTextXPosition, waveNameTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
+
+            sf::String waveStateString = "Wave Information";
+            waveInfoText->Initialize(waveStateString, sf::Vector2f(waveInfoTextXPosition, waveInfoTextYPosition), FontType::BUBBLE_BOBBLE, fontSize * 2, textColor);
         }
 
         void GameplayUIController::Update()
         {
             UpdateScoreText();
             UpdateWaveTimeLeftText();
+            UpdateWaveNameText();
+            UpdateWaveInfoText();
         }
 
         void GameplayUIController::Render()
         {
             scoreText->Render();
             waveTimeLeftText->Render();
+            waveNameText->Render();
+            waveInfoText->Render();
 
             DrawPlayerLives();
             DrawPlayerAmmo();
@@ -76,6 +90,8 @@ namespace UI
             enemyImage->Show();
             scoreText->Show();
             waveTimeLeftText->Show();
+            waveNameText->Show();
+            waveInfoText->Show();
         }
 
         void GameplayUIController::UpdateScoreText()
@@ -101,6 +117,44 @@ namespace UI
 
             // Set the text
             waveTimeLeftText->SetText(timeLeftString);
+        }
+
+        void GameplayUIController::UpdateWaveNameText()
+        {
+            sf::String waveNameString = ServiceLocator::GetInstance()->GetWaveService()->GetWaveName();
+            waveNameText->SetText(waveNameString);
+        }
+
+        void GameplayUIController::UpdateWaveInfoText()
+        {
+            Wave::WaveState waveState = ServiceLocator::GetInstance()->GetWaveService()->GetWaveState();
+            Wave::WaveResult waveResult = ServiceLocator::GetInstance()->GetWaveService()->GetWaveResult();
+            sf::String waveInfoString = "";
+            switch (waveState)
+            {
+            case::Wave::WaveState::WAVE_BOOT:
+                    waveInfoString = "Wave Start";
+                    break;
+            case::Wave::WaveState::WAVE_RESULT:
+                switch (waveResult) 
+                {
+                case Wave::WaveResult::WAVE_WON:
+                    waveInfoString = "Wave Won";
+                    break;
+                case Wave::WaveResult::WAVE_LOST:
+                    waveInfoString = "Wave Lost";
+                    ServiceLocator::GetInstance()->GetGameplayService()->ActivateBackgroundAlpha(true);
+                    break;
+                default:
+                    waveInfoString = "";
+                    break;
+                }
+                break;
+            default:
+                waveInfoString = "";
+                break;
+            }
+            waveInfoText->SetText(waveInfoString);
         }
 
         void GameplayUIController::DrawPlayerLives()
@@ -177,6 +231,8 @@ namespace UI
             delete(enemyImage);
             delete(scoreText);
             delete(waveTimeLeftText);
+            delete(waveNameText);
+            delete(waveInfoText);
         }
     }
 }

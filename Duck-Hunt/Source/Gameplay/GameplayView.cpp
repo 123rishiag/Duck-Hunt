@@ -29,13 +29,24 @@ namespace Gameplay
 
 	void GameplayView::Update()
 	{
+		backgroundImage->SetImageAlpha(currentBackgroundAlpha);
 		backgroundImage->Update();
+		currentBackgroundAlpha = maxBackgroundAlpha;
 	}
 
 	void GameplayView::Render()
 	{
 		backgroundImage->Render();
 	}
+
+	void GameplayView::ActivateBackgroundAlpha(bool isActivated)
+	{
+		if (isActivated == true)
+		{
+			currentBackgroundAlpha = backgroundAlpha;
+		}
+	}
+
 
 	sf::String GameplayView::GetBackgroundTexturePath()
 	{

@@ -17,6 +17,8 @@ namespace Gameplay
 		void Update();
 		void Render();
 
+		void ActivateBackgroundAlpha(bool isActivated);
+
 		void Restart();
 	};
 }

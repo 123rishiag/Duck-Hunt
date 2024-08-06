@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 namespace Wave
 {
@@ -25,6 +26,7 @@ namespace Wave
 
     struct WaveConfig
     {
+        sf::String waveName;
         int playerPointAmmo;
         int playerAreaAmmo;
         int enemyCount;
@@ -34,7 +36,7 @@ namespace Wave
         WaveConfig() = default; // Use default for default constructor
 
         //this will allow us to initialize a wave with it's configuration.
-        WaveConfig(int pPointAmmo, int pAreaAmmo, int eCount, float wDuration);
+        WaveConfig(sf::String wName, int pPointAmmo, int pAreaAmmo, int eCount, float wDuration);
         ~WaveConfig();
     };
 }

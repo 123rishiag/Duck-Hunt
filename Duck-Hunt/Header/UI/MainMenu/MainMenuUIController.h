@@ -19,17 +19,23 @@ namespace UI
 			const float instructionsButtonYPosition = 700.f;
 			const float quitButtonYPosition = 900.f;
 
-			const float backgroundAlpha = 1000.f;
+			const float backgroundAlpha = 230.f;
 
 			UIElement::ImageView* backgroundImage;
+
+			const sf::Vector2f titleNamePosition = sf::Vector2f(530.f, 50.f);
+			const float titleNameSpriteWidth = 850.f;
+			const float titleNameSpriteHeight = 350.f;
+			UIElement::ImageView* titleNameImage;
 
 			UIElement::ButtonView* playButton;
 			UIElement::ButtonView* instructionsButton;
 			UIElement::ButtonView* quitButton;
 
-			void CreateImage();
+			void CreateImages();
 			void CreateButtons();
 			void InitializeBackgroundImage();
+			void InitializeImages();
 			void InitializeButtons();
 			void RegisterButtonCallback();
 

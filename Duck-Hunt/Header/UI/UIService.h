@@ -13,6 +13,11 @@ namespace UI
 		class MainMenuUIController;
 	}
 
+	namespace Instruction
+	{
+		class InstructionUIController;
+	}
+
 	namespace GameplayUI
 	{
 		class GameplayUIController;
@@ -24,6 +29,7 @@ namespace UI
 
 		SplashScreen::SplashScreenUIController* splashScreenUIController;
 		MainMenu::MainMenuUIController* mainMenuController;
+		Instruction::InstructionUIController* instructionController;
 		GameplayUI::GameplayUIController* gameplayUIController;
 
 		IUIController* GetCurrentUIController();

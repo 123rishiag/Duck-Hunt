@@ -10,10 +10,8 @@ namespace Global {
     using namespace Player;
     using namespace Enemy;
     using namespace Bullet;
-
-
-
     using namespace UI;
+    using namespace Animation;
 
     using namespace Main;
 
@@ -27,9 +25,8 @@ namespace Global {
         playerService = nullptr; // Initialize playerService to null
         enemyService = nullptr; // Initialize enemyService to null
         bulletService = nullptr; // Initialize bulletService to null
-
-
         uiService = nullptr; // Initialize uiService to null
+        animationService = nullptr; // Initialize animationService to null
 
         CreateServices(); // Call CreateServices to instantiate services
     }
@@ -49,9 +46,8 @@ namespace Global {
         playerService = new PlayerService(); // Dynamically create a PlayerService instance
         enemyService = new EnemyService(); // Dynamically create a EnemyService instance
         bulletService = new BulletService(); // Dynamically create a bulletService instance
-
-
         uiService = new UIService(); // Dynamically create a UIService instance
+        animationService = new AnimationService(); // Dynamically create a AnimationService instance
     }
 
     // Deletes and deallocates memory for all services.
@@ -64,9 +60,8 @@ namespace Global {
         delete(playerService); // Delete the playerService instance
         delete(enemyService); // Delete the enemyService instance
         delete(bulletService); // Delete the bulletService instance
-
-
         delete(uiService); // Delete the uiService instance
+        delete(animationService); // Delete the animationService instance
     }
 
     // Provides a method to access the unique ServiceLocator instance (object).
@@ -85,9 +80,8 @@ namespace Global {
         playerService->Initialize(); // Initialize player service
         enemyService->Initialize(); // Initialize enemy service
         bulletService->Initialize(); // Initialize bullet service
-
-
         uiService->Initialize(); // Initialize ui service
+        animationService->Initialize(); // Initialize animation service
     }
 
     // Updates all services.
@@ -103,9 +97,8 @@ namespace Global {
             enemyService->Update(); // Update enemy service
             bulletService->Update(); // Update bullet service
         }
-
-
         uiService->Update(); // Update ui service
+        animationService->Update(); // Update animation service
     }
 
     // Renders using the services.
@@ -121,9 +114,8 @@ namespace Global {
             enemyService->Render(); // Render enemy service
             bulletService->Render(); // Render bullet service
         }
-
-
         uiService->Render(); // Render ui service
+        animationService->Render(); // Render animation service
     }
 
     // Methods to Get Specific Services:
@@ -160,12 +152,13 @@ namespace Global {
     BulletService* ServiceLocator::GetBulletService() const {
         return bulletService;
     }
-
-
-
     // Retrieve the UIService instance
     UIService* ServiceLocator::GetUIService() const {
         return uiService;
+    }
+    // Retrieve the AnimationService instance
+    AnimationService* ServiceLocator::GetAnimationService() const {
+        return animationService;
     }
 
     void ServiceLocator::DeleteServiceLocator()

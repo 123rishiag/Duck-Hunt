@@ -47,7 +47,6 @@ namespace Gameplay
 		}
 	}
 
-
 	sf::String GameplayView::GetBackgroundTexturePath()
 	{
 		return Config::backgroundTexturePath;

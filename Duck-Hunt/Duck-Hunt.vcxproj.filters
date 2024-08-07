@@ -38,6 +38,10 @@
     <ClCompile Include="Source\Wave\WaveConfig.cpp" />
     <ClCompile Include="Source\Wave\WaveController.cpp" />
     <ClCompile Include="Source\Wave\WaveService.cpp" />
+    <ClCompile Include="Source\UI\SplashScreen\SplashScreenUIController.cpp" />
+    <ClCompile Include="Source\Animation\AnimationService.cpp" />
+    <ClCompile Include="Source\Animation\AnimationController.cpp" />
+    <ClCompile Include="Source\Animation\AnimationConfig.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Main\GameService.h" />
@@ -79,5 +83,9 @@
     <ClInclude Include="Header\Wave\WaveConfig.h" />
     <ClInclude Include="Header\Wave\WaveController.h" />
     <ClInclude Include="Header\Wave\WaveService.h" />
+    <ClInclude Include="Header\UI\SplashScreen\SplashScreenUIController.h" />
+    <ClInclude Include="Header\Animation\AnimationService.h" />
+    <ClInclude Include="Header\Animation\AnimationController.h" />
+    <ClInclude Include="Header\Animation\AnimationConfig.h" />
   </ItemGroup>
 </Project>

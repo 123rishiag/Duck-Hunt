@@ -115,6 +115,8 @@ namespace Enemy
 		}
 		if (increaseScore == true) {
 			ServiceLocator::GetInstance()->GetPlayerService()->IncreasePlayerScore(enemyController->GetEnemyDeathScore());
+			ServiceLocator::GetInstance()->GetAnimationService()->SpawnAnimation(enemyController->GetEnemyPosition(),
+				Animation::AnimationType::EXPLOSION, enemyController->GetEnemyDeathRadius());
 			ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::EXPLOSION);
 		}
 	}

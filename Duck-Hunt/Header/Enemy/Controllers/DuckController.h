@@ -8,8 +8,8 @@ namespace Enemy
         class DuckController : public EnemyController
         {
         private:
-            float horizontalMovementSpeed = 1000.0f;
-            float verticalMovementSpeed = 200.f;
+            float horizontalMovementSpeed = 750.0f;
+            float verticalMovementSpeed = 150.f;
             float enemyDeathRadius = 100.f;
             int enemyDeathScore = 100;
 

@@ -31,7 +31,7 @@ namespace Animation
 
 		void Reset();
 
-		void SpawnAnimation(sf::Vector2f position, AnimationType animationType);
+		void SpawnAnimation(sf::Vector2f position, AnimationType animationType, float radius = 0.f);
 		void DestroyAnimation(AnimationController* animationController);
 	};
 }

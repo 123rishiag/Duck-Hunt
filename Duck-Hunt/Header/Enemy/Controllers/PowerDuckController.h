@@ -8,9 +8,9 @@ namespace Enemy
         class PowerDuckController : public EnemyController
         {
         private:
-            float horizontalMovementSpeed = 1500.0f;
-            float verticalMovementSpeed = 300.f;
-            float enemyDeathRadius = 600.f;
+            float horizontalMovementSpeed = 1000.0f;
+            float verticalMovementSpeed = 200.f;
+            float enemyDeathRadius = 400.f;
             int enemyDeathScore = 200;
 
             void Move() override;

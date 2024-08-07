@@ -24,5 +24,13 @@ namespace Global
 		static const sf::String bubbleBobbleFontPath;
 		static const sf::String dsDigibFontPath;
 		static const sf::String openSansFontPath;
+
+		static const sf::String backgroundMusicPath;
+		static const sf::String buttonClickSoundPath;
+		static const sf::String explosionSoundPath;
+		static const sf::String bulletFireSoundPath;
+		static const sf::String waveStartSoundPath;
+		static const sf::String waveEndSoundPath;
+
 	};
 }

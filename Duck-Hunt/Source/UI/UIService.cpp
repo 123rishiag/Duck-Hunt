@@ -65,7 +65,7 @@ namespace UI
 	void UIService::ShowMainMenu()
 	{
 		GameService::SetGameState(GameState::MAIN_MENU);
-		//Show();
+		Show();
 	}
 
 	void UIService::InitializeControllers()

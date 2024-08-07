@@ -2,7 +2,7 @@
 #include "../../Header/Main/GameService.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Global/Config.h"
-//#include "../../Header/Sound/SoundService.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace UI
 {
@@ -11,7 +11,7 @@ namespace UI
         using namespace Global;
         using namespace Main;
         using namespace UIElement;
-        //using namespace Sound;
+        using namespace Sound;
 
         MainMenuUIController::MainMenuUIController()
         {
@@ -77,13 +77,13 @@ namespace UI
 
         void MainMenuUIController::PlayButtonCallback()
         {
-            //ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BUTTON_CLICK);
+            ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BUTTON_CLICK);
             GameService::SetGameState(GameState::GAMEPLAY);
         }
 
         void MainMenuUIController::InstructionsButtonCallback()
         {
-            //ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BUTTON_CLICK);
+            ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BUTTON_CLICK);
             GameService::SetGameState(GameState::INSTRUCTIONS);
         }
 
@@ -118,7 +118,7 @@ namespace UI
             instructionsButton->Show();
             quitButton->Show();
 
-            //ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
+            ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
         }
 
         void MainMenuUIController::Destroy()

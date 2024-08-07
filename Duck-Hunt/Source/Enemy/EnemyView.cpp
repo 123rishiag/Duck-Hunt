@@ -33,7 +33,7 @@ namespace Enemy
 	void EnemyView::Update()
 	{
 		enemyImage->SetPosition(enemyController->GetEnemyPosition());
-		//enemyImage->SetOriginAtCentre();
+		enemyImage->SetOriginAtCentre();
 		enemyImage->Update();
 	}
 

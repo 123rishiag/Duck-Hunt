@@ -4,12 +4,14 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Player/PlayerController.h"
 #include "../../Header/Enemy/EnemyController.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace Bullet
 {
     using namespace Global;
     using namespace Player;
     using namespace Enemy;
+    using namespace Sound;
 
     BulletController::BulletController(BulletType type)
     {
@@ -35,6 +37,7 @@ namespace Bullet
     {
         bulletModel->SetBulletPosition(position);
         ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemyByPosition(GetProjectilePosition(),GetBulletRadius());
+        ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BULLET_FIRE);
         ServiceLocator::GetInstance()->GetBulletService()->DestroyBullet(this);
     }
 

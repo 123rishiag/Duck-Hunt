@@ -4,7 +4,7 @@
 #include "../../Header/Global/Config.h"
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Bullet/BulletConfig.h"
-//#include "../../Header/Sound/SoundService.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace UI
 {
@@ -15,7 +15,7 @@ namespace UI
         using namespace UIElement;
         using namespace Enemy;
         using namespace Bullet;
-        //using namespace Sound;
+        using namespace Sound;
 
         InstructionUIController::InstructionUIController()
         {
@@ -101,7 +101,7 @@ namespace UI
             );
             controlsHeaderText->UnderlineText();
             controlsText->Initialize(
-                "Left Click: Shoot \t\tRight Click: Change Bullets",
+                "Left Click --> Shoot \t\tRight Click --> Change Bullets",
                 controlsTextPosition,
                 FontType::OPEN_SANS,
                 instructionFontSize,
@@ -162,7 +162,7 @@ namespace UI
 
         void InstructionUIController::MainMenuButtonCallback()
         {
-            //ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BUTTON_CLICK);
+            ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BUTTON_CLICK);
             GameService::SetGameState(GameState::MAIN_MENU);
         }
 
@@ -244,7 +244,7 @@ namespace UI
             pointBulletText->Show();
             areaBulletText->Show();
 
-            //ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
+            ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
         }
 
         void InstructionUIController::Destroy()

@@ -3,6 +3,11 @@
 
 namespace UI
 {
+	namespace SplashScreen
+	{
+		class SplashScreenUIController;
+	}
+
 	namespace GameplayUI
 	{
 		class GameplayUIController;
@@ -11,6 +16,8 @@ namespace UI
 	class UIService : public Interface::IUIController
 	{
 	private:
+
+		SplashScreen::SplashScreenUIController* splashScreenUIController;
 		GameplayUI::GameplayUIController* gameplayUIController;
 
 		IUIController* GetCurrentUIController();

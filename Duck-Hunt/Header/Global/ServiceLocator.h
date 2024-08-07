@@ -8,10 +8,8 @@
 #include "../Player/PlayerService.h"
 #include "../Enemy/EnemyService.h"
 #include "../Bullet/BulletService.h"
-
-
-
 #include "../UI/UIService.h"
+#include "../Animation/AnimationService.h"
 
 namespace Global {
 
@@ -29,9 +27,8 @@ namespace Global {
         Player::PlayerService* playerService;
         Enemy::EnemyService* enemyService;
         Bullet::BulletService* bulletService;
-
-
         UI::UIService* uiService;
+        Animation::AnimationService* animationService;
 
         // Private Constructor and Destructor:
 
@@ -62,9 +59,8 @@ namespace Global {
         Player::PlayerService* GetPlayerService() const;   // Retrieve the PlayerService instance
         Enemy::EnemyService* GetEnemyService() const;   // Retrieve the EnemyService instance
         Bullet::BulletService* GetBulletService() const;   // Retrieve the BulletService instance
-
-
         UI::UIService* GetUIService() const;   // Retrieve the UIService instance
+        Animation::AnimationService* GetAnimationService() const;   // Retrieve the AnimationService instance
 
         void DeleteServiceLocator();
     };

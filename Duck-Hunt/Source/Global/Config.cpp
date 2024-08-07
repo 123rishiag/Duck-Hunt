@@ -5,6 +5,9 @@ namespace Global
 	const sf::String Config::outscalLogoTexturePath = "assets/textures/outscal_logo.png";
 	const sf::String Config::backgroundTexturePath = "assets/textures/background_normal.png";
 
+	const sf::String Config::explosionTexturePath = "assets/textures/explosion.png";
+	const sf::String Config::loadIconTexturePath = "assets/textures/circle_animation.png";
+
 	const sf::String Config::playerTexturePath = "assets/textures/player.png";
 	const sf::String Config::playerHealthTexturePath = "assets/textures/player_health.png";
 

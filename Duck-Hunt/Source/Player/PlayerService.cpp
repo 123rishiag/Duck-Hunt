@@ -68,6 +68,11 @@ namespace Player
         playerController->ResetPlayerHealth();
     }
 
+    void PlayerService::ResetPlayerScore()
+    {
+        playerController->ResetPlayerScore();
+    }
+
     int PlayerService::GetPlayerPointAmmo() const
     {
         return playerController->GetPlayerPointAmmo();

@@ -30,6 +30,7 @@ namespace Main
 		void Destroy();			// Handles cleanup tasks.
 
 		void ShowSplashScreen();
+		void ShowMainMenu();
 
 	public:
 		GameService();			// Constructor for initializing the GameService object.

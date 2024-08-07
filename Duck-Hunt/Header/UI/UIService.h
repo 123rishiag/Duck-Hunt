@@ -8,6 +8,11 @@ namespace UI
 		class SplashScreenUIController;
 	}
 
+	namespace MainMenu
+	{
+		class MainMenuUIController;
+	}
+
 	namespace GameplayUI
 	{
 		class GameplayUIController;
@@ -18,6 +23,7 @@ namespace UI
 	private:
 
 		SplashScreen::SplashScreenUIController* splashScreenUIController;
+		MainMenu::MainMenuUIController* mainMenuController;
 		GameplayUI::GameplayUIController* gameplayUIController;
 
 		IUIController* GetCurrentUIController();
@@ -34,5 +40,7 @@ namespace UI
 		void Update() override;
 		void Render() override;
 		void Show() override;
+
+		void ShowMainMenu();
 	};
 }

@@ -35,6 +35,7 @@ namespace Wave
 				currentWaveState = WaveState::WAVE_PLAY;
 				ServiceLocator::GetInstance()->GetWaveService()->LoadWave();
 				stateTime = 0;
+				waveTimeLeft = waveConfig.waveDuration;
 			}
 			break;
 
@@ -68,6 +69,7 @@ namespace Wave
 				currentWaveState = WaveState::WAVE_BOOT;
 				stateTime = 0;
 				Reset(); // Reset for the next wave
+				ServiceLocator::GetInstance()->GetWaveService()->GameOver();
 			}
 			break;
 		}

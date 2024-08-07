@@ -26,6 +26,7 @@ namespace UI
 			const float waveNameTextXPosition = 50.f;
 			const float waveNameTextYPosition = 1000.f;
 			UI::UIElement::TextView* waveNameText;
+			sf::String waveNameString;
 
 			const float waveInfoTextXPosition = 775.f;
 			const float waveInfoTextYPosition = 450.f;

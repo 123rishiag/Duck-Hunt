@@ -8,6 +8,7 @@ namespace Global
 	public:
 		static const sf::String outscalLogoTexturePath;
 		static const sf::String backgroundTexturePath;
+		static const sf::String titleNameTexturePath;
 
 		static const sf::String explosionTexturePath;
 		static const sf::String loadIconTexturePath;

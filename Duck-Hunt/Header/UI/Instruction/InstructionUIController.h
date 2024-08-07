@@ -12,7 +12,7 @@ namespace UI
         class InstructionUIController : public Interface::IUIController
         {
         private:
-            const float backgroundAlpha = 1000.f;
+            const float backgroundAlpha = 230.f;
 
             const float buttonWidth = 400.f;
             const float buttonHeight = 140.f;

@@ -15,7 +15,7 @@ namespace UI
 
         MainMenuUIController::MainMenuUIController()
         {
-            CreateImage();
+            CreateImages();
             CreateButtons();
         }
 
@@ -27,13 +27,15 @@ namespace UI
         void MainMenuUIController::Initialize()
         {
             InitializeBackgroundImage();
+            InitializeImages();
             InitializeButtons();
             RegisterButtonCallback();
         }
 
-        void MainMenuUIController::CreateImage()
+        void MainMenuUIController::CreateImages()
         {
             backgroundImage = new ImageView();
+            titleNameImage = new ImageView();
         }
 
         void MainMenuUIController::CreateButtons()
@@ -48,6 +50,11 @@ namespace UI
             sf::RenderWindow* gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
             backgroundImage->Initialize(Config::backgroundTexturePath, gameWindow->getSize().x, gameWindow->getSize().y, sf::Vector2f(0.f, 0.f));
             backgroundImage->SetImageAlpha(backgroundAlpha);
+        }
+
+        void MainMenuUIController::InitializeImages()
+        {
+            titleNameImage->Initialize(Config::titleNameTexturePath, titleNameSpriteWidth, titleNameSpriteHeight, titleNamePosition);
         }
 
         void MainMenuUIController::InitializeButtons()
@@ -88,6 +95,7 @@ namespace UI
         void MainMenuUIController::Update()
         {
             backgroundImage->Update();
+            titleNameImage->Update();
             playButton->Update();
             instructionsButton->Update();
             quitButton->Update();
@@ -96,6 +104,7 @@ namespace UI
         void MainMenuUIController::Render()
         {
             backgroundImage->Render();
+            titleNameImage->Render();
             playButton->Render();
             instructionsButton->Render();
             quitButton->Render();
@@ -104,6 +113,7 @@ namespace UI
         void MainMenuUIController::Show()
         {
             backgroundImage->Show();
+            titleNameImage->Show();
             playButton->Show();
             instructionsButton->Show();
             quitButton->Show();
@@ -116,6 +126,7 @@ namespace UI
             delete (playButton);
             delete (instructionsButton);
             delete (quitButton);
+            delete (titleNameImage);
             delete (backgroundImage);
         }
     }

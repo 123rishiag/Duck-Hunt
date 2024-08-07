@@ -1,9 +1,11 @@
 #include "../../Header/Wave/WaveController.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace Wave
 {
 	using namespace Global;
+	using namespace Sound;
 
 	WaveController::WaveController(const WaveConfig& config)
 	{
@@ -34,6 +36,7 @@ namespace Wave
 			{
 				currentWaveState = WaveState::WAVE_PLAY;
 				ServiceLocator::GetInstance()->GetWaveService()->LoadWave();
+				ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::WAVE_START);
 				stateTime = 0;
 				waveTimeLeft = waveConfig.waveDuration;
 			}
@@ -48,6 +51,7 @@ namespace Wave
 			if (IsWaveWon() || IsWaveLost())
 			{
 				currentWaveState = WaveState::WAVE_RESULT;
+				ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::WAVE_END);
 				if (IsWaveWon())
 				{
 					currentWaveResult = Wave::WaveResult::WAVE_WON;

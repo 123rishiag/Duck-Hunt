@@ -10,6 +10,7 @@
 #include "../Bullet/BulletService.h"
 #include "../UI/UIService.h"
 #include "../Animation/AnimationService.h"
+#include "../Sound/SoundService.h"
 
 namespace Global {
 
@@ -29,6 +30,7 @@ namespace Global {
         Bullet::BulletService* bulletService;
         UI::UIService* uiService;
         Animation::AnimationService* animationService;
+        Sound::SoundService* soundService;
 
         // Private Constructor and Destructor:
 
@@ -61,6 +63,7 @@ namespace Global {
         Bullet::BulletService* GetBulletService() const;   // Retrieve the BulletService instance
         UI::UIService* GetUIService() const;   // Retrieve the UIService instance
         Animation::AnimationService* GetAnimationService() const;   // Retrieve the AnimationService instance
+        Sound::SoundService* GetSoundService() const;   // Retrieve the SoundService instance
 
         void DeleteServiceLocator();
     };

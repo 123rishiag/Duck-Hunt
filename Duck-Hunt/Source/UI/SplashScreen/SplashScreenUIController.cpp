@@ -2,7 +2,7 @@
 #include "../../Header/Main/GameService.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Graphic/GraphicService.h"
-//#include "../../Header/Sound/SoundService.h"
+#include "../../Header/Sound/SoundService.h"
 #include "../../Header/Global/Config.h"
 
 namespace UI
@@ -13,7 +13,7 @@ namespace UI
         using namespace Graphic;
         using namespace Global;
         using namespace UIElement;
-        //using namespace Sound;
+        using namespace Sound;
 
         SplashScreenUIController::SplashScreenUIController()
         {
@@ -72,7 +72,7 @@ namespace UI
 
         void SplashScreenUIController::FadeOutAnimationCallback()
         {
-            //ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
+            ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
             GameService::SetGameState(GameState::MAIN_MENU);
         }
 

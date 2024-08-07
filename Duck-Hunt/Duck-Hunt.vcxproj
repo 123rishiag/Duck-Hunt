@@ -162,6 +162,7 @@
     <ClCompile Include="Source\Player\PlayerModel.cpp" />
     <ClCompile Include="Source\Player\PlayerService.cpp" />
     <ClCompile Include="Source\Player\PlayerView.cpp" />
+    <ClCompile Include="Source\Sound\SoundService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
     <ClCompile Include="Source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="Source\UI\Instruction\InstructionUIController.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="Header\Player\PlayerService.h" />
     <ClInclude Include="Header\Player\PlayerView.h" />
     <ClInclude Include="Header\Projectile\IProjectile.h" />
+    <ClInclude Include="Header\Sound\SoundService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
     <ClInclude Include="Header\UI\GameplayUI\GameplayUIController.h" />
     <ClInclude Include="Header\UI\Instruction\InstructionUIController.h" />

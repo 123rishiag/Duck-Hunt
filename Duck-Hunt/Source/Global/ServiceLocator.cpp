@@ -12,7 +12,7 @@ namespace Global {
     using namespace Bullet;
     using namespace UI;
     using namespace Animation;
-
+    using namespace Sound;
     using namespace Main;
 
     // Constructor for initializing the ServiceLocator.
@@ -27,7 +27,7 @@ namespace Global {
         bulletService = nullptr; // Initialize bulletService to null
         uiService = nullptr; // Initialize uiService to null
         animationService = nullptr; // Initialize animationService to null
-
+        soundService = nullptr; // Initialize uiService to null
         CreateServices(); // Call CreateServices to instantiate services
     }
 
@@ -48,6 +48,7 @@ namespace Global {
         bulletService = new BulletService(); // Dynamically create a bulletService instance
         uiService = new UIService(); // Dynamically create a UIService instance
         animationService = new AnimationService(); // Dynamically create a AnimationService instance
+        soundService = new SoundService(); // Dynamically create a SoundService instance
     }
 
     // Deletes and deallocates memory for all services.
@@ -62,6 +63,7 @@ namespace Global {
         delete(bulletService); // Delete the bulletService instance
         delete(uiService); // Delete the uiService instance
         delete(animationService); // Delete the animationService instance
+        delete(soundService); // Delete the soundService instance
     }
 
     // Provides a method to access the unique ServiceLocator instance (object).
@@ -82,6 +84,7 @@ namespace Global {
         bulletService->Initialize(); // Initialize bullet service
         uiService->Initialize(); // Initialize ui service
         animationService->Initialize(); // Initialize animation service
+        soundService->Initialize(); // Initialize sound service
     }
 
     // Updates all services.
@@ -99,6 +102,7 @@ namespace Global {
         }
         uiService->Update(); // Update ui service
         animationService->Update(); // Update animation service
+        // no sound service because nothing to update
     }
 
     // Renders using the services.
@@ -116,6 +120,7 @@ namespace Global {
         }
         uiService->Render(); // Render ui service
         animationService->Render(); // Render animation service
+        // no sound service because nothing to render
     }
 
     // Methods to Get Specific Services:
@@ -159,6 +164,10 @@ namespace Global {
     // Retrieve the AnimationService instance
     AnimationService* ServiceLocator::GetAnimationService() const {
         return animationService;
+    }
+    // Retrieve the SoundService instance
+    SoundService* ServiceLocator::GetSoundService() const {
+        return soundService;
     }
 
     void ServiceLocator::DeleteServiceLocator()

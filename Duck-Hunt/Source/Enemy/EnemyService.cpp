@@ -3,10 +3,12 @@
 #include "../../Header/Enemy/Controllers/PowerDuckController.h"
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Sound;
 
 	EnemyService::EnemyService() {
 		std::srand(static_cast<unsigned>(std::time(nullptr)));
@@ -113,6 +115,7 @@ namespace Enemy
 		}
 		if (increaseScore == true) {
 			ServiceLocator::GetInstance()->GetPlayerService()->IncreasePlayerScore(enemyController->GetEnemyDeathScore());
+			ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::EXPLOSION);
 		}
 	}
 

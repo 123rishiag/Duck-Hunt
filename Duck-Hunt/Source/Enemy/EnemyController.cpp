@@ -53,7 +53,7 @@ namespace Enemy
 
     float EnemyController::GetRandomOffset()
     {
-        // Generate a random float between -0.5 and 0.5 and scale it up
+        // Generate a random float between -0.5 * factor and 0.5 * factor and scale it up
         return ((static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX)) - 0.5f) * 1000.0f * 1000.0f
             * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
     }

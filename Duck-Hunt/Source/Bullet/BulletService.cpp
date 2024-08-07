@@ -4,13 +4,11 @@
 #include "../../Header/Bullet/Controllers/PointBulletController.h"
 #include "../../Header/Bullet/Controllers/AreaBulletController.h"
 #include "../../Header/Global/ServiceLocator.h"
-//#include "../../Header/Sound/SoundService.h"
 
 namespace Bullet
 {
 	using namespace Projectile;
 	using namespace Global;
-	//using namespace Sound;
 
 	BulletService::BulletService() { }
 

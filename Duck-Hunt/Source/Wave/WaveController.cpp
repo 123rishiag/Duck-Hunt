@@ -61,8 +61,8 @@ namespace Wave
 				{
 					ServiceLocator::GetInstance()->GetPlayerService()->ReducePlayerHealth(1);
 					currentWaveResult = Wave::WaveResult::WAVE_LOST;
+					ServiceLocator::GetInstance()->GetWaveService()->HoldWave();
 				}
-				ServiceLocator::GetInstance()->GetWaveService()->HoldWave();
 				stateTime = 0;
 			}
 			break;

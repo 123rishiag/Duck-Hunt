@@ -72,7 +72,13 @@ namespace Wave
 		case Wave::WaveType::WAVE_1:
 			return WaveConfig("Wave 1", 3, 1, 3, 10.0f);
 		case Wave::WaveType::WAVE_2:
-			return WaveConfig("Wave 2", 5, 2, 5, 15.0f);
+			return WaveConfig("Wave 2", 6, 1, 5, 15.0f);
+		case Wave::WaveType::WAVE_3:
+			return WaveConfig("Wave 3", 8, 1, 7, 20.0f);
+		case Wave::WaveType::WAVE_4:
+			return WaveConfig("Wave 4", 11, 1, 9, 25.0f);
+		case Wave::WaveType::WAVE_5:
+			return WaveConfig("Wave 5", 13, 1, 11, 30.0f);
 		default:
 			return WaveConfig("Wave Default", 0, 0, 0, 0.f);
 		}

@@ -21,6 +21,9 @@ namespace Wave
     {
         WAVE_1,
         WAVE_2,
+        WAVE_3,
+        WAVE_4,
+        WAVE_5,
         WAVE_END,
     };
 

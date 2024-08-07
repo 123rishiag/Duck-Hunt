@@ -121,7 +121,11 @@ namespace UI
 
         void GameplayUIController::UpdateWaveNameText()
         {
-            sf::String waveNameString = ServiceLocator::GetInstance()->GetWaveService()->GetWaveName();
+            Wave::WaveState waveState = ServiceLocator::GetInstance()->GetWaveService()->GetWaveState();
+            if (waveState == Wave::WaveState::WAVE_BOOT)
+            {
+                waveNameString = ServiceLocator::GetInstance()->GetWaveService()->GetWaveName();
+            }
             waveNameText->SetText(waveNameString);
         }
 
@@ -144,14 +148,14 @@ namespace UI
                     waveInfoString = "Wave Won";
                     if (isGameOver)
                     {
-                        waveInfoString = waveInfoString + "\n\nGame Over";
+                        waveInfoString = "Game Won";
                     }
                     break;
                 case Wave::WaveResult::WAVE_LOST:
                     waveInfoString = "Wave Lost";
                     if (isGameOver)
                     {
-                        waveInfoString = waveInfoString + "\n\nGame Over";
+                        waveInfoString = "Game Over";
                     }
                     ServiceLocator::GetInstance()->GetGameplayService()->ActivateBackgroundAlpha(true);
                     break;

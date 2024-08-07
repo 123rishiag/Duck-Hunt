@@ -7,7 +7,7 @@ Welcome to the modern twist on the classic Duck Hunt game! This project is a cul
 - **Wave System:** Progress through waves with increasing difficulty.
 - **Player Mechanics:** Health, score, and ammo management.
 - **Duck Behavior:** Different duck types with unique speeds, points, and movement patterns.
-- **Shooting Mechanics:** Two bullet types - area bullet and point-and-click bullet.
+- **Shooting Mechanics:** Two bullet types - area bullet and point bullet.
 - **Sound Effects:** Bullet shooting sound and duck death sounds.
 - **User Interface:** Display player health, score, and ammo.
 

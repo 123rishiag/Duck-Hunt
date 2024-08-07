@@ -47,7 +47,7 @@ Welcome to the modern twist on the classic Duck Hunt game! This project is a cul
 - **SoundService:** Manages sound effects and music playback.
 
 ### Other Important Files
-- **main:** Entry point of the game.
+- **Main:** Entry point of the game.
 - **GameService:** Core service for game initialization and management.
   - Declares all game states and initializes the Service Locator handling all mentioned services.
   - Manages game initialization, updates, rendering, and game state transitions.

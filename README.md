@@ -49,8 +49,8 @@ Welcome to the modern twist on the classic Duck Hunt game! This project is a cul
 ### Additional Core Components
 - **Main:** Entry point of the game.
 - **GameService:** Core service for game initialization and management.
-  - Declares all game states and initializes the Service Locator handling all mentioned services.
-  - Manages game initialization, updates, rendering of Service Locator.
+  - Declares and manages all game states.
+  - Manages the initialization, updating, and rendering of Service Locator.
 - **ServiceLocator:** Manages the initialization, updating, and rendering of all the above-mentioned services, ensuring smooth communication and coordination among them.
 - **Config:** Holds texture file locations for all assets, including sounds, animations, sprite textures, and fonts.
 - **Utility:** Utility functions used throughout the game.

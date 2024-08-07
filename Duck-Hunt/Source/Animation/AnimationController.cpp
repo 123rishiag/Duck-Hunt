@@ -18,12 +18,16 @@ namespace Animation
 		delete(animationImage);
 	}
 
-	void AnimationController::Initialize(sf::Vector2f position)
+	void AnimationController::Initialize(sf::Vector2f position, float radius)
 	{
 		animationPosition = position;
 		currentFrame = 0;
 		frameTime = sf::seconds(animationConfig.frameDuration);
-
+		if (radius != 0.f)
+		{
+			animationConfig.spriteSheetWidth = radius * 2;
+			animationConfig.spriteSheetHeight = radius * 2;
+		}
 		InitializeImage();
 	}
 
@@ -56,6 +60,7 @@ namespace Animation
 				animationConfig.tileWidth,
 				animationConfig.tileHeight));
 		}
+		animationImage->SetOriginAtCentre();
 		animationImage->Update();
 	}
 

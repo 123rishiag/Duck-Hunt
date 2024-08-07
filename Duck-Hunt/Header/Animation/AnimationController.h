@@ -24,7 +24,7 @@ namespace Animation
         AnimationController(const AnimationConfig& config);
         ~AnimationController();
 
-        void Initialize(sf::Vector2f position);
+        void Initialize(sf::Vector2f position, float radius = 0.f);
         void Update();
         void Render();
 

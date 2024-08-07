@@ -24,10 +24,10 @@ namespace Animation
 			animationController->Render();
 	}
 
-	void AnimationService::SpawnAnimation(sf::Vector2f position, AnimationType animationType)
+	void AnimationService::SpawnAnimation(sf::Vector2f position, AnimationType animationType, float radius)
 	{
 		AnimationController* animationController = new AnimationController(GetAnimationConfig(animationType));
-		animationController->Initialize(position);
+		animationController->Initialize(position, radius);
 		animationList.push_back(animationController);
 	}
 

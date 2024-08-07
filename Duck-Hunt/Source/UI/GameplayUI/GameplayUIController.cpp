@@ -129,7 +129,9 @@ namespace UI
         {
             Wave::WaveState waveState = ServiceLocator::GetInstance()->GetWaveService()->GetWaveState();
             Wave::WaveResult waveResult = ServiceLocator::GetInstance()->GetWaveService()->GetWaveResult();
+            bool isGameOver = ServiceLocator::GetInstance()->GetWaveService()->IsGameOver();
             sf::String waveInfoString = "";
+
             switch (waveState)
             {
             case::Wave::WaveState::WAVE_BOOT:
@@ -140,9 +142,17 @@ namespace UI
                 {
                 case Wave::WaveResult::WAVE_WON:
                     waveInfoString = "Wave Won";
+                    if (isGameOver)
+                    {
+                        waveInfoString = waveInfoString + "\n\nGame Over";
+                    }
                     break;
                 case Wave::WaveResult::WAVE_LOST:
                     waveInfoString = "Wave Lost";
+                    if (isGameOver)
+                    {
+                        waveInfoString = waveInfoString + "\n\nGame Over";
+                    }
                     ServiceLocator::GetInstance()->GetGameplayService()->ActivateBackgroundAlpha(true);
                     break;
                 default:

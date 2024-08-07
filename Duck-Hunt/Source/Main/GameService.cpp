@@ -64,6 +64,12 @@ namespace Main
 		serviceLocator->GetInstance()->GetUIService()->Show();
 	}
 
+	void GameService::ShowMainMenu()
+	{
+		SetGameState(GameState::MAIN_MENU);
+		serviceLocator->GetInstance()->GetUIService()->Show();
+	}
+
 	bool GameService::IsRunning() const
 	{
 		// Returns true if the game window is open, indicating the game is still running

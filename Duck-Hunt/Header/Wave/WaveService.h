@@ -19,8 +19,6 @@ namespace Wave
 		WaveType currentWaveType;
 		WaveController* waveController;
 
-		void GameOver();
-
 	public:
 		WaveService();
 		virtual ~WaveService();
@@ -30,6 +28,9 @@ namespace Wave
 
 		void LoadWave();
 		void HoldWave();
+
+		bool IsGameOver() const;
+		void GameOver();
 
 		sf::String GetWaveName() const;
 		float GetWaveTimeLeft() const;

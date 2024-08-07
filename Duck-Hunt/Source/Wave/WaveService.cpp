@@ -27,17 +27,25 @@ namespace Wave
 	{
 		waveController->Update();
 		waveController->UpdateConfig(GetWaveConfig(currentWaveType));
+	}
 
-		GameOver();
+	bool WaveService::IsGameOver() const
+	{
+		if (!ServiceLocator::GetInstance()->GetPlayerService()->IsPlayerAlive() || currentWaveType == Wave::WaveType::WAVE_END)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	void WaveService::GameOver()
 	{
-		if (!ServiceLocator::GetInstance()->GetPlayerService()->IsPlayerAlive() || currentWaveType == Wave::WaveType::WAVE_END)
+		if (IsGameOver())
 		{
-			// ServiceLocator::GetInstance()->GetEventService()->CloseWindow();
 			ServiceLocator::GetInstance()->GetPlayerService()->ResetPlayerHealth();
+			ServiceLocator::GetInstance()->GetPlayerService()->ResetPlayerScore();
 			Reset();
+			ServiceLocator::GetInstance()->GetUIService()->ShowMainMenu();
 		}	
 	}
 

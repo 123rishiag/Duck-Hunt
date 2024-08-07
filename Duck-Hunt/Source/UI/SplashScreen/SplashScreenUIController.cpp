@@ -73,7 +73,7 @@ namespace UI
         void SplashScreenUIController::FadeOutAnimationCallback()
         {
             //ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
-            GameService::SetGameState(GameState::GAMEPLAY);
+            GameService::SetGameState(GameState::MAIN_MENU);
         }
 
         sf::Vector2f SplashScreenUIController::GetLogoPosition()

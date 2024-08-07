@@ -43,6 +43,7 @@
     <ClCompile Include="Source\Animation\AnimationController.cpp" />
     <ClCompile Include="Source\Animation\AnimationConfig.cpp" />
     <ClCompile Include="Source\UI\MainMenu\MainMenuUIController.cpp" />
+    <ClCompile Include="Source\UI\Instruction\InstructionUIController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Main\GameService.h" />
@@ -89,5 +90,6 @@
     <ClInclude Include="Header\Animation\AnimationController.h" />
     <ClInclude Include="Header\Animation\AnimationConfig.h" />
     <ClInclude Include="Header\UI\MainMenu\MainMenuUIController.h" />
+    <ClInclude Include="Header\UI\Instruction\InstructionUIController.h" />
   </ItemGroup>
 </Project>

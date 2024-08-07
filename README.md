@@ -46,11 +46,12 @@ Welcome to the modern twist on the classic Duck Hunt game! This project is a cul
   - Includes: `AnimationConfig`, `AnimationController`
 - **SoundService:** Manages sound effects and music playback.
 
-### Other Important Files
+### Additional Core Components
 - **Main:** Entry point of the game.
 - **GameService:** Core service for game initialization and management.
   - Declares all game states and initializes the Service Locator handling all mentioned services.
-  - Manages game initialization, updates, rendering, and game state transitions.
+  - Manages game initialization, updates, rendering of Service Locator.
+- **ServiceLocator:** Manages the initialization, updating, and rendering of all the above-mentioned services, ensuring smooth communication and coordination among them.
 - **Config:** Holds texture file locations for all assets, including sounds, animations, sprite textures, and fonts.
 - **Utility:** Utility functions used throughout the game.
 

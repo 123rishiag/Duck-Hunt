@@ -68,4 +68,4 @@ Welcome to the modern twist on the classic Duck Hunt game! This project is a cul
 
 4. Run the executable to start the game.
 
-5. Use the keyboard and mouse to control your spaceship, shoot enemies, and collect power-ups.
+5. Use the to control your player's shoot point, change bullets and shoot enemies.

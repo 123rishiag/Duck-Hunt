@@ -1,5 +1,6 @@
 #pragma once
 
+// TO convert one enum class to other type
 namespace Utility
 {
     template <typename Enum>

@@ -3,22 +3,11 @@
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
-/*
-#include "../../Header/Bullet/BulletConfig.h"
-#include "../../Header/Bullet/BulletController.h"
-#include "../../Header/Player/PlayerController.h"
-#include "../../Header/Sound/SoundService.h"
-*/
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
-	/*
-	using namespace Bullet;
-	using namespace Player;
-	using namespace Sound;
-	*/
 
 	EnemyController::EnemyController(EnemyType type)
 	{

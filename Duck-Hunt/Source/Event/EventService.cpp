@@ -7,7 +7,7 @@ namespace Event {
         gameWindow = nullptr; 
     }
 
-    EventService::~EventService() = default; //calls the default destructor
+    EventService::~EventService() = default; // calls the default destructor
 
     void EventService::Initialize()
     {
@@ -17,8 +17,8 @@ namespace Event {
     void EventService::Update()
     {
         ProcessEvents();
-        UpdateMouseButtonsState(leftMouseButtonState, sf::Mouse::Left);
-        UpdateMouseButtonsState(rightMouseButtonState, sf::Mouse::Right);
+        UpdateMouseButtonsState(leftMouseButtonState, sf::Mouse::Left); // Regularly checking mouse events
+        UpdateMouseButtonsState(rightMouseButtonState, sf::Mouse::Right); // Regularly checking keyboard events
     }
 
     void EventService::ProcessEvents()
@@ -34,6 +34,7 @@ namespace Event {
         }
     }
 
+    // Creating the State Machine for mouse button
     void EventService::UpdateMouseButtonsState(ButtonState& currentButtonState, sf::Mouse::Button mouseButton)
     {
         if (sf::Mouse::isButtonPressed(mouseButton))
@@ -54,6 +55,7 @@ namespace Event {
         }
     }
 
+    // Creating the State Machine for keyboard button
     void EventService::UpdateKeyboardButtonsState(ButtonState& currentButtonState, sf::Keyboard::Key keyboardButton)
     {
         if (sf::Keyboard::isKeyPressed(keyboardButton))
@@ -90,6 +92,7 @@ namespace Event {
 
     bool EventService::PressedRightMouseButton() const { return rightMouseButtonState == ButtonState::PRESSED; }
 
+    // to fetch live position of mouse on screen
     sf::Vector2f  EventService::GetMousePosition() const 
     {
         if (gameWindow)
@@ -100,6 +103,7 @@ namespace Event {
         return sf::Vector2f(0.0f, 0.0f); // Return a default value if gameWindow is not set
     }
 
+    // to manually close window
     void EventService::CloseWindow()
     {
         gameWindow->close();

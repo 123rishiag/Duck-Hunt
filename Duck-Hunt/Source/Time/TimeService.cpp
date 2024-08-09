@@ -25,7 +25,7 @@ namespace Time {
 			std::chrono::steady_clock::now() - previousTime).count();
 
 		// The cast is used to convert delta time from microseconds into seconds.
-		// We will learn aboit how this works in detail later.
+		// We will learn about how this works in detail later.
 		return static_cast<float>(delta) / static_cast<float>(1000000);
 	}
 

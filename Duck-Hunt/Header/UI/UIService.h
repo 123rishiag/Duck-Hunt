@@ -32,10 +32,10 @@ namespace UI
 		Instruction::InstructionUIController* instructionController;
 		GameplayUI::GameplayUIController* gameplayUIController;
 
-		IUIController* GetCurrentUIController();
+		IUIController* GetCurrentUIController(); // To fetch the current controller
 
-		void CreateControllers();
-		void InitializeControllers();
+		void CreateControllers(); // To create all UI Controllers
+		void InitializeControllers(); // To initialize all UI Controllers
 		void Destroy();
 
 	public:
@@ -47,6 +47,6 @@ namespace UI
 		void Render() override;
 		void Show() override;
 
-		void ShowMainMenu();
+		void ShowMainMenu(); // Method to show Main Menu
 	};
 }

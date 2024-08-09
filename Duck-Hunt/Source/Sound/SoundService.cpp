@@ -8,7 +8,7 @@ namespace Sound
 	SoundService::SoundService()
 	{
 		currentSoundIndex = 0;
-		soundPool.resize(10); // Adjust the size based on how many simultaneous sounds you expect to play
+		soundPool.resize(soundPoolSize); // Adjust the size based on how many simultaneous sounds you expect to play
 	}
 
 	SoundService::~SoundService() {	}
@@ -45,6 +45,7 @@ namespace Sound
 
 	void SoundService::PlaySound(SoundType soundType)
 	{
+		// If parallel sounds are there, they will be played by different sound buffers stored in soundPool
 		sf::Sound& soundEffect = soundPool[currentSoundIndex];
 		currentSoundIndex = (currentSoundIndex + 1) % soundPool.size();
 

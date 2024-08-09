@@ -42,6 +42,7 @@ namespace Wave
 	{
 		if (IsGameOver())
 		{
+			// Resetting entities like player health & score when Game is over
 			ServiceLocator::GetInstance()->GetPlayerService()->ResetPlayerHealth();
 			ServiceLocator::GetInstance()->GetPlayerService()->ResetPlayerScore();
 			Reset();
@@ -49,6 +50,7 @@ namespace Wave
 		}	
 	}
 
+	// To call the same wave in case of wave loss
 	void WaveService::LoadWave()
 	{
 		WaveConfig waveConfig = GetWaveConfig(currentWaveType);
@@ -57,6 +59,7 @@ namespace Wave
 		ServiceLocator::GetInstance()->GetBulletService()->Reset();
 	}
 
+	// To not spawn any entities like enemy & ammo
 	void WaveService::HoldWave()
 	{
 		WaveConfig waveConfig = GetWaveConfig(Wave::WaveType::WAVE_END);

@@ -15,7 +15,7 @@ namespace UI
 		{
 		protected:
 			sf::RenderWindow* gameWindow;
-			UIState uiState;
+			UIState uiState; // Holds the visibility status of UI
 
 		public:
 			UIView();

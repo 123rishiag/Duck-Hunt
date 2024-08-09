@@ -55,7 +55,7 @@ namespace Player
 
         if(eventService->PressedRightMouseButton())
         {
-            ServiceLocator::GetInstance()->GetBulletService()->ChangeBullets();;
+            ServiceLocator::GetInstance()->GetBulletService()->ChangeBullets();
         }
     }
 

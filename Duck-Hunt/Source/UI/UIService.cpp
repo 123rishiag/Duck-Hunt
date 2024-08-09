@@ -74,7 +74,6 @@ namespace UI
 		mainMenuController->Initialize();
 		instructionController->Initialize();
 		gameplayUIController->Initialize();
-		
 	}
 
 	IUIController* UIService::GetCurrentUIController()

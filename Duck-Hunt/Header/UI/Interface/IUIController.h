@@ -4,7 +4,7 @@ namespace UI
 {
     namespace Interface
     {
-        class IUIController
+        class IUIController // Interface for all UI Controllers in the game
         {
         public:
             virtual void Initialize() = 0;

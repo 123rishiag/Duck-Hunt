@@ -16,8 +16,8 @@ namespace UI
 			virtual ~ImageView();
 
 			virtual void Initialize(sf::String texturePath, float imageWidth, float imageHeight, sf::Vector2f position);
-			virtual void Update() override;
-			virtual void Render() override;
+			virtual void UpdateContent() override;
+			virtual void RenderContent() override;
 
 			virtual void SetTexture(sf::String texturePath);
 			virtual void SetTextureRect(sf::IntRect textureRect);

@@ -27,9 +27,9 @@ namespace UI
 			ButtonView();
 			virtual ~ButtonView();
 
-			virtual void Initialize(sf::String title, sf::String texturePath, float buttonWidth, float buttonHeight, sf::Vector2f position);
-			virtual void Update() override;
-			virtual void Render() override;
+			void Initialize(sf::String title, sf::String texturePath, float buttonWidth, float buttonHeight, sf::Vector2f position);
+			void UpdateContent() override;
+			void RenderContent() override;
 
 			void RegisterCallbackFuntion(CallbackFunction buttonCallback);
 		};

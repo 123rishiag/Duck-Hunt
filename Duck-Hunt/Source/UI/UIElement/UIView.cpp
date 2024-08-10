@@ -19,9 +19,25 @@ namespace UI
 			uiState = UIState::VISIBLE;
 		}
 
-		void UIView::Update() { }
+		void UIView::Update() 
+		{ 
+			if (uiState == UIState::VISIBLE)
+			{
+				UpdateContent();
+			}
+		}
 
-		void UIView::Render() { }
+		void UIView::Render() 
+		{ 
+			if (uiState == UIState::VISIBLE)
+			{
+				RenderContent();
+			}
+		}
+
+		void UIView::UpdateContent() { }
+
+		void UIView::RenderContent() { }
 
 		void UIView::Show()
 		{

@@ -16,19 +16,11 @@ namespace UI
             SetPosition(position);
         }
 
-        void ImageView::Update()
-        {
-            UIView::Update();
-        }
+        void ImageView::UpdateContent() { }
 
-        void ImageView::Render()
+        void ImageView::RenderContent()
         {
-            UIView::Render();
-
-            if (uiState == UIState::VISIBLE)
-            {
-                gameWindow->draw(imageSprite);
-            }
+            gameWindow->draw(imageSprite);
         }
 
         void ImageView::SetTexture(sf::String texturePath)

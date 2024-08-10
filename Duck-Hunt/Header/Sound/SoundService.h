@@ -32,6 +32,7 @@ namespace Sound
 		sf::SoundBuffer waveStarted;
 		sf::SoundBuffer waveEnded;
 
+		bool LoadSoundBuffer(sf::SoundBuffer& buffer, const std::string& filePath);
 		void LoadBackgroundMusicFromFile(); // To Load Background Music
 		void LoadSoundFromFile(); // To Load Other Sound Files
 

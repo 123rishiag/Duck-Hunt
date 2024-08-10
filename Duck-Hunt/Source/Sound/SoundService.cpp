@@ -25,22 +25,23 @@ namespace Sound
 			printf("Error loading background music file");
 	}
 
+	bool SoundService::LoadSoundBuffer(sf::SoundBuffer& buffer, const std::string& filePath)
+	{
+		if (!buffer.loadFromFile(filePath))
+		{
+			printf("Error loading sound file: %s\n", filePath.c_str());
+			return false;
+		}
+		return true;
+	}
+
 	void SoundService::LoadSoundFromFile()
 	{
-		if (!bufferButtonClick.loadFromFile(Config::buttonClickSoundPath))
-			printf("Error loading button click music file");
-
-		if (!bufferExplosion.loadFromFile(Config::explosionSoundPath))
-			printf("Error loading explosion music file");
-
-		if (!bulletFire.loadFromFile(Config::bulletFireSoundPath))
-			printf("Error loading bullet fire music file");
-
-		if (!waveStarted.loadFromFile(Config::waveStartSoundPath))
-			printf("Error loading wave start music file");
-
-		if (!waveEnded.loadFromFile(Config::waveEndSoundPath))
-			printf("Error loading wave end music file");
+		LoadSoundBuffer(bufferButtonClick, Config::buttonClickSoundPath);
+		LoadSoundBuffer(bufferExplosion, Config::explosionSoundPath);
+		LoadSoundBuffer(bulletFire, Config::bulletFireSoundPath);
+		LoadSoundBuffer(waveStarted, Config::waveStartSoundPath);
+		LoadSoundBuffer(waveEnded, Config::waveEndSoundPath);
 	}
 
 	void SoundService::PlaySound(SoundType soundType)

@@ -18,19 +18,19 @@ namespace UI
 
 	UIService::UIService()
 	{
-		splashScreenUIController = nullptr;
-		mainMenuController = nullptr;
-		instructionController = nullptr;
-		gameplayUIController = nullptr;
+		uiControllers.fill(nullptr); // Initialize all pointers to nullptr
 		CreateControllers();
 	}
 
 	void UIService::CreateControllers()
 	{
-		splashScreenUIController = new SplashScreen::SplashScreenUIController();
-		mainMenuController = new MainMenu::MainMenuUIController();
-		instructionController = new Instruction::InstructionUIController();
-		gameplayUIController = new GameplayUI::GameplayUIController();
+		// Create objects and insert them in the array in the required order
+		uiControllers = {
+			new SplashScreen::SplashScreenUIController(),
+			new MainMenu::MainMenuUIController(),
+			new Instruction::InstructionUIController(),
+			new GameplayUI::GameplayUIController()
+		};
 	}
 
 	UIService::~UIService()
@@ -70,10 +70,13 @@ namespace UI
 
 	void UIService::InitializeControllers()
 	{
-		splashScreenUIController->Initialize();
-		mainMenuController->Initialize();
-		instructionController->Initialize();
-		gameplayUIController->Initialize();
+		for (auto& controller : uiControllers)
+		{
+			if (controller)
+			{
+				controller->Initialize();
+			}
+		}
 	}
 
 	IUIController* UIService::GetCurrentUIController()
@@ -81,13 +84,13 @@ namespace UI
 		switch (GameService::GetGameState())
 		{
 		case GameState::SPLASH_SCREEN:
-			return splashScreenUIController;
+			return uiControllers[0];
 		case GameState::MAIN_MENU:
-			return mainMenuController;
+			return uiControllers[1];
 		case GameState::INSTRUCTIONS:
-			return instructionController;
+			return uiControllers[2];
 		case GameState::GAMEPLAY:
-			return gameplayUIController;
+			return uiControllers[3];
 		default:
 			return nullptr;
 		}
@@ -95,9 +98,10 @@ namespace UI
 
 	void UIService::Destroy()
 	{
-		delete(splashScreenUIController);
-		delete(mainMenuController);
-		delete(instructionController);
-		delete(gameplayUIController);
+		for (auto& controller : uiControllers)
+		{
+			delete (controller);
+			controller = nullptr;
+		}
 	}
 }

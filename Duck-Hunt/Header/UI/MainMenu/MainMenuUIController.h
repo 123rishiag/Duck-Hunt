@@ -34,7 +34,6 @@ namespace UI
 			void InitializeImages();
 			void InitializeButtons();
 			void RegisterButtonCallback();
-			void DestroyElements();
 
 			void PlayButtonCallback();
 			void InstructionsButtonCallback();

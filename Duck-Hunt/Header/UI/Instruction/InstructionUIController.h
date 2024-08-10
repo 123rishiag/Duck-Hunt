@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "../../Header/UI/Interface/IUIController.h"
 #include "../../Header/UI/UIElement/ImageView.h"
 #include "../../Header/UI/UIElement/ButtonView.h"
@@ -41,28 +42,9 @@ namespace UI
             float mainMenuButtonYPosition = 850.f;
 
 
-            UIElement::ImageView* backgroundImage;
-
-            UIElement::ImageView* bunkerImage;
-
-            UIElement::ImageView* duckImage;
-            UIElement::ImageView* powerDuckImage;
-
-            UIElement::ImageView* pointBulletImage;
-            UIElement::ImageView* areaBulletImage;
-
-            UIElement::ButtonView* mainMenuButton;
-
-            UIElement::TextView* controlsHeaderText;
-            UIElement::TextView* controlsText;
-
-            UIElement::TextView* enemiesHeaderText;
-            UIElement::TextView* duckText;
-            UIElement::TextView* powerDuckText;
-
-            UIElement::TextView* bulletsHeaderText;
-            UIElement::TextView* pointBulletText;
-            UIElement::TextView* areaBulletText;
+            std::vector<UIElement::ImageView*> images;
+            std::vector<UIElement::ButtonView*> buttons;
+            std::vector<UIElement::TextView*> texts;
 
             void CreateImage();
             void CreateButton();

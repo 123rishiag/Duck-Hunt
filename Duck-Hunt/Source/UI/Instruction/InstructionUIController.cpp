@@ -40,67 +40,61 @@ namespace UI
 
         void InstructionUIController::CreateImage()
         {
-            backgroundImage = new ImageView();
-
-            bunkerImage = new ImageView();
-
-            duckImage = new ImageView();
-            powerDuckImage = new ImageView();
-
-            pointBulletImage = new ImageView();
-            areaBulletImage = new ImageView();
+            images.push_back(new ImageView()); // backgroundImage
+            images.push_back(new ImageView()); // duckImage
+            images.push_back(new ImageView()); // powerDuckImage
+            images.push_back(new ImageView()); // pointBulletImage
+            images.push_back(new ImageView()); // areaBulletImage
         }
 
         void InstructionUIController::CreateButton()
         {
-            mainMenuButton = new ButtonView();
+            buttons.push_back(new ButtonView()); // mainMenuButton
         }
 
         void InstructionUIController::CreateText()
         {
-            controlsHeaderText = new TextView();
-            controlsText = new TextView();
-
-            enemiesHeaderText = new TextView();
-            duckText = new TextView();
-            powerDuckText = new TextView();
-
-            bulletsHeaderText = new TextView();
-            pointBulletText = new TextView();
-            areaBulletText = new TextView();
+            texts.push_back(new TextView()); // controlsHeaderText
+            texts.push_back(new TextView()); // controlsText
+            texts.push_back(new TextView()); // enemiesHeaderText
+            texts.push_back(new TextView()); // duckText
+            texts.push_back(new TextView()); // powerDuckText
+            texts.push_back(new TextView()); // bulletsHeaderText
+            texts.push_back(new TextView()); // pointBulletText
+            texts.push_back(new TextView()); // areaBulletText
         }
 
         void InstructionUIController::InitializeImage()
         {
             sf::RenderWindow* gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-            backgroundImage->Initialize(Config::backgroundTexturePath, gameWindow->getSize().x, gameWindow->getSize().y, sf::Vector2f(0.f, 0.f));
-            backgroundImage->SetImageAlpha(backgroundAlpha);
+            images[0]->Initialize(Config::backgroundTexturePath, gameWindow->getSize().x, gameWindow->getSize().y, sf::Vector2f(0.f, 0.f));
+            images[0]->SetImageAlpha(backgroundAlpha);
 
-            duckImage->Initialize(EnemyConfig::duckTexturePath, iconSize, iconSize, duckImagePosition);
-            powerDuckImage->Initialize(EnemyConfig::powerDuckTexturePath, iconSize, iconSize, powerDuckImagePosition);
+            images[1]->Initialize(EnemyConfig::duckTexturePath, iconSize, iconSize, duckImagePosition);
+            images[2]->Initialize(EnemyConfig::powerDuckTexturePath, iconSize, iconSize, powerDuckImagePosition);
 
-            pointBulletImage->Initialize(BulletConfig::pointBulletTexturePath, iconSize, iconSize, pointBulletImagePosition);
-            areaBulletImage->Initialize(BulletConfig::areaBulletTexturePath, iconSize, iconSize, areaBulletImagePosition);
-
+            images[3]->Initialize(BulletConfig::pointBulletTexturePath, iconSize, iconSize, pointBulletImagePosition);
+            images[4]->Initialize(BulletConfig::areaBulletTexturePath, iconSize, iconSize, areaBulletImagePosition);
         }
 
         void InstructionUIController::InitializeButton()
         {
-            mainMenuButton->Initialize("Main Menu Button", Config::menuButtonTexturePath, buttonWidth, buttonHeight, sf::Vector2f(0, mainMenuButtonYPosition));
-            mainMenuButton->SetCentreAligned();
+            buttons[0]->Initialize("Main Menu Button", Config::menuButtonTexturePath, buttonWidth, buttonHeight, sf::Vector2f(0, mainMenuButtonYPosition));
+            buttons[0]->SetCentreAligned();
         }
 
         void InstructionUIController::InitializeText()
         {
-            controlsHeaderText->Initialize(
+            texts[0]->Initialize(
                 "Game Controls",
                 controlsHeaderTextPosition,
                 FontType::BUBBLE_BOBBLE,
                 instructionFontSize,
                 instructionTextColor
             );
-            controlsHeaderText->UnderlineText();
-            controlsText->Initialize(
+            texts[0]->UnderlineText();
+
+            texts[1]->Initialize(
                 "Left Click --> Shoot \t\tRight Click --> Change Bullets",
                 controlsTextPosition,
                 FontType::OPEN_SANS,
@@ -108,22 +102,24 @@ namespace UI
                 instructionTextColor
             );
 
-            enemiesHeaderText->Initialize(
+            texts[2]->Initialize(
                 "Enemies",
                 enemiesHeaderTextPosition,
                 FontType::BUBBLE_BOBBLE,
                 instructionFontSize,
                 instructionTextColor
             );
-            enemiesHeaderText->UnderlineText();
-            duckText->Initialize(
+            texts[2]->UnderlineText();
+
+            texts[3]->Initialize(
                 "1. Duck --> Moves in same pattern, gives some score on dying.",
                 duckTextPosition,
                 FontType::OPEN_SANS,
                 instructionFontSize,
                 instructionTextColor
             );
-            powerDuckText->Initialize(
+
+            texts[4]->Initialize(
                 "2. Power Duck --> Moves in random pattern, gives some score and kill nearby enemies on dying.",
                 powerDuckTextPosition,
                 FontType::OPEN_SANS,
@@ -131,22 +127,24 @@ namespace UI
                 instructionTextColor
             );
 
-            bulletsHeaderText->Initialize(
+            texts[5]->Initialize(
                 "Bullets",
                 bulletsHeaderTextPosition,
                 FontType::BUBBLE_BOBBLE,
                 instructionFontSize,
                 instructionTextColor
             );
-            bulletsHeaderText->UnderlineText();
-            pointBulletText->Initialize(
+            texts[5]->UnderlineText();
+
+            texts[6]->Initialize(
                 "a) Point Bullet --> Kills enemies on which it is shot upon.",
                 pointBulletTextPosition,
                 FontType::OPEN_SANS,
                 instructionFontSize,
                 instructionTextColor
             );
-            areaBulletText->Initialize(
+
+            texts[7]->Initialize(
                 "b) Area Bullet --> Kills enemies on a radius if shot upon.",
                 areaBulletTextPosition,
                 FontType::OPEN_SANS,
@@ -157,7 +155,7 @@ namespace UI
 
         void InstructionUIController::RegisterButtonCallback()
         {
-            mainMenuButton->RegisterCallbackFuntion(std::bind(&InstructionUIController::MainMenuButtonCallback, this));
+            buttons[0]->RegisterCallbackFuntion(std::bind(&InstructionUIController::MainMenuButtonCallback, this));
         }
 
         void InstructionUIController::MainMenuButtonCallback()
@@ -168,109 +166,79 @@ namespace UI
 
         void InstructionUIController::Update()
         {
-            backgroundImage->Update();
+            for (auto& image : images)
+            {
+                image->Update();
+            }
 
-            bunkerImage->Update();
+            for (auto& button : buttons)
+            {
+                button->Update();
+            }
 
-            duckImage->Update();
-            powerDuckImage->Update();
-
-            pointBulletImage->Update();
-            areaBulletImage->Update();
-
-            mainMenuButton->Update();
-
-            controlsHeaderText->Update();
-            controlsText->Update();
-
-            enemiesHeaderText->Update();
-            duckText->Update();
-            powerDuckText->Update();
-
-            bulletsHeaderText->Update();
-            pointBulletText->Update();
-            areaBulletText->Update();
-
+            for (auto& text : texts)
+            {
+                text->Update();
+            }
         }
 
         void InstructionUIController::Render()
         {
-            backgroundImage->Render();
+            for (auto& image : images)
+            {
+                image->Render();
+            }
 
-            bunkerImage->Render();
+            for (auto& button : buttons)
+            {
+                button->Render();
+            }
 
-            duckImage->Render();
-            powerDuckImage->Render();
-
-            pointBulletImage->Render();
-            areaBulletImage->Render();
-
-            mainMenuButton->Render();
-
-            controlsHeaderText->Render();
-            controlsText->Render();
-
-            enemiesHeaderText->Render();
-            duckText->Render();
-            powerDuckText->Render();
-
-            bulletsHeaderText->Render();
-            pointBulletText->Render();
-            areaBulletText->Render();
+            for (auto& text : texts)
+            {
+                text->Render();
+            }
         }
 
         void InstructionUIController::Show()
         {
-            backgroundImage->Show();
+            for (auto& image : images)
+            {
+                image->Show();
+            }
 
-            bunkerImage->Show();
+            for (auto& button : buttons)
+            {
+                button->Show();
+            }
 
-            duckImage->Show();
-            powerDuckImage->Show();
-
-            pointBulletImage->Show();
-            areaBulletImage->Show();
-
-            mainMenuButton->Show();
-
-            controlsHeaderText->Show();
-            controlsText->Show();
-
-            enemiesHeaderText->Show();
-            duckText->Show();
-            powerDuckText->Show();
-
-            bulletsHeaderText->Show();
-            pointBulletText->Show();
-            areaBulletText->Show();
+            for (auto& text : texts)
+            {
+                text->Show();
+            }
 
             ServiceLocator::GetInstance()->GetSoundService()->PlayBackgroundMusic();
         }
 
         void InstructionUIController::Destroy()
         {
-            delete(backgroundImage);
+            for (auto& image : images)
+            {
+                delete image;
+            }
+            images.clear();
 
-            delete(bunkerImage);
+            for (auto& button : buttons)
+            {
+                delete button;
+            }
+            buttons.clear();
 
-            delete(duckImage);
-            delete(powerDuckImage);
-
-            delete(pointBulletImage);
-            delete(areaBulletImage);
-
-            delete(mainMenuButton);
-
-            delete(controlsHeaderText);
-            delete(controlsText);
-
-            delete(enemiesHeaderText);
-            delete(duckText);
-            delete(powerDuckText);
-
-            delete(bulletsHeaderText);
-            delete(pointBulletText);
-            delete(areaBulletText);
+            for (auto& text : texts)
+            {
+                delete text;
+            }
+            texts.clear();
         }
     }
 }

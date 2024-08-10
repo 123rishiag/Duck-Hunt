@@ -34,31 +34,11 @@ namespace Event {
         }
     }
 
-    // Creating the State Machine for mouse button
-    void EventService::UpdateMouseButtonsState(ButtonState& currentButtonState, sf::Mouse::Button mouseButton)
+    // Template function to update the state of any button type (mouse or keyboard)
+    template<typename ButtonType, typename IsButtonPressedFunc>
+    void EventService::UpdateButtonState(ButtonState& currentButtonState, ButtonType buttonType, IsButtonPressedFunc isButtonPressed)
     {
-        if (sf::Mouse::isButtonPressed(mouseButton))
-        {
-            switch (currentButtonState)
-            {
-            case ButtonState::RELEASED:
-                currentButtonState = ButtonState::PRESSED;
-                break;
-            case ButtonState::PRESSED:
-                 currentButtonState = ButtonState::HELD;
-                break;
-            }
-        }
-        else
-        {
-            currentButtonState = ButtonState::RELEASED;
-        }
-    }
-
-    // Creating the State Machine for keyboard button
-    void EventService::UpdateKeyboardButtonsState(ButtonState& currentButtonState, sf::Keyboard::Key keyboardButton)
-    {
-        if (sf::Keyboard::isKeyPressed(keyboardButton))
+        if (isButtonPressed(buttonType))
         {
             switch (currentButtonState)
             {
@@ -75,6 +55,30 @@ namespace Event {
             currentButtonState = ButtonState::RELEASED;
         }
     }
+
+    // Usage for mouse buttons
+    void EventService::UpdateMouseButtonsState(ButtonState& currentButtonState, sf::Mouse::Button mouseButton)
+    {
+        // to pass the "is button pressed" logic as a callable function
+        auto isButtonPressedLambda = [](sf::Mouse::Button button) 
+            {
+                return sf::Mouse::isButtonPressed(button);
+            };
+        UpdateButtonState(currentButtonState, mouseButton, isButtonPressedLambda);
+    }
+
+    // Usage for keyboard buttons
+    void EventService::UpdateKeyboardButtonsState(ButtonState& currentButtonState, sf::Keyboard::Key keyboardButton)
+    {
+        // to pass the "is key pressed" logic as a callable function
+        auto isKeyPressedLambda = [](sf::Keyboard::Key key)
+            {
+                return sf::Keyboard::isKeyPressed(key);
+            };
+
+        UpdateButtonState(currentButtonState, keyboardButton, isKeyPressedLambda);
+    }
+
 
     bool EventService::HasQuitGame() const { return (IsKeyboardEvent() && PressedEscapeKey()); } // only true if the ESC key is pressed and a keyboard event has been registered
 

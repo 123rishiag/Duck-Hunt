@@ -24,6 +24,10 @@ namespace Event {
 		bool GameWindowWasClosed() const; // for the condition we already had - the title bar cross.
 		bool HasQuitGame() const; // for our new 'ESC' condition
 
+		// Template function to update the state of any button type (mouse or keyboard)
+		template<typename ButtonType, typename IsButtonPressedFunc>
+		void UpdateButtonState(ButtonState& currentButtonState, ButtonType buttonType, IsButtonPressedFunc isButtonPressed);
+
 		void UpdateMouseButtonsState(ButtonState& currentButtonState, sf::Mouse::Button mouseButton);
 		void UpdateKeyboardButtonsState(ButtonState& currentButtonState, sf::Keyboard::Key keyboardButton);
 

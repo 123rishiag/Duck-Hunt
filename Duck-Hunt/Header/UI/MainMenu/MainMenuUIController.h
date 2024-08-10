@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "../../Header/UI/Interface/IUIController.h"
 #include "../../Header/UI/UIElement/ImageView.h"
 #include "../../Header/UI/UIElement/ButtonView.h"
@@ -21,23 +22,19 @@ namespace UI
 
 			const float backgroundAlpha = 230.f;
 
-			UIElement::ImageView* backgroundImage;
-
 			const sf::Vector2f titleNamePosition = sf::Vector2f(530.f, 50.f);
 			const float titleNameSpriteWidth = 850.f;
 			const float titleNameSpriteHeight = 350.f;
-			UIElement::ImageView* titleNameImage;
 
-			UIElement::ButtonView* playButton;
-			UIElement::ButtonView* instructionsButton;
-			UIElement::ButtonView* quitButton;
+			std::vector<UIElement::ImageView*> images;
+			std::vector<UIElement::ButtonView*> buttons;
 
 			void CreateImages();
 			void CreateButtons();
-			void InitializeBackgroundImage();
 			void InitializeImages();
 			void InitializeButtons();
 			void RegisterButtonCallback();
+			void DestroyElements();
 
 			void PlayButtonCallback();
 			void InstructionsButtonCallback();

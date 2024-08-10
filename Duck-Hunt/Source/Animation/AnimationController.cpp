@@ -40,7 +40,6 @@ namespace Animation
 	{
 		animationImage->Initialize(animationConfig.animationTexturePath, 0, 0, animationPosition);
 		animationImage->SetTextureRect(sf::IntRect(0, 0, animationConfig.tileWidth, animationConfig.tileHeight));
-
 		animationImage->SetScale(animationConfig.spriteSheetWidth, animationConfig.spriteSheetHeight, animationConfig.tileWidth, animationConfig.tileHeight);
 	}
 

@@ -32,35 +32,36 @@ namespace UI
 
         void GameplayUIController::CreateUIElements()
         {
-            playerLivesImage = new ImageView();
-            playerAmmoImage = new ImageView();
-            enemyImage = new ImageView();
-            scoreText = new TextView();
-            waveTimeLeftText = new TextView();
-            waveNameText = new TextView();
-            waveInfoText = new TextView();
+            images.push_back(new ImageView()); // playerLivesImage
+            images.push_back(new ImageView()); // playerAmmoImage
+            images.push_back(new ImageView()); // enemyImage
+
+            texts.push_back(new TextView()); // scoreText
+            texts.push_back(new TextView()); // waveTimeLeftText
+            texts.push_back(new TextView()); // waveNameText
+            texts.push_back(new TextView()); // waveInfoText
         }
 
         void GameplayUIController::InitializeImage()
         {
-            playerLivesImage->Initialize(Config::playerHealthTexturePath, playerLivesSpriteWidth, playerLivesSpriteHeight, playerLivesPosition);
-            playerAmmoImage->Initialize(BulletConfig::pointBulletTexturePath, playerAmmoSpriteWidth, playerAmmoSpriteHeight, playerAmmoPosition);
-            enemyImage->Initialize(EnemyConfig::duckTexturePath, enemySpriteWidth, enemySpriteHeight, enemyPosition);
+            images[0]->Initialize(Config::playerHealthTexturePath, playerLivesSpriteWidth, playerLivesSpriteHeight, playerLivesPosition);
+            images[1]->Initialize(BulletConfig::pointBulletTexturePath, playerAmmoSpriteWidth, playerAmmoSpriteHeight, playerAmmoPosition);
+            images[2]->Initialize(EnemyConfig::duckTexturePath, enemySpriteWidth, enemySpriteHeight, enemyPosition);
         }
 
         void GameplayUIController::InitializeText()
         {
             sf::String scoreString = "Score  :  0";
-            scoreText->Initialize(scoreString, sf::Vector2f(scoreTextXPosition, scoreTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
+            texts[0]->Initialize(scoreString, sf::Vector2f(scoreTextXPosition, scoreTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
 
             sf::String elapsedTimeString = "Time Left  :  0 secs";
-            waveTimeLeftText->Initialize(elapsedTimeString, sf::Vector2f(waveTimeLeftTextXPosition, waveTimeLeftTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
+            texts[1]->Initialize(elapsedTimeString, sf::Vector2f(waveTimeLeftTextXPosition, waveTimeLeftTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
 
             sf::String waveNameString = "Wave Number";
-            waveNameText->Initialize(waveNameString, sf::Vector2f(waveNameTextXPosition, waveNameTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
+            texts[2]->Initialize(waveNameString, sf::Vector2f(waveNameTextXPosition, waveNameTextYPosition), FontType::BUBBLE_BOBBLE, fontSize, textColor);
 
             sf::String waveStateString = "Wave Information";
-            waveInfoText->Initialize(waveStateString, sf::Vector2f(waveInfoTextXPosition, waveInfoTextYPosition), FontType::BUBBLE_BOBBLE, fontSize * 2, textColor);
+            texts[3]->Initialize(waveStateString, sf::Vector2f(waveInfoTextXPosition, waveInfoTextYPosition), FontType::BUBBLE_BOBBLE, fontSize * 2, textColor);
         }
 
         void GameplayUIController::Update()
@@ -73,32 +74,35 @@ namespace UI
 
         void GameplayUIController::Render()
         {
-            scoreText->Render();
-            waveTimeLeftText->Render();
-            waveNameText->Render();
-            waveInfoText->Render();
 
             DrawPlayerLives();
             DrawPlayerAmmo();
             DrawEnemy();
+
+            for (auto& text : texts)
+            {
+                text->Render();
+            }
         }
 
         void GameplayUIController::Show()
         {
-            playerLivesImage->Show();
-            playerAmmoImage->Show();
-            enemyImage->Show();
-            scoreText->Show();
-            waveTimeLeftText->Show();
-            waveNameText->Show();
-            waveInfoText->Show();
+            for (auto& image : images)
+            {
+                image->Show();
+            }
+
+            for (auto& text : texts)
+            {
+                text->Show();
+            }
         }
 
         void GameplayUIController::UpdateScoreText()
         {
             int playerScore = ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerScore();
             sf::String scoreString = "Score  :  " + std::to_string(playerScore);
-            scoreText->SetText(scoreString);
+            texts[0]->SetText(scoreString);
         }
 
         void GameplayUIController::UpdateWaveTimeLeftText()
@@ -116,7 +120,7 @@ namespace UI
             sf::String timeLeftString = "Time Left  :  " + sf::String(timeLeftStr) + " secs";
 
             // Set the text
-            waveTimeLeftText->SetText(timeLeftString);
+            texts[1]->SetText(timeLeftString);
         }
 
         void GameplayUIController::UpdateWaveNameText()
@@ -126,7 +130,7 @@ namespace UI
             {
                 waveNameString = ServiceLocator::GetInstance()->GetWaveService()->GetWaveName();
             }
-            waveNameText->SetText(waveNameString);
+            texts[2]->SetText(waveNameString);
         }
 
         void GameplayUIController::UpdateWaveInfoText()
@@ -168,7 +172,7 @@ namespace UI
                 waveInfoString = "";
                 break;
             }
-            waveInfoText->SetText(waveInfoString);
+            texts[3]->SetText(waveInfoString);
         }
 
         void GameplayUIController::DrawPlayerLives()
@@ -176,51 +180,53 @@ namespace UI
             int playerHealth = ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerHealth();
             for (int counter = 0; counter < playerHealth; counter++)
             {
-                playerLivesImage->SetPosition(sf::Vector2f(playerLivesPosition.x + playerLivesXOffset + (counter * playerLivesSpacing), playerLivesPosition.y + playerLivesYOffset));
-                playerLivesImage->Render();
+                images[0]->SetPosition(sf::Vector2f(playerLivesPosition.x + playerLivesXOffset + (counter * playerLivesSpacing), playerLivesPosition.y + playerLivesYOffset));
+                images[0]->Render();
             }
         }
 
         void GameplayUIController::DrawPlayerAmmo()
         {
+            auto playerService = ServiceLocator::GetInstance()->GetPlayerService();
 
-            int bulletTypeInt = static_cast<int>(ServiceLocator::GetInstance()->GetPlayerService()->GetCurrentBulletType());
-            Bullet::BulletType playerBulletType = Utility::ToEnum<Bullet::BulletType>(bulletTypeInt);
+            struct AmmoData
+            {
+                int ammoCount;
+                Bullet::BulletType bulletType;
+            };
+
+            std::vector<AmmoData> ammoDataList = {
+                { playerService->GetPlayerPointAmmo(), Bullet::BulletType::POINT_BULLET },
+                { playerService->GetPlayerAreaAmmo(), Bullet::BulletType::AREA_BULLET }
+            };
 
             int ammoCounter = 0;
-            
-            for (int counter = 0; counter < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerPointAmmo(); counter++)
-            {
-                playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + (counter * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
-                playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(Bullet::BulletType::POINT_BULLET));
-                if (playerBulletType == Bullet::BulletType::POINT_BULLET)
-                {
-                    playerAmmoImage->SetScale(playerAmmoSpriteWidth * playerCurrentBulletScaleFactor, playerAmmoSpriteHeight * playerCurrentBulletScaleFactor);
-                }
-                else
-                {
-                    playerAmmoImage->SetScale(playerAmmoSpriteWidth, playerAmmoSpriteHeight);
-                }
-                playerAmmoImage->Render();
-                ammoCounter += 1;
-            }
 
-            ammoCounter += 1;
-
-            for (int counter = 0; counter < ServiceLocator::GetInstance()->GetPlayerService()->GetPlayerAreaAmmo(); counter++)
+            for (const auto& ammoData : ammoDataList)
             {
-                playerAmmoImage->SetPosition(sf::Vector2f(playerAmmoPosition.x + playerAmmoXOffset + ((ammoCounter * playerCurrentBulletScaleFactor) * playerAmmoSpacing), playerAmmoPosition.y + playerAmmoYOffset));
-                playerAmmoImage->SetTexture(BulletConfig::GetBulletTexturePath(Bullet::BulletType::AREA_BULLET));
-                if (playerBulletType == Bullet::BulletType::AREA_BULLET)
+                for (int counter = 0; counter < ammoData.ammoCount; counter++)
                 {
-                    playerAmmoImage->SetScale(playerAmmoSpriteWidth * playerCurrentBulletScaleFactor, playerAmmoSpriteHeight * playerCurrentBulletScaleFactor);
+                    images[1]->SetPosition(sf::Vector2f(
+                        playerAmmoPosition.x + playerAmmoXOffset + (ammoCounter * playerAmmoSpacing),
+                        playerAmmoPosition.y + playerAmmoYOffset
+                    ));
+
+                    images[1]->SetTexture(BulletConfig::GetBulletTexturePath(ammoData.bulletType));
+
+                    if (static_cast<int>(playerService->GetCurrentBulletType()) == static_cast<int>(ammoData.bulletType))
+                    {
+                        images[1]->SetScale(playerAmmoSpriteWidth * playerCurrentBulletScaleFactor, playerAmmoSpriteHeight * playerCurrentBulletScaleFactor);
+                    }
+                    else
+                    {
+                        images[1]->SetScale(playerAmmoSpriteWidth, playerAmmoSpriteHeight);
+                    }
+
+                    images[1]->Render();
+                    ammoCounter += 1;
                 }
-                else
-                {
-                    playerAmmoImage->SetScale(playerAmmoSpriteWidth, playerAmmoSpriteHeight);
-                }
-                playerAmmoImage->Render();
-                ammoCounter += 1;
+                // To add spacing between different ammo types, adjust the counter if necessary.
+                ammoCounter += 2;
             }
         }
         
@@ -229,24 +235,28 @@ namespace UI
             int counter = 1;
             for (auto enemy : ServiceLocator::GetInstance()->GetEnemyService()->GetAllEnemies())
             {
-                enemyImage->SetPosition(sf::Vector2f(enemyPosition.x + enemyXOffset + (counter * enemySpacing), enemyPosition.y + enemyYOffset));
-                enemyImage->SetTexture(EnemyConfig::GetEnemyTexturePath(
+                images[2]->SetPosition(sf::Vector2f(enemyPosition.x + enemyXOffset + (counter * enemySpacing), enemyPosition.y + enemyYOffset));
+                images[2]->SetTexture(EnemyConfig::GetEnemyTexturePath(
                     ServiceLocator::GetInstance()->GetEnemyService()->GetEnemyType(enemy)
                 ));
-                enemyImage->Render();
+                images[2]->Render();
                 counter += 1;
             }
         }
 
         void GameplayUIController::Destroy()
         {
-            delete(playerLivesImage);
-            delete(playerAmmoImage);
-            delete(enemyImage);
-            delete(scoreText);
-            delete(waveTimeLeftText);
-            delete(waveNameText);
-            delete(waveInfoText);
+            for (auto& image : images)
+            {
+                delete image;
+            }
+            images.clear();
+
+            for (auto& text : texts)
+            {
+                delete text;
+            }
+            texts.clear();
         }
     }
 }

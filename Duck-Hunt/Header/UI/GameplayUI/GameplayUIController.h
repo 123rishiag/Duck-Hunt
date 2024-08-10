@@ -1,4 +1,6 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include <vector>
 #include "../../Header/UI/Interface/IUIController.h"
 #include "../../Header/UI/UIElement/ImageView.h"
 #include "../../Header/UI/UIElement/ButtonView.h"
@@ -17,20 +19,16 @@ namespace UI
 
 			const float scoreTextXPosition = 1600.f;
 			const float scoreTextYPosition = 15.f;
-			UI::UIElement::TextView* scoreText;
 
 			const float waveTimeLeftTextXPosition = 1450.f;
 			const float waveTimeLeftTextYPosition = 1000.f;
-			UI::UIElement::TextView* waveTimeLeftText;
 
 			const float waveNameTextXPosition = 50.f;
 			const float waveNameTextYPosition = 1000.f;
-			UI::UIElement::TextView* waveNameText;
 			sf::String waveNameString;
 
 			const float waveInfoTextXPosition = 775.f;
 			const float waveInfoTextYPosition = 450.f;
-			UI::UIElement::TextView* waveInfoText;
 
 			const sf::Vector2f playerLivesPosition = sf::Vector2f(0.f, 0.f);
 			const float playerLivesYOffset = 15.f;
@@ -38,7 +36,6 @@ namespace UI
 			const float playerLivesSpacing = 60.f;
 			const float playerLivesSpriteWidth = 50.f;
 			const float playerLivesSpriteHeight = 50.f;
-			UI::UIElement::ImageView* playerLivesImage;
 
 			const sf::Vector2f playerAmmoPosition = sf::Vector2f(800.f, 0.f);
 			const float playerAmmoYOffset = 15.f;
@@ -46,7 +43,6 @@ namespace UI
 			const float playerAmmoSpacing = 20.f;
 			const float playerAmmoSpriteWidth = 50.f;
 			const float playerAmmoSpriteHeight = 50.f;
-			UI::UIElement::ImageView* playerAmmoImage;
 			const float playerCurrentBulletScaleFactor = 1.3f;
 
 			const sf::Vector2f enemyPosition = sf::Vector2f(800.f, 900.f);
@@ -55,7 +51,9 @@ namespace UI
 			const float enemySpacing = 60.f;
 			const float enemySpriteWidth = 50.f;
 			const float enemySpriteHeight = 50.f;
-			UI::UIElement::ImageView* enemyImage;
+
+			std::vector<UI::UIElement::ImageView*> images;
+			std::vector<UI::UIElement::TextView*> texts;
 
 			void CreateUIElements();
 			void InitializeImage();

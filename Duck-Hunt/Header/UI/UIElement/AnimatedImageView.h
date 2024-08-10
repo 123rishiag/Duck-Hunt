@@ -44,9 +44,9 @@ namespace UI
 			AnimatedImageView();
 			virtual ~AnimatedImageView();
 
-			virtual void Initialize(sf::String texturePath, float imageWidth, float imageHeight, sf::Vector2f position) override;
-			virtual void Update() override;
-			virtual void Render() override;
+			void Initialize(sf::String texturePath, float imageWidth, float imageHeight, sf::Vector2f position) override;
+			void UpdateContent() override;
+			void RenderContent() override;
 
 			virtual void PlayAnimation(AnimationType type, float duration, CallbackFunction animationEndCallback);
 

@@ -24,19 +24,15 @@ namespace UI
             callbackFunction = buttonCallback;
         }
 
-        void ButtonView::Update()
+        void ButtonView::UpdateContent()
         {
-            ImageView::Update();
-
-            if (uiState == UIState::VISIBLE)
-            {
-                HandleButtonInteraction();
-            }
+            ImageView::UpdateContent();
+            HandleButtonInteraction();
         }
 
-        void ButtonView::Render()
+        void ButtonView::RenderContent()
         {
-            ImageView::Render();
+            ImageView::RenderContent();
         }
 
         void ButtonView::HandleButtonInteraction()

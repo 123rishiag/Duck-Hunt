@@ -18,21 +18,17 @@ namespace UI
             callbackFunction = animationEndCallback;
         }
 
-        void AnimatedImageView::Update()
+        void AnimatedImageView::UpdateContent()
         {
-            ImageView::Update();
-
-            if (uiState == UIState::VISIBLE)
-            {
-                UpdateElapsedDuration();
-                HandleAnimationProgress();
-                UpdateAnimation();
-            }
+            ImageView::UpdateContent();
+            UpdateElapsedDuration();
+            HandleAnimationProgress();
+            UpdateAnimation();
         }
 
-        void AnimatedImageView::Render()
-        {
-            ImageView::Render();
+        void AnimatedImageView::RenderContent() 
+        { 
+            ImageView::RenderContent();
         }
 
         void AnimatedImageView::PlayAnimation(AnimationType type, float duration, CallbackFunction animationEndCallback)

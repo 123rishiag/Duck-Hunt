@@ -17,13 +17,16 @@ namespace UI
 			sf::RenderWindow* gameWindow;
 			UIState uiState; // Holds the visibility status of UI
 
+			virtual void UpdateContent();
+			virtual void RenderContent();
+
 		public:
 			UIView();
 			virtual ~UIView();
 
 			virtual void Initialize();
-			virtual void Update();
-			virtual void Render();
+			void Update();
+			void Render();
 
 			virtual void Show();
 			virtual void Hide();

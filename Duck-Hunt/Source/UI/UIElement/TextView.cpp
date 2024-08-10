@@ -26,19 +26,11 @@ namespace UI
 			SetTextColor(color);
 		}
 
-		void TextView::Update()
-		{
-			UIView::Update();
-		}
+		void TextView::UpdateContent() { }
 
-		void TextView::Render()
+		void TextView::RenderContent()
 		{
-			UIView::Render();
-
-			if (uiState == UIState::VISIBLE)
-			{
-				gameWindow->draw(text);
-			}
+			gameWindow->draw(text);
 		}
 
 		void TextView::InitializeTextView()

@@ -29,6 +29,7 @@ namespace Player {
 
 	void PlayerView::Update()
 	{
+		// Updating player radius based on type of bullet selected
 		playerImage->SetScale(playerController->GetBulletRadius() * 2, playerController->GetBulletRadius() * 2);
 		playerImage->SetPosition(playerController->GetPlayerPosition());
 		playerImage->SetOriginAtCentre();

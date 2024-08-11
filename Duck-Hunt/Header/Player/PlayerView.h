@@ -24,7 +24,7 @@ namespace Player {
         PlayerView();
         ~PlayerView();
 
-        void Initialize(PlayerController* controller); // we pass a pointer of type controller because we need to use this in the view later.
+        void Initialize(PlayerController* controller); // we pass a pointer of type controller because we need to use this in the view.
         void Update();
         void Render();
 

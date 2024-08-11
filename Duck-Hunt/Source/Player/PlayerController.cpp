@@ -96,24 +96,9 @@ namespace Player
         playerModel->ReducePlayerAreaAmmo();
     }
 
-    void PlayerController::ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount)
-    {
-        playerModel->ResetPlayerAmmo(pointAmmoCount, areaAmmoCount);
-    }
-
     int PlayerController::GetPlayerHealth() const
     {
         return playerModel->GetPlayerHealth();
-    }
-
-    void PlayerController::ResetPlayerHealth()
-    {
-        playerModel->ResetPlayerHealth();
-    }
-
-    void PlayerController::ResetPlayerScore()
-    {
-        playerModel->ResetPlayerScore();
     }
 
     int PlayerController::GetPlayerPointAmmo() const
@@ -158,5 +143,20 @@ namespace Player
     void PlayerController::SetCurrentBulletType(BulletType bulletType)
     {
         playerModel->SetCurrentBulletType(bulletType);
+    }
+
+    void PlayerController::ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount)
+    {
+        playerModel->ResetPlayerAmmo(pointAmmoCount, areaAmmoCount);
+    }
+
+    void PlayerController::ResetPlayerHealth()
+    {
+        playerModel->ResetPlayerHealth();
+    }
+
+    void PlayerController::ResetPlayerScore()
+    {
+        playerModel->ResetPlayerScore();
     }
 }

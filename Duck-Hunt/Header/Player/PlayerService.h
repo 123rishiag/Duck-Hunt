@@ -26,13 +26,15 @@ namespace Player
         void ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount);
 
         bool IsPlayerAlive() const;
+
         int GetPlayerHealth() const;
-        void ResetPlayerHealth();
-        void ResetPlayerScore();
         int GetPlayerPointAmmo() const;
         int GetPlayerAreaAmmo() const;
         int GetPlayerScore() const;
         BulletType GetCurrentBulletType();
+
+        void ResetPlayerHealth();
+        void ResetPlayerScore();
 
         void Reset(int pointAmmoCount, int areaAmmoCount);
     };

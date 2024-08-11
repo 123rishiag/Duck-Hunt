@@ -25,7 +25,9 @@ namespace Enemy
 
 	void EnemyController::Initialize()
 	{
-		enemyModel->Initialize(GetEnemyHorizontalMovementSpeed(), GetEnemyVerticalMovementSpeed(), GetEnemyDeathRadius());
+		enemyModel->Initialize(GetEnemyHorizontalMovementSpeed(), GetEnemyVerticalMovementSpeed(),
+            GetRandomEnemyHorizontalMovementDirection(), GetRandomEnemyVerticalMovementDirection(),
+            GetEnemyDeathRadius());
 		enemyView->Initialize(this); // we will discuss this soon
 	}
 
@@ -40,6 +42,92 @@ namespace Enemy
 		enemyView->Render();
 	}
 
+	void EnemyController::Move()
+	{
+		MoveHorizontal(false);
+		MoveVertical(false);
+	}
+
+    void EnemyController::MoveHorizontal(bool isRandomVertical)
+    {
+        sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
+
+        float newHorizontalOffset = GetRandomOffset();
+        horizontalOffset = SmoothOffset(previousHorizontalOffset, newHorizontalOffset);
+        previousHorizontalOffset = horizontalOffset;
+
+        switch (enemyModel->GetHorizontalMovementDirection())
+        {
+        case HorizontalMovementDirection::LEFT:
+            currentPosition.x -= (GetEnemyHorizontalMovementSpeed() + horizontalOffset) * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+            if (currentPosition.x <= enemyModel->leftMostPosition)
+            {
+                currentPosition.x = enemyModel->leftMostPosition;
+                enemyModel->SetHorizontalMovementDirection(HorizontalMovementDirection::RIGHT);
+                if (isRandomVertical == true)
+                {
+                    enemyModel->SetVerticalMovementDirection(GetRandomEnemyVerticalMovementDirection());
+                }
+            }
+            break;
+
+        case HorizontalMovementDirection::RIGHT:
+            currentPosition.x += (GetEnemyHorizontalMovementSpeed() + horizontalOffset) * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+            if (currentPosition.x >= enemyModel->rightMostPosition)
+            {
+                currentPosition.x = enemyModel->rightMostPosition;
+                enemyModel->SetHorizontalMovementDirection(HorizontalMovementDirection::LEFT);
+                if (isRandomVertical == true)
+                {
+                    enemyModel->SetVerticalMovementDirection(GetRandomEnemyVerticalMovementDirection());
+                }
+            }
+            break;
+        }
+
+        enemyModel->SetEnemyPosition(currentPosition);
+    }
+
+    void EnemyController::MoveVertical(bool isRandomHorizontal)
+    {
+        sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
+
+        float newVerticalOffset = GetRandomOffset();
+        verticalOffset = SmoothOffset(previousVerticalOffset, newVerticalOffset);
+        previousVerticalOffset = verticalOffset;
+
+        switch (enemyModel->GetVerticalMovementDirection())
+        {
+        case VerticalMovementDirection::UP:
+            currentPosition.y -= (GetEnemyVerticalMovementSpeed() + verticalOffset) * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+            if (currentPosition.y <= enemyModel->upMostPosition)
+            {
+                currentPosition.y = enemyModel->upMostPosition;
+                if (isRandomHorizontal == true)
+                {
+                    enemyModel->SetHorizontalMovementDirection(GetRandomEnemyHorizontalMovementDirection());
+                }
+                enemyModel->SetVerticalMovementDirection(VerticalMovementDirection::DOWN);
+            }
+            break;
+
+        case VerticalMovementDirection::DOWN:
+            currentPosition.y += (GetEnemyVerticalMovementSpeed() + verticalOffset) * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+            if (currentPosition.y >= enemyModel->downMostPosition)
+            {
+                currentPosition.y = enemyModel->downMostPosition;
+                if (isRandomHorizontal == true)
+                {
+                    enemyModel->SetHorizontalMovementDirection(GetRandomEnemyHorizontalMovementDirection());
+                }
+                enemyModel->SetVerticalMovementDirection(VerticalMovementDirection::UP);
+            }
+            break;
+        }
+
+        enemyModel->SetEnemyPosition(currentPosition);
+    }
+
     float EnemyController::GetRandomOffset()
     {
         // Generate a random float between -0.5 * factor and 0.5 * factor and scale it up
@@ -52,6 +140,18 @@ namespace Enemy
         return currentOffset + smoothingFactor * (newOffset - currentOffset)
             * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
     }
+
+	HorizontalMovementDirection EnemyController::GetRandomEnemyHorizontalMovementDirection() const
+	{
+		int randomValue = std::rand() % (static_cast<int>(Enemy::HorizontalMovementDirection::RIGHT) + 1);
+		return static_cast<Enemy::HorizontalMovementDirection>(randomValue); //cast int to HorizontalMovementDirection enum class
+	}
+
+	VerticalMovementDirection EnemyController::GetRandomEnemyVerticalMovementDirection() const
+	{
+		int randomValue = std::rand() % (static_cast<int>(Enemy::VerticalMovementDirection::DOWN) + 1);
+		return static_cast<Enemy::VerticalMovementDirection>(randomValue); //cast int to VerticalMovementDirection enum class
+	}
 
 	EnemyType EnemyController::GetEnemyType() const
 	{
@@ -67,6 +167,26 @@ namespace Enemy
 	{
 		return enemyModel->GetEnemyPosition();
 	}
+
+    float EnemyController::GetEnemyHorizontalMovementSpeed() const
+    {
+        return horizontalMovementSpeed;
+    }
+
+    float EnemyController::GetEnemyVerticalMovementSpeed() const
+    {
+        return verticalMovementSpeed;
+    }
+
+    float EnemyController::GetEnemyDeathRadius() const
+    {
+        return enemyDeathRadius;
+    }
+
+    int EnemyController::GetEnemyDeathScore() const
+    {
+        return enemyDeathScore;
+    }
 
 	void EnemyController::Destroy(bool increaseScore)
 	{

@@ -66,18 +66,6 @@ namespace Enemy
 		return static_cast<Enemy::EnemyType>(randomValue); //cast int to EnemyType enum class
 	}
 
-	HorizontalMovementDirection EnemyService::GetRandomEnemyHorizontalMovementDirection() const
-	{
-		int randomValue = std::rand() % (static_cast<int>(Enemy::HorizontalMovementDirection::RIGHT) + 1);
-		return static_cast<Enemy::HorizontalMovementDirection>(randomValue); //cast int to HorizontalMovementDirection enum class
-	}
-
-	VerticalMovementDirection EnemyService::GetRandomEnemyVerticalMovementDirection() const
-	{
-		int randomValue = std::rand() % (static_cast<int>(Enemy::VerticalMovementDirection::DOWN) + 1);
-		return static_cast<Enemy::VerticalMovementDirection>(randomValue); //cast int to VerticalMovementDirection enum class
-	}
-
 	EnemyController* EnemyService::CreateEnemy(EnemyType enemyType) const
 	{
 		switch (enemyType)

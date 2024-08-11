@@ -6,8 +6,6 @@
 namespace Enemy
 {
 	enum class EnemyType;
-	enum class HorizontalMovementDirection;
-	enum class VerticalMovementDirection;
 
 	class EnemyController;
 
@@ -39,8 +37,6 @@ namespace Enemy
 		void Update();
 		void Render();
 
-		HorizontalMovementDirection GetRandomEnemyHorizontalMovementDirection() const;
-		VerticalMovementDirection GetRandomEnemyVerticalMovementDirection() const;
 		EnemyController* SpawnEnemy();
 		EnemyController* GetCurrentEnemy();
 		std::vector<EnemyController*> GetAllEnemies();

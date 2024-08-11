@@ -35,7 +35,9 @@ namespace Enemy
         const float upMostPosition = 50.f;
         const float downMostPosition = 900.f;
 
-        void Initialize(float hSpeed,float ySpeed, float radius);
+        void Initialize(float hSpeed,float ySpeed, 
+            HorizontalMovementDirection hMoveDirection, VerticalMovementDirection vMoveDirection, 
+            float radius);
 
         sf::Vector2f GetReferencePosition() const;
         void SetReferencePosition(sf::Vector2f position);
@@ -63,6 +65,9 @@ namespace Enemy
 
         float GetEnemyDeathRadius() const;
         void SetEnemyDeathRadius(float radius);
+
+        int GetEnemyDeathScore() const;
+        void SetEnemyDeathScore(int score);
 
     };
 }

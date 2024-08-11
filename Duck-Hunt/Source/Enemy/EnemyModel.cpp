@@ -13,13 +13,15 @@ namespace Enemy
 
 	EnemyModel::~EnemyModel() { }
 
-	void EnemyModel::Initialize(float hSpeed, float ySpeed, float radius)
+	void EnemyModel::Initialize(float hSpeed, float ySpeed,
+		HorizontalMovementDirection hMoveDirection, VerticalMovementDirection vMoveDirection,
+		float radius)
 	{
 		enemyState = EnemyState::ALIVE;
 		enemyPosition = sf::Vector2f(static_cast<int>(leftMostPosition) + (std::rand() % (static_cast<int>(rightMostPosition) - static_cast<int>(leftMostPosition) + 1)) , downMostPosition);
+		horizontalMovementDirection = hMoveDirection;
+		verticalMovementDirection = vMoveDirection;
 		enemyDeathRadius = radius;
-		horizontalMovementDirection = ServiceLocator::GetInstance()->GetEnemyService()->GetRandomEnemyHorizontalMovementDirection();
-		verticalMovementDirection = ServiceLocator::GetInstance()->GetEnemyService()->GetRandomEnemyVerticalMovementDirection();
 	}
 
 	sf::Vector2f EnemyModel::GetReferencePosition() const

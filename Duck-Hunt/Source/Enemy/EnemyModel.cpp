@@ -24,12 +24,12 @@ namespace Enemy
 		enemyDeathRadius = radius;
 	}
 
-	sf::Vector2f EnemyModel::GetReferencePosition() const
+	sf::Vector2f EnemyModel::GetEnemyReferencePosition() const
 	{
 		return referencePosition;
 	}
 
-	void EnemyModel::SetReferencePosition(sf::Vector2f position)
+	void EnemyModel::SetEnemyReferencePosition(sf::Vector2f position)
 	{
 		referencePosition = position;
 	}
@@ -64,42 +64,42 @@ namespace Enemy
 		enemyType = type;
 	}
 
-	HorizontalMovementDirection EnemyModel::GetHorizontalMovementDirection() const
+	HorizontalMovementDirection EnemyModel::GetEnemyHorizontalMovementDirection() const
 	{
 		return horizontalMovementDirection;
 	}
 
-	void EnemyModel::SetHorizontalMovementDirection(HorizontalMovementDirection direction)
+	void EnemyModel::SetEnemyHorizontalMovementDirection(HorizontalMovementDirection direction)
 	{
 		horizontalMovementDirection = direction;
 	}
 
-	VerticalMovementDirection EnemyModel::GetVerticalMovementDirection() const
+	VerticalMovementDirection EnemyModel::GetEnemyVerticalMovementDirection() const
 	{
 		return verticalMovementDirection;
 	}
 
-	void EnemyModel::SetVerticalMovementDirection(VerticalMovementDirection direction)
+	void EnemyModel::SetEnemyVerticalMovementDirection(VerticalMovementDirection direction)
 	{
 		verticalMovementDirection = direction;
 	}
 
-	float EnemyModel::GetHorizontalMovementSpeed() const
+	float EnemyModel::GetEnemyHorizontalMovementSpeed() const
 	{
 		return horizontalMovementSpeed;
 	}
 
-	void EnemyModel::SetHorizontalMovementSpeed(float speed)
+	void EnemyModel::SetEnemyHorizontalMovementSpeed(float speed)
 	{
 		horizontalMovementSpeed = speed;
 	}
 
-	float EnemyModel::GetVerticalMovementSpeed() const
+	float EnemyModel::GetEnemyVerticalMovementSpeed() const
 	{
 		return verticalMovementSpeed;
 	}
 
-	void EnemyModel::SetVerticalMovementSpeed(float speed)
+	void EnemyModel::SetEnemyVerticalMovementSpeed(float speed)
 	{
 		verticalMovementSpeed = speed;
 	}
@@ -112,6 +112,16 @@ namespace Enemy
 	void EnemyModel::SetEnemyDeathRadius(float radius)
 	{
 		enemyDeathRadius = radius;
+	}
+
+	int EnemyModel::GetEnemyDeathScore() const
+	{
+		return enemyDeathScore;
+	}
+
+	void EnemyModel::SetEnemyDeathScore(int score)
+	{
+		enemyDeathScore = score;
 	}
 
 }

@@ -56,17 +56,17 @@ namespace Enemy
         horizontalOffset = SmoothOffset(previousHorizontalOffset, newHorizontalOffset);
         previousHorizontalOffset = horizontalOffset;
 
-        switch (enemyModel->GetHorizontalMovementDirection())
+        switch (enemyModel->GetEnemyHorizontalMovementDirection())
         {
         case HorizontalMovementDirection::LEFT:
             currentPosition.x -= (GetEnemyHorizontalMovementSpeed() + horizontalOffset) * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
             if (currentPosition.x <= enemyModel->leftMostPosition)
             {
                 currentPosition.x = enemyModel->leftMostPosition;
-                enemyModel->SetHorizontalMovementDirection(HorizontalMovementDirection::RIGHT);
+                enemyModel->SetEnemyHorizontalMovementDirection(HorizontalMovementDirection::RIGHT);
                 if (isRandomVertical == true)
                 {
-                    enemyModel->SetVerticalMovementDirection(GetRandomEnemyVerticalMovementDirection());
+                    enemyModel->SetEnemyVerticalMovementDirection(GetRandomEnemyVerticalMovementDirection());
                 }
             }
             break;
@@ -76,10 +76,10 @@ namespace Enemy
             if (currentPosition.x >= enemyModel->rightMostPosition)
             {
                 currentPosition.x = enemyModel->rightMostPosition;
-                enemyModel->SetHorizontalMovementDirection(HorizontalMovementDirection::LEFT);
+                enemyModel->SetEnemyHorizontalMovementDirection(HorizontalMovementDirection::LEFT);
                 if (isRandomVertical == true)
                 {
-                    enemyModel->SetVerticalMovementDirection(GetRandomEnemyVerticalMovementDirection());
+                    enemyModel->SetEnemyVerticalMovementDirection(GetRandomEnemyVerticalMovementDirection());
                 }
             }
             break;
@@ -96,7 +96,7 @@ namespace Enemy
         verticalOffset = SmoothOffset(previousVerticalOffset, newVerticalOffset);
         previousVerticalOffset = verticalOffset;
 
-        switch (enemyModel->GetVerticalMovementDirection())
+        switch (enemyModel->GetEnemyVerticalMovementDirection())
         {
         case VerticalMovementDirection::UP:
             currentPosition.y -= (GetEnemyVerticalMovementSpeed() + verticalOffset) * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
@@ -105,9 +105,9 @@ namespace Enemy
                 currentPosition.y = enemyModel->upMostPosition;
                 if (isRandomHorizontal == true)
                 {
-                    enemyModel->SetHorizontalMovementDirection(GetRandomEnemyHorizontalMovementDirection());
+                    enemyModel->SetEnemyHorizontalMovementDirection(GetRandomEnemyHorizontalMovementDirection());
                 }
-                enemyModel->SetVerticalMovementDirection(VerticalMovementDirection::DOWN);
+                enemyModel->SetEnemyVerticalMovementDirection(VerticalMovementDirection::DOWN);
             }
             break;
 
@@ -118,9 +118,9 @@ namespace Enemy
                 currentPosition.y = enemyModel->downMostPosition;
                 if (isRandomHorizontal == true)
                 {
-                    enemyModel->SetHorizontalMovementDirection(GetRandomEnemyHorizontalMovementDirection());
+                    enemyModel->SetEnemyHorizontalMovementDirection(GetRandomEnemyHorizontalMovementDirection());
                 }
-                enemyModel->SetVerticalMovementDirection(VerticalMovementDirection::UP);
+                enemyModel->SetEnemyVerticalMovementDirection(VerticalMovementDirection::UP);
             }
             break;
         }
@@ -168,25 +168,45 @@ namespace Enemy
 		return enemyModel->GetEnemyPosition();
 	}
 
-    float EnemyController::GetEnemyHorizontalMovementSpeed() const
-    {
-        return horizontalMovementSpeed;
-    }
+	float EnemyController::GetEnemyHorizontalMovementSpeed() const
+	{
+		return enemyModel->GetEnemyHorizontalMovementSpeed();
+	}
 
-    float EnemyController::GetEnemyVerticalMovementSpeed() const
-    {
-        return verticalMovementSpeed;
-    }
+	void EnemyController::SetEnemyHorizontalMovementSpeed(float speed)
+	{
+		enemyModel->SetEnemyHorizontalMovementSpeed(speed);
+	}
 
-    float EnemyController::GetEnemyDeathRadius() const
-    {
-        return enemyDeathRadius;
-    }
+	float EnemyController::GetEnemyVerticalMovementSpeed() const
+	{
+		return enemyModel->GetEnemyVerticalMovementSpeed();
+	}
 
-    int EnemyController::GetEnemyDeathScore() const
-    {
-        return enemyDeathScore;
-    }
+	void EnemyController::SetEnemyVerticalMovementSpeed(float speed)
+	{
+		enemyModel->SetEnemyVerticalMovementSpeed(speed);
+	}
+
+	float EnemyController::GetEnemyDeathRadius() const
+	{
+		return enemyModel->GetEnemyDeathRadius();
+	}
+
+	void EnemyController::SetEnemyDeathRadius(float radius)
+	{
+		enemyModel->SetEnemyDeathRadius(radius);
+	}
+
+	int EnemyController::GetEnemyDeathScore() const
+	{
+		return enemyModel->GetEnemyDeathScore();
+	}
+
+	void EnemyController::SetEnemyDeathScore(int score)
+	{
+		enemyModel->SetEnemyDeathScore(score);
+	}
 
 	void EnemyController::Destroy(bool increaseScore)
 	{

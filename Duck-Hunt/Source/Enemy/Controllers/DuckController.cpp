@@ -6,10 +6,10 @@ namespace Enemy
     {
         DuckController::DuckController(EnemyType type) : EnemyController(type) 
         { 
-            horizontalMovementSpeed = 750.0f;
-            verticalMovementSpeed = 150.f;
-            enemyDeathRadius = 100.f;
-            enemyDeathScore = 100;
+            SetEnemyHorizontalMovementSpeed(750.0f);
+            SetEnemyVerticalMovementSpeed(150.f);
+            SetEnemyDeathRadius(100.f);
+            SetEnemyDeathScore(100);
         }
 
         DuckController::~DuckController() { }

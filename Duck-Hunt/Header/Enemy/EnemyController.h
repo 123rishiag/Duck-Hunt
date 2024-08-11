@@ -17,17 +17,11 @@ namespace Enemy
     protected:
         EnemyView* enemyView;
         EnemyModel* enemyModel;
-
-        float horizontalMovementSpeed;
-        float verticalMovementSpeed;
         float horizontalOffset;
         float verticalOffset;
         float previousHorizontalOffset = 0.0f;
         float previousVerticalOffset = 0.0f;
         float smoothingFactor = 0.00001f;
-
-        float enemyDeathRadius;
-        int enemyDeathScore;
 
         virtual void Move();
         void MoveHorizontal(bool isRandomVertical = false);
@@ -51,13 +45,16 @@ namespace Enemy
         sf::Vector2f GetEnemyPosition();
 
         float GetEnemyHorizontalMovementSpeed() const;
-        //void SetEnemyHorizontalMovementSpeed(float horizontalSpeed);
+        void SetEnemyHorizontalMovementSpeed(float speed);
+
         float GetEnemyVerticalMovementSpeed() const;
-        //void SetEnemyVerticalMovementSpeed(float verticalSpeed);
+        void SetEnemyVerticalMovementSpeed(float speed);
+
         float GetEnemyDeathRadius() const;
-        //void SetEnemyDeathRadius(float radius);
+        void SetEnemyDeathRadius(float radius);
+
         int GetEnemyDeathScore() const;
-        //void SetEnemyDeathScore(int score);
+        void SetEnemyDeathScore(int score);
 
         void Destroy(bool increaseScore);
     };

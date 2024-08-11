@@ -6,10 +6,10 @@ namespace Enemy
     {
         PowerDuckController::PowerDuckController(EnemyType type) : EnemyController(type) 
         { 
-            horizontalMovementSpeed = 1000.0f;
-            verticalMovementSpeed = 200.f;
-            enemyDeathRadius = 400.f;
-            enemyDeathScore = 200;
+            SetEnemyHorizontalMovementSpeed(1000.0f);
+            SetEnemyVerticalMovementSpeed(200.f);
+            SetEnemyDeathRadius(400.f);
+            SetEnemyDeathScore(200);
         }
 
         PowerDuckController::~PowerDuckController() { }

@@ -24,6 +24,7 @@ namespace Enemy
         float horizontalMovementSpeed;
         float verticalMovementSpeed;
         float enemyDeathRadius;
+        int enemyDeathScore;
 
     public:
         EnemyModel(EnemyType type);
@@ -39,8 +40,8 @@ namespace Enemy
             HorizontalMovementDirection hMoveDirection, VerticalMovementDirection vMoveDirection, 
             float radius);
 
-        sf::Vector2f GetReferencePosition() const;
-        void SetReferencePosition(sf::Vector2f position);
+        sf::Vector2f GetEnemyReferencePosition() const;
+        void SetEnemyReferencePosition(sf::Vector2f position);
 
         sf::Vector2f GetEnemyPosition() const;
         void SetEnemyPosition(sf::Vector2f position);
@@ -51,17 +52,17 @@ namespace Enemy
         EnemyState GetEnemyState() const;
         void SetEnemyState(EnemyState state);
 
-        HorizontalMovementDirection GetHorizontalMovementDirection() const;
-        void SetHorizontalMovementDirection(HorizontalMovementDirection direction);
+        HorizontalMovementDirection GetEnemyHorizontalMovementDirection() const;
+        void SetEnemyHorizontalMovementDirection(HorizontalMovementDirection direction);
 
-        VerticalMovementDirection GetVerticalMovementDirection() const;
-        void SetVerticalMovementDirection(VerticalMovementDirection direction);
+        VerticalMovementDirection GetEnemyVerticalMovementDirection() const;
+        void SetEnemyVerticalMovementDirection(VerticalMovementDirection direction);
 
-        float GetHorizontalMovementSpeed() const;
-        void SetHorizontalMovementSpeed(float speed);
+        float GetEnemyHorizontalMovementSpeed() const;
+        void SetEnemyHorizontalMovementSpeed(float speed);
 
-        float GetVerticalMovementSpeed() const;
-        void SetVerticalMovementSpeed(float speed);
+        float GetEnemyVerticalMovementSpeed() const;
+        void SetEnemyVerticalMovementSpeed(float speed);
 
         float GetEnemyDeathRadius() const;
         void SetEnemyDeathRadius(float radius);

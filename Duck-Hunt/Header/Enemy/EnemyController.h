@@ -24,6 +24,7 @@ namespace Enemy
         float smoothingFactor = 0.00001f;
 
         virtual void Move();
+        void Move(bool isHorizontal, bool isRandom);
         void MoveHorizontal(bool isRandomVertical = false);
         void MoveVertical(bool isRandomHorizontal = false);
 

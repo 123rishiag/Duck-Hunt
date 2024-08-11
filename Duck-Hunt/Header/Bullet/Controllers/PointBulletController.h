@@ -7,14 +7,9 @@ namespace Bullet
     {
         class PointBulletController : public BulletController
         {
-        private:
-            const float bulletRadius = 50.f;
-
         public:
             PointBulletController(BulletType type);
             ~PointBulletController();
-
-            float GetBulletRadius() override;
         };
     }
 }

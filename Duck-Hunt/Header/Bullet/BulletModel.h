@@ -8,8 +8,8 @@ namespace Bullet
     class BulletModel
     {
     private:
-        BulletType bulletType;
         sf::Vector2f bulletPosition;
+        BulletType bulletType;
         float bulletRadius;
 
     public:

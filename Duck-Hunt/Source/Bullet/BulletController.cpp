@@ -24,19 +24,15 @@ namespace Bullet
     }
     void BulletController::Initialize()
     {
-        bulletModel->Initialize(GetBulletRadius());
+        bulletModel->Initialize(GetProjectileRadius());
     }
-    void BulletController::Update()
-    {
-    }
-    void BulletController::Render()
-    {
-    }
+    void BulletController::Update() { }
+    void BulletController::Render() { }
 
     void BulletController::OnShoot(sf::Vector2f position)
     {
         bulletModel->SetBulletPosition(position);
-        ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemyByPosition(GetProjectilePosition(),GetBulletRadius());
+        ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemyByPosition(GetProjectilePosition(),GetProjectileRadius());
         ServiceLocator::GetInstance()->GetSoundService()->PlaySound(SoundType::BULLET_FIRE);
         ServiceLocator::GetInstance()->GetBulletService()->DestroyBullet(this);
     }
@@ -46,9 +42,28 @@ namespace Bullet
         return bulletModel->GetBulletPosition();
     }
 
-    BulletType BulletController::GetBulletType()
+    void BulletController::SetProjectilePosition(sf::Vector2f position)
+    {
+        bulletModel->SetBulletPosition(position);
+    }
+
+    BulletType BulletController::GetProjectileType()
     {
         return bulletModel->GetBulletType();
     }
 
+    void BulletController::SetProjectileType(BulletType type)
+    {
+        bulletModel->SetBulletType(type);
+    }
+
+    float BulletController::GetProjectileRadius()
+    {
+        return bulletModel->GetBulletRadius();
+    }
+
+    void BulletController::SetProjectileRadius(float radius)
+    {
+        bulletModel->SetBulletRadius(radius);
+    }
 }

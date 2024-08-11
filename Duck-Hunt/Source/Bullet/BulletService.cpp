@@ -114,7 +114,7 @@ namespace Bullet
 		if (!IsValidBullet(0, bulletList)) return;
 		IProjectile* bullet = GetCurrentBullet();
 		bullet->OnShoot(position);
-		ReducePlayerAmmo(bullet->GetBulletType());
+		ReducePlayerAmmo(bullet->GetProjectileType());
 	}
 
 	void BulletService::ChangeBullets()
@@ -127,7 +127,7 @@ namespace Bullet
 		// Categorize bullets based on their type
 		for (Projectile::IProjectile* bullet : bulletList)
 		{
-			bulletMap[bullet->GetBulletType()].push_back(bullet);
+			bulletMap[bullet->GetProjectileType()].push_back(bullet);
 		}
 
 		// Vector to store the bullet types in the order they were found
@@ -173,7 +173,7 @@ namespace Bullet
 
 	BulletType BulletService::GetBulletType(Projectile::IProjectile* projectile) const
 	{
-		return projectile->GetBulletType();
+		return projectile->GetProjectileType();
 	}
 
 	void BulletService::Reset() 

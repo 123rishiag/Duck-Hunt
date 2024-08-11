@@ -64,10 +64,10 @@ namespace Player
         IProjectile* projectile = ServiceLocator::GetInstance()->GetBulletService()->GetCurrentBullet();
         if (projectile != nullptr)
         {
-            int bulletTypeInt = static_cast<int>(projectile->GetBulletType());
+            int bulletTypeInt = static_cast<int>(projectile->GetProjectileType());
             Player::BulletType playerBulletType = ToEnum<Player::BulletType>(bulletTypeInt);
             SetCurrentBulletType(playerBulletType);
-            SetBulletRadius(projectile->GetBulletRadius());
+            SetBulletRadius(projectile->GetProjectileRadius());
         }
     }
 

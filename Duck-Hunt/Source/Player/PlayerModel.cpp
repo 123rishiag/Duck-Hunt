@@ -37,25 +37,9 @@ namespace Player
         }
     }
 
-    void PlayerModel::ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount)
-    {
-        playerPointAmmo = pointAmmoCount;
-        playerAreaAmmo = areaAmmoCount;
-    }
-
     int PlayerModel::GetPlayerHealth() const
     {
         return playerHealth;
-    }
-
-    void PlayerModel::ResetPlayerHealth()
-    {
-        playerHealth = playerMaxHealth;
-    }
-
-    void PlayerModel::ResetPlayerScore()
-    {
-        playerScore = 0;
     }
 
     int PlayerModel::GetPlayerPointAmmo() const
@@ -94,5 +78,21 @@ namespace Player
     void PlayerModel::SetBulletRadius(float radius)
     {
         currentBulletRadius = radius;
+    }
+
+    void PlayerModel::ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount)
+    {
+        playerPointAmmo = pointAmmoCount;
+        playerAreaAmmo = areaAmmoCount;
+    }
+
+    void PlayerModel::ResetPlayerHealth()
+    {
+        playerHealth = playerMaxHealth;
+    }
+
+    void PlayerModel::ResetPlayerScore()
+    {
+        playerScore = 0;
     }
 }

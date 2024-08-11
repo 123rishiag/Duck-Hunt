@@ -28,11 +28,8 @@ namespace Player
         void IncreasePlayerScore(int score);
         void ReducePlayerPointAmmo();
         void ReducePlayerAreaAmmo();
-        void ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount);
 
         int GetPlayerHealth() const;
-        void ResetPlayerHealth();
-        void ResetPlayerScore();
         int GetPlayerPointAmmo() const;
         int GetPlayerAreaAmmo() const;
         int GetPlayerScore() const;
@@ -45,5 +42,9 @@ namespace Player
 
         float GetBulletRadius() const;
         void SetBulletRadius(float radius);
+
+        void ResetPlayerAmmo(int pointAmmoCount, int areaAmmoCount);
+        void ResetPlayerHealth();
+        void ResetPlayerScore();
     };
 }

@@ -63,16 +63,6 @@ namespace Player
         return playerController->GetPlayerHealth();
     }
 
-    void PlayerService::ResetPlayerHealth()
-    {
-        playerController->ResetPlayerHealth();
-    }
-
-    void PlayerService::ResetPlayerScore()
-    {
-        playerController->ResetPlayerScore();
-    }
-
     int PlayerService::GetPlayerPointAmmo() const
     {
         return playerController->GetPlayerPointAmmo();
@@ -93,9 +83,18 @@ namespace Player
         return playerController->GetCurrentBulletType();
     }
 
+    void PlayerService::ResetPlayerHealth()
+    {
+        playerController->ResetPlayerHealth();
+    }
+
+    void PlayerService::ResetPlayerScore()
+    {
+        playerController->ResetPlayerScore();
+    }
+
     void PlayerService::Reset(int pointAmmoCount, int areaAmmoCount)
     {
         ResetPlayerAmmo(pointAmmoCount, areaAmmoCount);
     }
-
 }

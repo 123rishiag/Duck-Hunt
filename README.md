@@ -69,3 +69,7 @@ Welcome to the modern twist on the classic Duck Hunt game! This project is a cul
 4. Run the executable to start the game.
 
 5. Use the mouse to control your player's shoot point, change bullets and shoot enemies.
+
+## Video Demo
+
+[Watch the Video Demo](https://www.loom.com/share/c31a1183611544508c0b37a843b3b57e?sid=cdaea64c-1d80-404f-b4c8-6c384ec767c3)
